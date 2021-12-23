@@ -107,7 +107,6 @@ extension ContentView.ViewModel {
         guard !usedWords.contains(word) else {
             return ErrorDisplay(title: "Word used already!", message: "Be more original...", show: true)
         }
-        print(checkIfPossible(word: word))
         guard checkIfPossible(word: word) else {
             return ErrorDisplay(title: "Word not recognized!", message: "You can't just make them up, you know!", show: true)
         }
