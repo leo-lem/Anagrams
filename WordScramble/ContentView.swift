@@ -80,7 +80,9 @@ struct ContentView: View {
                                 .onTapGesture { viewModel.timerEnabled = false }
                         } else {
                             Button {
-                                viewModel.timerEnabled = true
+                                if viewModel.timeRemaining >= 0 {
+                                    viewModel.timerEnabled = true
+                                }
                             } label: {
                                 Text(viewModel.timerEnabled ? "Deactivate Timer" : "Activate Timer")
                                 Image(systemName: "clock.arrow.circlepath")
