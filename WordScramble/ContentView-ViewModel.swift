@@ -10,60 +10,121 @@ import MyOthers
 
 extension ContentView {
     @MainActor class ViewModel: ObservableObject {
-        private var startWords: [String] {
-            didSet { UserDefaults.standard.set(startWords, forKey: "startWords") }
+        //game stuff
+        private var startWords: [String] { didSet { userDefaults.set(startWords, forKey: "startWords") } }
+        @Published var rootWord: String {
+            didSet {
+                if rootWord.isEmpty {
+                    rootWord = startWords.randomElement() ?? "silkworm"
+                } else {
+                    if !checkIfReal(word: rootWord) {
+                        self.error = "You can't use '\(rootWord)'!\nThat's no english word."
+                        rootWord = startWords.randomElement() ?? "silkworm"
+                        withAnimation { self.showError = true }
+                    } else if rootWord.count < 4 {
+                        self.error = "You can't use '\(rootWord)'!\nIt's too short."
+                        rootWord = startWords.randomElement() ?? "silkworm"
+                        withAnimation { self.showError = true }
+                    }
+                }
+                userDefaults.set(rootWord, forKey: "rootWord")
+            }
         }
-        @Published private(set) var rootWord = "silkworm" {
-            didSet { UserDefaults.standard.set(rootWord, forKey: "rootWord") }
-        }
-        @Published private(set) var usedWords = [String]() {
-            didSet { UserDefaults.standard.set(usedWords, forKey: "usedWords") }
-        }
-        @Published var newWord = ""
+        @Published private(set) var usedWords: [String] { didSet { userDefaults.set(usedWords, forKey: "usedWords") } }
+        @Published var newWord: String { didSet { userDefaults.set(newWord, forKey: "newWord") } }
         
-        //error display if the word is not valid
-        @Published var error = ErrorDisplay()
-        struct ErrorDisplay {
-            var title = "Oops!", message = "Something went wrong...", show = false
+        
+        //timer stuff
+        @Published var timerEnabled: Bool {
+            willSet {
+                if newValue {
+                    self.timeLimit = userDefaults.object(forKey: "timeLimit") as? Double ?? 300.0
+                    self.timeRemaining = userDefaults.object(forKey: "timeRemaining") as? Int ?? Int(timeLimit!)
+                    self.timePassed = 0
+                }
+            }
+            didSet {
+                if !timerEnabled {
+                   self.timeLimit = nil
+                   self.timeRemaining = nil
+                   self.timePassed = nil
+                }
+                userDefaults.set(timerEnabled, forKey: "timerEnabled")
+            }
         }
+        var timeLimit: Double? { didSet { userDefaults.set(timeLimit, forKey: "timeLimit") } }
+        var wrappedTimeLimit: Double {
+            get { timeLimit ?? 0 }
+            set {
+                if self.timeLimit != nil {
+                    self.timeLimit = newValue
+                }
+            }
+        }
+        @Published var timeRemaining: Int? {
+            didSet {
+                if timerEnabled {
+                    if timeRemaining! <= 0 { showTimeUpAlert = true }
+                    timePassed! += 1
+                    userDefaults.set(timeRemaining, forKey: "timeRemaining")
+                }
+            }
+        }
+        var timePassed: Int?
+        @Published var showTimeUpAlert = false
+        
+        //error stuff
+        @Published var showError = false {
+            didSet {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    withAnimation { self.showError = false }
+                }
+            }
+        }
+        @Published var error = ""
         
         //ranking stuff
         @Published var showScoreSaveDialog = false
         @Published var showRanking = false
+        @Published private(set) var score: Int { didSet { userDefaults.set(score, forKey: "score") } }
+        @Published var ranking: [Rank] { didSet { userDefaults.setObject(ranking, forKey: "ranking") } }
+        @Published var username: String { didSet { userDefaults.set(username, forKey: "username")} }
         
-        @Published private(set) var score = 0 {
-            didSet { UserDefaults.standard.set(score, forKey: "score") }
-        }
-        
-        @Published var ranking = [Rank]() {
-            didSet { UserDefaults.standard.setObject(ranking, forKey: "ranking") }
-        }
-        
-        func newGame(name: String = "", saveScore: Bool = false, newRootWord: String = "") {
+        func beginNewGame(saveScore: Bool = false) {
             if saveScore {
-                let rank = Rank(name: name, word: rootWord, score: self.score, time: Date())
+                let rank = Rank(name: self.username,
+                                word: self.rootWord,
+                                score: self.score,
+                                time: self.timePassed,
+                                usedWords: self.usedWords,
+                                timestamp: Date())
                 ranking.append(rank)
                 ranking.sort()
             }
             showScoreSaveDialog = false
             
-            newWord = ""
-            usedWords = []
-            score = 0
-            rootWord = newRootWord.isEmpty ? (startWords.randomElement() ?? rootWord) : newRootWord
-        }
-        
-        struct Rank: Comparable, Codable, Hashable {
-            let name: String, word: String, score: Int, time: Date
+            self.newWord = ""
+            self.usedWords = []
+            self.score = 0
             
-            static func < (lhs: Rank, rhs: Rank) -> Bool {
-                lhs.score < rhs.score
+            if timerEnabled {
+                self.timeRemaining = Int(self.timeLimit ?? 0)
+                self.timePassed = 0
             }
         }
         
-        //loading the start words during initialization
+        struct Rank: Comparable, Codable, Hashable {
+            let name: String, word: String, score: Int, time: Int?, usedWords: [String], timestamp: Date
+            
+            static func < (lhs: Rank, rhs: Rank) -> Bool { lhs.score < rhs.score }
+        }
+        
+        //initialization
+        private let userDefaults = UserDefaults.standard
+        
         init() {
-            if let fetchedStartWords = UserDefaults.standard.object(forKey: "startWords") as? [String] {
+            //start words
+            if let fetchedStartWords = userDefaults.object(forKey: "startWords") as? [String] {
                 self.startWords = fetchedStartWords
             } else {
                 do {
@@ -76,9 +137,27 @@ extension ContentView {
                 }
             }
             
-            self.rootWord = UserDefaults.standard.object(forKey: "rootWord") as? String ?? rootWord
-            self.usedWords = UserDefaults.standard.object(forKey: "usedWords") as? [String] ?? usedWords
-            self.ranking = UserDefaults.standard.getObject(forKey: "ranking", castTo: [Rank].self) ?? [Rank]()
+            //game
+            self.score = userDefaults.object(forKey: "score") as? Int ?? 0
+            self.newWord = userDefaults.object(forKey: "newWord") as? String ?? ""
+            self.rootWord = userDefaults.object(forKey: "rootWord") as? String ?? "silkworm"
+            self.usedWords = userDefaults.object(forKey: "usedWords") as? [String] ?? []
+            
+            //ranking
+            self.ranking = userDefaults.getObject(forKey: "ranking", castTo: [Rank].self) ?? [Rank]()
+            self.username = userDefaults.object(forKey: "username") as? String ?? ""
+            
+            //timer
+            self.timeLimit = nil
+            self.timeRemaining = nil
+            self.timePassed = nil
+            self.timerEnabled = userDefaults.object(forKey: "timerEnabled") as? Bool ?? false
+            
+            if timerEnabled {
+                self.timePassed = 0
+                self.timeLimit = userDefaults.object(forKey: "timeLimit") as? Double ?? 300.0
+                self.timeRemaining = userDefaults.object(forKey: "timeRemaining") as? Int ?? Int(timeLimit!)
+            }
         }
     }
 }
@@ -88,8 +167,9 @@ extension ContentView.ViewModel {
     func addWord() {
         let word = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
-        if let errorDisplay = validateWord(word) {
-            self.error = errorDisplay
+        if let error = validateWord(word) {
+            self.error = error
+            withAnimation { self.showError = true }
         } else {
             usedWords.insert(word, at: 0)
             score += word.count
@@ -97,21 +177,21 @@ extension ContentView.ViewModel {
         self.newWord = ""
     }
     
-    private func validateWord(_ word: String) -> ErrorDisplay? {
+    private func validateWord(_ word: String) -> String? {
         guard word != rootWord else {
-            return ErrorDisplay(title: "Word = root word!", message: "Obviously you can't just use the original word", show: true)
+            return "Word = root word!\nObviously you can't just use the original word"
         }
         guard word.count > 2 else {
-            return ErrorDisplay(title: "Word too short!", message: "Only words with more than 2 letters allowed", show: true)
+            return "Word too short!\nOnly words with more than 2 letters allowed"
         }
         guard !usedWords.contains(word) else {
-            return ErrorDisplay(title: "Word used already!", message: "Be more original...", show: true)
+            return "Word already used!\nBe more original..."
         }
         guard checkIfPossible(word: word) else {
-            return ErrorDisplay(title: "Word not recognized!", message: "You can't just make them up, you know!", show: true)
+            return "Illegal word!\nYou can't just use any word, you know."
         }
         guard checkIfReal(word: word) else {
-            return ErrorDisplay(title: "Word not possible!", message: "That is no english word!", show: true)
+            return "Unknown Word!\nThat is no english word."
         }
         return nil
     }

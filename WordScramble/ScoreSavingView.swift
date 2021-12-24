@@ -9,37 +9,36 @@ import SwiftUI
 
 struct NewGameView: View {
     @Environment(\.dismiss) var dismiss
-    let score: Int, newGame: (_ name: String, _ save: Bool, _ newRootWord: String) -> Void
-    
-    @State private var name = ""
+    let score: Int
+    @Binding var username: String
+    @Binding var rootWord: String
     @State private var newRootWord = ""
+    @Binding var timeLimit: Double
+    let beginNewGame: (_ save: Bool) -> Void
     
     var body: some View {
         VStack(alignment: .center) {
-            HStack {
-                Button("Cancel") { self.dismiss() }
-                    .buttonStyle(.bordered)
-                
-                Spacer()
-                
-                if name.isEmpty {
-                    Button("New Game Without Saving") { newGame("", false, newRootWord) }
-                        .buttonStyle(.bordered)
-                } else {
-                    Button("New Game") { newGame(name, true, newRootWord) }
-                        .buttonStyle(.bordered)
+            TextField("Enter your name to save", text: $username)
+                .textFieldStyle(.roundedBorder)
+            
+            TextField("Enter root word for next game (optional)", text: $newRootWord)
+                .textFieldStyle(.roundedBorder)
+            
+            if timeLimit != 0 {
+                HStack {
+                    Text("Time Limit")
+                    Slider(value: $timeLimit, in: 60...3600)
+                    Text("\(Int(timeLimit))")
                 }
             }
             
-            Text("Save Score?")
-                .bold()
-                .font(.title)
-            
-            TextField("Enter your name:", text: $name)
-                .textFieldStyle(.roundedBorder)
-            
-            TextField("optional: Enter word for next game", text: $newRootWord)
-                .textFieldStyle(.roundedBorder)
+            Button(username.isEmpty ? "New Game Without Saving" : "Save and Start New Game") {
+                newRootWord.removeAll { $0 == " "}
+                rootWord = newRootWord.lowercased()
+                beginNewGame(!username.isEmpty)
+            }
+            .padding()
+            .buttonStyle(.bordered)
         }
         .padding()
     }
@@ -47,6 +46,6 @@ struct NewGameView: View {
 
 struct NewGameView_Previews: PreviewProvider {
     static var previews: some View {
-        NewGameView(score: 10) { _, _, _ in }
+        NewGameView(score: 15, username: .constant("Leo"), rootWord: .constant("indigo"), timeLimit: .constant(300)) { _ in }
     }
 }
