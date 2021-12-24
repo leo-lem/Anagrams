@@ -38,7 +38,7 @@ extension ContentView {
         @Published var timerEnabled: Bool {
             willSet {
                 if newValue {
-                    self.timeLimit = userDefaults.object(forKey: "timeLimit") as? Double ?? 300.0
+                    self.timeLimit = userDefaults.object(forKey: "timeLimit") as? Double ?? 5.0
                     self.timePassed = 0
                 }
             }

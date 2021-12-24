@@ -46,6 +46,6 @@ struct NewGameView: View {
 
 struct NewGameView_Previews: PreviewProvider {
     static var previews: some View {
-        NewGameView(score: 15, username: .constant("Leo"), rootWord: .constant("indigo"), timeLimit: .constant(300)) { _ in }
+        NewGameView(score: 15, username: .constant("Leo"), rootWord: .constant("indigo"), timeLimit: .constant(1)) { _ in }
     }
 }
