@@ -26,15 +26,15 @@ struct NewGameView: View {
             
             if timeLimit != 0 {
                 HStack {
-                    Text("Time Limit")
-                    Slider(value: $timeLimit, in: 60...3600)
-                    Text("\(Int(timeLimit))")
+                    Text("Timer")
+                    Slider(value: $timeLimit, in: 1...60, step: 1)
+                    Text("\(Int(timeLimit)) min")
                 }
             }
             
             Button(username.isEmpty ? "New Game Without Saving" : "Save and Start New Game") {
                 beginNewGame(!username.isEmpty)
-                newRootWord.removeAll { $0 == " "}
+                newRootWord.removeAll { $0 == " " }
                 rootWord = newRootWord.lowercased()
             }
             .padding()

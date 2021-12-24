@@ -80,16 +80,15 @@ struct ContentView: View {
                                 .onTapGesture { viewModel.timerEnabled = false }
                         } else {
                             Button {
-                                if viewModel.timeRemaining >= 0 {
-                                    viewModel.timerEnabled = true
-                                }
+                                viewModel.timerEnabled = true
                             } label: {
                                 Text(viewModel.timerEnabled ? "Deactivate Timer" : "Activate Timer")
                                 Image(systemName: "clock.arrow.circlepath")
                             }
+                            .disabled(viewModel.timeRemaining <= 0)
+                            .foregroundColor(viewModel.timeRemaining <= 0 ? .gray : .primary)
                             .padding()
                             .font(.headline)
-                            .foregroundColor(.primary)
                         }
                 }
                 .onReceive(timer) { _ in

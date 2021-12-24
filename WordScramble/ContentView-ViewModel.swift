@@ -54,11 +54,7 @@ extension ContentView {
         var timeLimit: Double? { didSet { userDefaults.set(timeLimit, forKey: "timeLimit") } }
         var wrappedTimeLimit: Double {
             get { timeLimit ?? 0 }
-            set {
-                if self.timeLimit != nil {
-                    self.timeLimit = newValue
-                }
-            }
+            set { if self.timeLimit != nil { self.timeLimit = newValue } }
         }
         @Published var timeRemaining: Int {
             didSet {
@@ -108,7 +104,7 @@ extension ContentView {
             
             if timerEnabled {
                 self.showTimeUpAlert = false
-                self.timeRemaining = Int(self.timeLimit ?? 0)
+                self.timeRemaining = Int(self.timeLimit ?? 0)*60
                 self.timePassed = 0
             }
         }
@@ -149,14 +145,13 @@ extension ContentView {
             
             //timer
             self.timeLimit = nil
-            self.timeRemaining = 300
+            self.timeRemaining = userDefaults.object(forKey: "timeRemaining") as? Int ?? Int(timeLimit ?? 5)*60
             self.timePassed = nil
             self.timerEnabled = userDefaults.object(forKey: "timerEnabled") as? Bool ?? false
             
             if timerEnabled {
                 self.timePassed = 0
-                self.timeLimit = userDefaults.object(forKey: "timeLimit") as? Double ?? 300.0
-                self.timeRemaining = userDefaults.object(forKey: "timeRemaining") as? Int ?? Int(timeLimit!)
+                self.timeLimit = userDefaults.object(forKey: "timeLimit") as? Double ?? 5.0
             }
         }
     }
