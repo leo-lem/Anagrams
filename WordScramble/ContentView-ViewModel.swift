@@ -39,15 +39,14 @@ extension ContentView {
             willSet {
                 if newValue {
                     self.timeLimit = userDefaults.object(forKey: "timeLimit") as? Double ?? 300.0
-                    self.timeRemaining = userDefaults.object(forKey: "timeRemaining") as? Int ?? Int(timeLimit!)
                     self.timePassed = 0
                 }
             }
             didSet {
                 if !timerEnabled {
-                   self.timeLimit = nil
-                   self.timeRemaining = nil
-                   self.timePassed = nil
+                    self.timeLimit = nil
+                    self.timePassed = nil
+                    self.showTimeUpAlert = false
                 }
                 userDefaults.set(timerEnabled, forKey: "timerEnabled")
             }
@@ -61,10 +60,10 @@ extension ContentView {
                 }
             }
         }
-        @Published var timeRemaining: Int? {
+        @Published var timeRemaining: Int {
             didSet {
                 if timerEnabled {
-                    if timeRemaining! <= 0 { showTimeUpAlert = true }
+                    if timeRemaining <= 0 { self.showTimeUpAlert = true }
                     timePassed! += 1
                     userDefaults.set(timeRemaining, forKey: "timeRemaining")
                 }
@@ -101,13 +100,14 @@ extension ContentView {
                 ranking.append(rank)
                 ranking.sort()
             }
-            showScoreSaveDialog = false
             
+            self.showScoreSaveDialog = false
             self.newWord = ""
             self.usedWords = []
             self.score = 0
             
             if timerEnabled {
+                self.showTimeUpAlert = false
                 self.timeRemaining = Int(self.timeLimit ?? 0)
                 self.timePassed = 0
             }
@@ -149,7 +149,7 @@ extension ContentView {
             
             //timer
             self.timeLimit = nil
-            self.timeRemaining = nil
+            self.timeRemaining = 300
             self.timePassed = nil
             self.timerEnabled = userDefaults.object(forKey: "timerEnabled") as? Bool ?? false
             

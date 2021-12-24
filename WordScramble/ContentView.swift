@@ -33,6 +33,17 @@ struct ContentView: View {
                     .padding()
                     .autocapitalization(.none)
                 
+                if viewModel.showTimeUpAlert {
+                    Text("Time's up!\nStart a new game (with or without saving your score).")
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
+                        .padding(5)
+                        .border(.foreground , width: 5)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                        .animation(.default, value: viewModel.showError)
+                }
+                
                 if viewModel.showError {
                     Text("\(viewModel.error)")
                         .multilineTextAlignment(.center)
@@ -55,7 +66,7 @@ struct ContentView: View {
                     .accessibilityLabel("\(word), \(word.count) letters")
                 }
             }
-            .disabled(viewModel.timerEnabled ? viewModel.timeRemaining! <= 0 : false)
+            .disabled(viewModel.timerEnabled ? viewModel.timeRemaining <= 0 : false)
             .overlay(alignment: .bottom) {
                 HStack {
                     Text("Your score is \(viewModel.score).")
@@ -63,16 +74,10 @@ struct ContentView: View {
                         .font(.headline)
                     Spacer()
                         if viewModel.timerEnabled {
-                            Text("You have \(viewModel.timeRemaining!) second(s) left")
+                            Text("You have \(viewModel.timeRemaining) second(s) left")
                                 .padding()
                                 .font(.headline)
-                                .onReceive(timer) { _ in
-                                    if viewModel.timeRemaining! > 0 { viewModel.timeRemaining! -= 1 }
-                                }
                                 .onTapGesture { viewModel.timerEnabled = false }
-                                .alert("Time's Up!", isPresented: $viewModel.showTimeUpAlert) {
-                                    Button("OK", role: .cancel) {}
-                                }
                         } else {
                             Button {
                                 viewModel.timerEnabled = true
@@ -84,6 +89,9 @@ struct ContentView: View {
                             .font(.headline)
                             .foregroundColor(.primary)
                         }
+                }
+                .onReceive(timer) { _ in
+                    if viewModel.timeRemaining > 0 { viewModel.timeRemaining -= 1 }
                 }
             }
             .navigationBarTitleDisplayMode(.inline)

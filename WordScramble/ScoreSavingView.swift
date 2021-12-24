@@ -33,9 +33,9 @@ struct NewGameView: View {
             }
             
             Button(username.isEmpty ? "New Game Without Saving" : "Save and Start New Game") {
+                beginNewGame(!username.isEmpty)
                 newRootWord.removeAll { $0 == " "}
                 rootWord = newRootWord.lowercased()
-                beginNewGame(!username.isEmpty)
             }
             .padding()
             .buttonStyle(.bordered)
