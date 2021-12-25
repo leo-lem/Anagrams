@@ -71,6 +71,7 @@ extension ContentView {
         //error stuff
         @Published var showError = false {
             didSet {
+                //TODO: Fix the error dismissing after 5 seconds even if a new error has appeared
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     withAnimation { self.showError = false }
                 }

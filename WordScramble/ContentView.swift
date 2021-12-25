@@ -33,6 +33,7 @@ struct ContentView: View {
                     .padding()
                     .autocapitalization(.none)
                 
+                //TODO: make a view for these alerts
                 if viewModel.showTimeUpAlert {
                     Text("Time's up!\nStart a new game (with or without saving your score).")
                         .multilineTextAlignment(.center)
@@ -67,6 +68,17 @@ struct ContentView: View {
                 }
             }
             .disabled(viewModel.timerEnabled ? viewModel.timeRemaining <= 0 : false)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("New Game") { viewModel.showScoreSaveDialog = true }
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink("Highscores") {
+                        RankingView(ranking: $viewModel.ranking)
+                    }
+                }
+            }
             .overlay(alignment: .bottom) {
                 HStack {
                     Text("Your score is \(viewModel.score).")
@@ -91,19 +103,9 @@ struct ContentView: View {
                             .font(.headline)
                         }
                 }
+                //TODO: make the timer a little more robust and a little nicer looking
                 .onReceive(timer) { _ in
                     if viewModel.timeRemaining > 0 { viewModel.timeRemaining -= 1 }
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("New Game") { viewModel.showScoreSaveDialog = true }
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Highscores") {
-                        RankingView(ranking: $viewModel.ranking)
-                    }
                 }
             }
             .sheet(isPresented: $viewModel.showScoreSaveDialog) {
