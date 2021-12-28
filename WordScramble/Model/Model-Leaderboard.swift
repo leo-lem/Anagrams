@@ -24,9 +24,15 @@ extension Model {
 //MARK: the Rank struct (single entry on the leaderboard)
 extension Model.Leaderboard {
     struct Entry: Comparable, Codable, Hashable {
-        let name: String, word: String, score: Int, time: Double?, usedWords: [String], timestamp: Date
+        let name: String,
+            word: String,
+            language: String,
+            score: Int,
+            time: Double?,
+            usedWords: [String],
+            timestamp: Date
         
-        static let example = Entry(name: "Leo", word: "silkworm", score: 9, time: 100, usedWords: ["silk", "worms"], timestamp: Date())
+        static let example = Entry(name: "Leo", word: "silkworm", language: "en", score: 9, time: 100, usedWords: ["silk", "worms"], timestamp: Date())
         
         static func <(lhs: Entry, rhs: Entry) -> Bool { lhs.score > rhs.score }
     }
@@ -37,9 +43,10 @@ extension Model.Leaderboard {
     func addEntry(game: Model.Game) {
         guard !game.user.name.isEmpty else { return }
             
-        let rank = Entry(name: game.user.name, word: game.root, score: game.score,
-                        time: game.user.timer ? game.time : nil,
-                        usedWords: game.used, timestamp: Date())
+        let rank = Entry(name: game.user.name, word: game.root,
+                         language: game.user.language.rawValue, score: game.score,
+                         time: game.user.timer ? game.time : nil,
+                         usedWords: game.used, timestamp: Date())
         
         entries.append(rank)
     }

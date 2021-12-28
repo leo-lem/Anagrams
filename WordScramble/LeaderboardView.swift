@@ -18,20 +18,18 @@ struct LeaderboardView: View {
     
     var body: some View {
         VStack {
-            Text("Leaderboard")
-                .bold()
-                .font(.largeTitle)
+            Text("Leaderboard").font(.largeTitle).bold()
+            
             List {
                 ForEach(entries, id: \.self) { entry in
                     NavigationLink {
                         EntryDetailView(entry: entry)
                     } label: {
-                        EntryView(rank: entry)
+                        EntryView(entry: entry)
                     }
                 }
                 .onDelete(perform: delete)
             }
-            Spacer()
         }
         .toolbar { EditButton() }
     }

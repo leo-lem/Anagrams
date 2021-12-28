@@ -65,5 +65,27 @@
 "took %@ %@" = "hat %@ %@ gebraucht";
 
 /* No comment provided by engineer. */
-"with '%@'" = "mit %@";
+"with '%@' (%@)" = "mit '%@' (%@)";
 
+//figure out why this is not working
+"Cannot be used as root word!" = "Das kann nicht als Basiswort benutzt werden!";
+"That's no english word." = "Gibt's nicht, das Wort.";
+"That's too short." = "Zu kurz...";
+
+"Time's up!" = "Zeit ist um!";
+"You can start a new game (or disable the timer)." = "Du kannst 'ne neue Runde starten (oder den Timer deaktivieren)";
+
+"Word = root word!" = "Wort = Basiswort!";
+"Obviously you can't just use the original word" = "Das Gleiche kannst halt nicht einfach nehmen...";
+
+"Word too short!" = "Das ist zu kurz!";
+"Only words with more than 3 letters allowed" = "Mindestens vier Buchstaben...";
+
+"Word already used!" = "Das hast du schon!";
+"Be more original..." = "Denk dir was neues aus...";
+
+"Illegal word!" = "Das Wort passt nicht!";
+"You can't just use any word, you know." = "Du darfst nur die Buchstaben des Basisworts benutzen...";
+
+"Unknown Word!" = "Unbekanntes Wort!";
+"That is no english word." = "Das Wort gibt's doch gar nicht...";

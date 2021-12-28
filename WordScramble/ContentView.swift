@@ -19,7 +19,6 @@ struct ContentView: View {
                 Text(viewModel.rootword)
                     .bold()
                     .font(.largeTitle)
-                    .foregroundColor(.primary)
                     .linkToWiktionary(word: viewModel.rootword)
                 
                 TextField("Enter your word", text: $viewModel.newWord) {
@@ -30,6 +29,7 @@ struct ContentView: View {
                 .padding()
                 .autocapitalization(.none)
                 .focused($focused, equals: true)
+                .disabled(viewModel.timerEnabled && viewModel.timesUp)
                 
                 ForEach(viewModel.gameErrors) { error in
                     GameErrorView(title: error.title, description: error.description ?? "")
@@ -40,11 +40,9 @@ struct ContentView: View {
                     UsedWordView(word: word)
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button("New Game") { viewModel.showingNewGameDialog = true }
-                        .foregroundColor(.primary)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink<Text, LeaderboardView>("Leaderboard") {
@@ -52,22 +50,25 @@ struct ContentView: View {
                             viewModel.delete(at: offsets)
                         }
                     }
-                    .foregroundColor(.primary)
                 }
             }
             .overlay(alignment: .bottom) {
                 HStack {
-                    TimerView(enabled: $viewModel.timerEnabled,
-                              time: $viewModel.newTime,
-                              limit: viewModel.limitInSeconds)
+                    TimerView(time: $viewModel.newTime, limit: viewModel.limitInSeconds)
+                        .hidden(!viewModel.timerEnabled)
+                        .animation(.default, value: viewModel.timerEnabled)
                     Spacer()
-                    TimerButtonView(enabled: $viewModel.timerEnabled, timesUp: viewModel.timesUp)
-                    Spacer()
+                        
                     ScoreView(score: viewModel.score)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)
                 .background(.bar)
+                .onTapGesture {
+                    if !(!viewModel.timerEnabled && viewModel.timesUp) {
+                        withAnimation { viewModel.timerEnabled.toggle() }
+                    }
+                }
             }
             .sheet(isPresented: $viewModel.showingNewGameDialog) {
                 VStack {
@@ -76,8 +77,10 @@ struct ContentView: View {
                         viewModel.save() } newGame: { viewModel.newGame() } apply: { viewModel.apply() }
                 }
             }
-            .disabled(viewModel.timerEnabled && viewModel.timesUp)
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .foregroundColor(.primary)
+        .navigationViewStyle(.stack)
     }
 }
 

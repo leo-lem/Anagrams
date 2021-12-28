@@ -75,6 +75,7 @@ extension ContentView.ViewModel {
         model.user.name = self.newUsername
         model.leaderboard.addEntry(game: model.game)
         model.leaderboard.save()
+        model.user.save()
         
         self.newGame()
     }

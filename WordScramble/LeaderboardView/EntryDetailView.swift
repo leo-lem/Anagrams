@@ -14,7 +14,7 @@ struct EntryDetailView: View {
         VStack {
             Group {
                 Text("\(entry.name) got a score of \(entry.score)").font(.title).bold()
-                Text("with '\(entry.word)'").font(.title)
+                Text("with '\(entry.word)' (\(entry.language))").font(.title)
                 if entry.time != nil {
                     Text("in \(entry.time!.formatted()) \(entry.time == 1 ? "second" : "seconds")").font(.title2)
                 }

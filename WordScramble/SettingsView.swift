@@ -23,6 +23,7 @@ struct SettingsView: View {
                 Text("Save Game to Leaderboard")
             } footer: {
                 Button("Save and Start New Game", action: save)
+                    .foregroundColor(username.isEmpty ? .gray : .blue)
                     .disabled(username.isEmpty)
             }
             
@@ -32,6 +33,7 @@ struct SettingsView: View {
                 Text("Start a New Game")
             } footer: {
                 Button("Start New Game", action: newGame)
+                    .foregroundColor(.blue)
             }
             
             Section {
@@ -52,6 +54,7 @@ struct SettingsView: View {
                 Text("Preferences")
             } footer: {
                 Button("Apply and Start New Game", action: apply)
+                    .foregroundColor(.blue)
             }
         }
     }

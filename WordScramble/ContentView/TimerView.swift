@@ -9,7 +9,6 @@ import SwiftUI
 import MyCustomUI
 
 struct TimerView: View {
-    @Binding var enabled: Bool
     @Binding var time: Double
     var limit: Double
     
@@ -30,13 +29,11 @@ struct TimerView: View {
                 }
             Text(remaining == 1 ? "second" : "seconds").font(.caption2)
         }
-        .hidden(!enabled)
-        .animation(.default, value: enabled)
     }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(enabled: .constant(true), time: .constant(10), limit: 300)
+        TimerView(time: .constant(10), limit: 300)
     }
 }

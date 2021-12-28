@@ -11,7 +11,7 @@ extension Model {
     class Game: ObservableObject {
         var user = User()
         
-        @Published var root = ""
+        @Published var root = "universal"
         @Published var used = [String]()
         @Published var time = 0.0
         
