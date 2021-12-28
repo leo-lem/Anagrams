@@ -11,112 +11,69 @@ import MyLayout
 struct ContentView: View {
     @ObservedObject var viewModel = ViewModel()
     
-    private func addWord() { viewModel.addWord() }
-    private func beginNewGame(_ saveScore: Bool) {
-        viewModel.beginNewGame(saveScore: saveScore)
-    }
-    
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @FocusState private var focused: Bool
     
     var body: some View {
         NavigationView {
             VStack {
-                Link(destination: URL(string: "https://en.wiktionary.org/wiki/\(viewModel.rootWord)") ?? URL(string: "https://en.wiktionary.org/wiki/")!) {
-                    Text(viewModel.rootWord)
-                        .bold()
-                        .font(.largeTitle)
-                        .foregroundColor(.primary)
+                Text(viewModel.rootword)
+                    .bold()
+                    .font(.largeTitle)
+                    .foregroundColor(.primary)
+                    .linkToWiktionary(word: viewModel.rootword)
+                
+                TextField("Enter your word", text: $viewModel.newWord) {
+                    viewModel.addWord()
+                    focused = true
                 }
+                .textFieldStyle(.roundedBorder)
+                .padding()
+                .autocapitalization(.none)
+                .focused($focused, equals: true)
                 
-                TextField("Enter your word", text: $viewModel.newWord, onCommit: addWord)
-                    .textFieldStyle(.roundedBorder)
-                    .padding()
-                    .autocapitalization(.none)
-                
-                //TODO: make a view for these alerts
-                if viewModel.showTimeUpAlert {
-                    Text("Time's up!\nStart a new game (with or without saving your score).")
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
-                        .padding(5)
-                        .border(.foreground , width: 5)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                        .animation(.default, value: viewModel.showError)
-                }
-                
-                if viewModel.showError {
-                    Text("\(viewModel.error)")
-                        .multilineTextAlignment(.center)
-                        .frame(maxWidth: .infinity)
-                        .padding(5)
-                        .border(.foreground , width: 5)
-                        .cornerRadius(10)
-                        .padding(.horizontal)
-                        .animation(.default, value: viewModel.showError)
+                ForEach(viewModel.gameErrors) { error in
+                    GameErrorView(title: error.title, description: error.description ?? "")
+                        .animation(.default, value: viewModel.gameErrors)
                 }
                 
                 List(viewModel.usedWords, id: \.self) { word in
-                    Link(destination: URL(string: "https://en.wiktionary.org/wiki/\(word)")!) {
-                        HStack {
-                            Image(systemName: "\(word.count).circle")
-                            Text(word)
-                        }
-                    }
-                    .accessibilityElement()
-                    .accessibilityLabel("\(word), \(word.count) letters")
+                    UsedWordView(word: word)
                 }
             }
-            .disabled(viewModel.timerEnabled ? viewModel.timeRemaining <= 0 : false)
+            .disabled(viewModel.timesUp)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button("New Game") { viewModel.showScoreSaveDialog = true }
+                    Button("New Game") { viewModel.showingNewGameDialog = true }
+                        .foregroundColor(.primary)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Highscores") {
-                        RankingView(ranking: $viewModel.ranking)
+                    NavigationLink("Leaderboard") {
+                        LeaderboardView(entries: $viewModel.leaderboardEntries)
                     }
+                    .foregroundColor(.primary)
                 }
             }
             .overlay(alignment: .bottom) {
                 HStack {
-                    Text("Your score is \(viewModel.score).")
-                        .padding()
-                        .font(.headline)
+                    ScoreView(score: viewModel.score)
                     Spacer()
-                        if viewModel.timerEnabled {
-                            Text("You have \(viewModel.timeRemaining) second(s) left")
-                                .padding()
-                                .font(.headline)
-                                .onTapGesture { viewModel.timerEnabled = false }
-                        } else {
-                            Button {
-                                viewModel.timerEnabled = true
-                            } label: {
-                                Text(viewModel.timerEnabled ? "Deactivate Timer" : "Activate Timer")
-                                Image(systemName: "clock.arrow.circlepath")
-                            }
-                            .disabled(viewModel.timeRemaining <= 0)
-                            .foregroundColor(viewModel.timeRemaining <= 0 ? .gray : .primary)
-                            .padding()
-                            .font(.headline)
-                        }
+                    TimerView(enabled: $viewModel.timerEnabled,
+                              time: viewModel.time, limit: viewModel.limitInSeconds)
                 }
-                //TODO: make the timer a little more robust and a little nicer looking
-                .onReceive(timer) { _ in
-                    if viewModel.timeRemaining > 0 { viewModel.timeRemaining -= 1 }
-                }
+                .padding()
+                .background(.bar)
             }
-            .sheet(isPresented: $viewModel.showScoreSaveDialog) {
+            .sheet(isPresented: $viewModel.showingNewGameDialog) {
                 VStack {
-                    NewGameView(score: viewModel.score,
-                                username: $viewModel.username,
-                                rootWord: $viewModel.rootWord,
-                                timeLimit: $viewModel.wrappedTimeLimit,
-                                beginNewGame: beginNewGame)
-                    Divider()
-                    RankingView(ranking: $viewModel.ranking)
+                    SettingsView(username: $viewModel.newUsername, startword: $viewModel.newRootword,
+                                 language: $viewModel.newLanguage, timelimit: $viewModel.newTimelimit) {
+                        viewModel.save()
+                    } newGame: {
+                        viewModel.newGame()
+                    } apply: {
+                        viewModel.apply()
+                    }
                 }
             }
         }
