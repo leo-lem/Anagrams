@@ -19,9 +19,6 @@ struct UsedWordView: View {
         .font(.headline)
         .linkToWiktionary(word: word)
         .foregroundColor(.primary)
-        .accessibilityElement()
-        .accessibilityLabel("\(word), \(word.count) letters")
-        .accessibilityHint("Click to go to this words' wiktionary page.")
     }
 }
 

@@ -10,7 +10,10 @@ import Foundation
 //TODO: add a synchronized leaderboard
 extension Model {
     class Leaderboard: ObservableObject {
-        @Published var entries = [Rank]()
+        var entries = [Entry]() {
+            willSet { objectWillChange.send() }
+            didSet { entries.sort() }
+        }
         
         init() { load() }
         
@@ -20,21 +23,21 @@ extension Model {
 
 //MARK: the Rank struct (single entry on the leaderboard)
 extension Model.Leaderboard {
-    struct Rank: Comparable, Codable, Hashable {
+    struct Entry: Comparable, Codable, Hashable {
         let name: String, word: String, score: Int, time: Double?, usedWords: [String], timestamp: Date
         
-        static let example = Rank(name: "Leo", word: "silkworm", score: 9, time: 100, usedWords: ["silk", "worms"], timestamp: Date())
+        static let example = Entry(name: "Leo", word: "silkworm", score: 9, time: 100, usedWords: ["silk", "worms"], timestamp: Date())
         
-        static func <(lhs: Rank, rhs: Rank) -> Bool { lhs.score > rhs.score }
+        static func <(lhs: Entry, rhs: Entry) -> Bool { lhs.score > rhs.score }
     }
 }
 
 //MARK: saving an entry to the leaderboard
 extension Model.Leaderboard {
-    func saveEntry(game: Model.Game) {
+    func addEntry(game: Model.Game) {
         guard !game.user.name.isEmpty else { return }
             
-        let rank = Rank(name: game.user.name, word: game.root, score: game.score,
+        let rank = Entry(name: game.user.name, word: game.root, score: game.score,
                         time: game.user.timer ? game.time : nil,
                         usedWords: game.used, timestamp: Date())
         
@@ -56,7 +59,7 @@ extension Model.Leaderboard: PersistentStorage {
     func load() {
         do {
             let data = try Data(contentsOf: self.path)
-            let decoded = try JSONDecoder().decode([Rank].self, from: data)
+            let decoded = try JSONDecoder().decode([Entry].self, from: data)
             
             self.entries = decoded
         } catch {
@@ -64,6 +67,7 @@ extension Model.Leaderboard: PersistentStorage {
         }
     }
 }
+
 //MARK: a description for easy access to the properties when debugging
 extension Model.Leaderboard: CustomStringConvertible {
     var description: String {

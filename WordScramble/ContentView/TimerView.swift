@@ -10,32 +10,33 @@ import MyCustomUI
 
 struct TimerView: View {
     @Binding var enabled: Bool
-    var time: Double, limit: Double
+    @Binding var time: Double
+    var limit: Double
     
     private var remaining: Double { limit - time }
-    private var timeUp: Bool { time >= limit}
+    private var timesUp: Bool { time >= limit-0.1 }
+    
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        HStack {
-            Text(remaining == 1 ? "\(remaining.formatted()) second" : "\(remaining.formatted()) seconds")
-                .hidden(!enabled)
-                .animation(.default, value: enabled)
-            
-            Button {
-                withAnimation { enabled.toggle() }
-            } label: {
-                Image(systemName: "timer")
-            }
-            .foregroundColor(enabled ? .primary : .gray)
-            .disabled(timeUp)
-            .opacity(timeUp ? 0.1 : 1)
+        VStack(alignment: .leading) {
+            Text("\(remaining.formatted())")
+                .onReceive(timer) { input in
+                    if !self.timesUp {
+                        self.time += timer.upstream.interval
+                    } else {
+                        self.time = self.limit
+                    }
+                }
+            Text(remaining == 1 ? "second" : "seconds").font(.caption2)
         }
-        .font(.headline)
+        .hidden(!enabled)
+        .animation(.default, value: enabled)
     }
 }
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView(enabled: .constant(true), time: 10, limit: 300)
+        TimerView(enabled: .constant(true), time: .constant(10), limit: 300)
     }
 }

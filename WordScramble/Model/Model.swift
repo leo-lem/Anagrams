@@ -34,7 +34,7 @@ extension Model {
 
 //MARK: setting up the startwords
 extension Model {
-    private func fetchStartWords() -> [String] {
+    func fetchStartWords() -> [String] {
         enum FetchingError: Error { case file, data, decoding }
         do {
             guard let url = Bundle.main.url(forResource: "start-\(self.user.language.rawValue)", withExtension: "json") else { throw FetchingError.file }

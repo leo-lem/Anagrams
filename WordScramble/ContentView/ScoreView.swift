@@ -11,8 +11,10 @@ struct ScoreView: View {
     let score: Int
     
     var body: some View {
-        Text("Your score is \(score).")
-            .font(.headline)
+        VStack {
+            Text("\(score)").font(.headline)
+            Text("points").font(.caption2)
+        }
     }
 }
 

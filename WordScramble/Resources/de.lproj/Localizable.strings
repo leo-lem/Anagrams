@@ -1,0 +1,69 @@
+/* No comment provided by engineer. */
+"%@" = "%@";
+
+/* No comment provided by engineer. */
+"%@ got a score of %lld" = "%@ hat %lld Punkte geholt";
+
+/* No comment provided by engineer. */
+"%lld" = "%lld";
+
+/* No comment provided by engineer. */
+"Apply and Start New Game" = "Anwenden und neue Runde";
+
+/* No comment provided by engineer. */
+"at %@ on %@" = "um %@, am %@";
+
+/* No comment provided by engineer. */
+"Enter root word for next game (optional)" = "Basiswort für nächste Runde";
+
+/* No comment provided by engineer. */
+"Enter your name to save" = "Gib deinen Namen ein";
+
+/* No comment provided by engineer. */
+"Enter your word" = "Gib ein Wort ein";
+
+/* No comment provided by engineer. */
+"in %@ %@" = "in %@ %@";
+
+/* No comment provided by engineer. */
+"Leaderboard" = "Rangliste";
+
+/* No comment provided by engineer. */
+"New Game" = "Neue Runde";
+
+/* No comment provided by engineer. */
+"points" = "Punkte";
+
+/* No comment provided by engineer. */
+"Preferences" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Save and Start New Game" = "Speichern und neue Runde";
+
+/* No comment provided by engineer. */
+"Save Game to Leaderboard" = "Speichere die Runde in der Rangliste";
+
+/* No comment provided by engineer. */
+"second" = "Sekunde";
+
+/* No comment provided by engineer. */
+"seconds" = "Sekunden";
+
+/* No comment provided by engineer. */
+"Select your language" = "Wähle deine Sprache";
+
+/* No comment provided by engineer. */
+"Start a New Game" = "Neue Runde";
+
+/* No comment provided by engineer. */
+"Start New Game" = "Neue Runde";
+
+/* No comment provided by engineer. */
+"Time Limit" = "Zeitbegrenzung";
+
+/* No comment provided by engineer. */
+"took %@ %@" = "hat %@ %@ gebraucht";
+
+/* No comment provided by engineer. */
+"with '%@'" = "mit %@";
+

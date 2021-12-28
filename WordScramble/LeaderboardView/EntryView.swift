@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct RankView: View {
-    let rank: Model.Leaderboard.Rank
+struct EntryView: View {
+    let rank: Model.Leaderboard.Entry
     
     var body: some View {
         HStack {
@@ -17,7 +17,7 @@ struct RankView: View {
                     .font(.headline)
                 
                 if rank.time != nil {
-                    Text("took \(rank.time!.formatted()) seconds")
+                    Text("took \(rank.time!.formatted()) \(rank.time == 1 ? "second" : "seconds")")
                         .font(.subheadline)
                 }
                 
@@ -37,6 +37,6 @@ struct RankView: View {
 
 struct RankView_Previews: PreviewProvider {
     static var previews: some View {
-        RankView(rank: Model.Leaderboard.Rank.example)
+        EntryView(rank: Model.Leaderboard.Entry.example)
     }
 }

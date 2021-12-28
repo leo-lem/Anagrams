@@ -40,7 +40,6 @@ struct ContentView: View {
                     UsedWordView(word: word)
                 }
             }
-            .disabled(viewModel.timesUp)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -48,34 +47,36 @@ struct ContentView: View {
                         .foregroundColor(.primary)
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink("Leaderboard") {
-                        LeaderboardView(entries: $viewModel.leaderboardEntries)
+                    NavigationLink<Text, LeaderboardView>("Leaderboard") {
+                        LeaderboardView(entries: viewModel.leaderboardEntries) { offsets in
+                            viewModel.delete(at: offsets)
+                        }
                     }
                     .foregroundColor(.primary)
                 }
             }
             .overlay(alignment: .bottom) {
                 HStack {
-                    ScoreView(score: viewModel.score)
-                    Spacer()
                     TimerView(enabled: $viewModel.timerEnabled,
-                              time: viewModel.time, limit: viewModel.limitInSeconds)
+                              time: $viewModel.newTime,
+                              limit: viewModel.limitInSeconds)
+                    Spacer()
+                    TimerButtonView(enabled: $viewModel.timerEnabled, timesUp: viewModel.timesUp)
+                    Spacer()
+                    ScoreView(score: viewModel.score)
                 }
-                .padding()
+                .padding(.horizontal)
+                .padding(.vertical, 10)
                 .background(.bar)
             }
             .sheet(isPresented: $viewModel.showingNewGameDialog) {
                 VStack {
                     SettingsView(username: $viewModel.newUsername, startword: $viewModel.newRootword,
                                  language: $viewModel.newLanguage, timelimit: $viewModel.newTimelimit) {
-                        viewModel.save()
-                    } newGame: {
-                        viewModel.newGame()
-                    } apply: {
-                        viewModel.apply()
-                    }
+                        viewModel.save() } newGame: { viewModel.newGame() } apply: { viewModel.apply() }
                 }
             }
+            .disabled(viewModel.timerEnabled && viewModel.timesUp)
         }
     }
 }

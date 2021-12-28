@@ -8,17 +8,12 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Binding private var username: String
-    @Binding private var startword: String
-    @Binding private var language: Model.SupportedLanguage
-    @Binding private var timelimit: Int
+    @Binding var username: String
+    @Binding var startword: String
+    @Binding var language: Model.SupportedLanguage
+    @Binding var timelimit: Int
     
-    private let initialUsername: String,
-                initialStartword: String,
-                initialLanguage: Model.SupportedLanguage,
-                initialTimelimit: Int
-    
-    private let save: () -> Void, newGame: () -> Void, apply: () -> Void
+    let save: () -> Void, newGame: () -> Void, apply: () -> Void
     
     var body: some View {
         Form {
@@ -28,6 +23,7 @@ struct SettingsView: View {
                 Text("Save Game to Leaderboard")
             } footer: {
                 Button("Save and Start New Game", action: save)
+                    .disabled(username.isEmpty)
             }
             
             Section {
@@ -46,35 +42,18 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.segmented)
                 
-                Stepper("Set time limit", value: $timelimit)
+                HStack {
+                    Text("Time Limit")
+                    Spacer()
+                    Text("\(timelimit)")
+                    Stepper("", value: $timelimit, in: 1...60).labelsHidden()
+                }
             } header: {
                 Text("Preferences")
             } footer: {
                 Button("Apply and Start New Game", action: apply)
-                .disabled(language == initialLanguage && timelimit == initialTimelimit)
             }
         }
-    }
-}
-
-extension SettingsView {
-    init(username: Binding<String>,
-         startword: Binding<String>,
-         language: Binding<Model.SupportedLanguage>, timelimit: Binding<Int>,
-         save: @escaping () -> Void, newGame: @escaping () -> Void, apply: @escaping () -> Void) {
-        
-        self.initialUsername = username.wrappedValue
-        self.initialStartword = startword.wrappedValue
-        self.initialLanguage = language.wrappedValue
-        self.initialTimelimit = timelimit.wrappedValue
-        
-        self._username = username
-        self._startword = startword
-        self._language = language
-        self._timelimit = timelimit
-        self.save = save
-        self.newGame = newGame
-        self.apply = apply
     }
 }
 

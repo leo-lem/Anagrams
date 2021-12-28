@@ -11,8 +11,7 @@ extension Model {
     class Game: ObservableObject {
         var user = User()
         
-        //TODO: Fix root word not loading properly
-        @Published var root = "silkworm"
+        @Published var root = ""
         @Published var used = [String]()
         @Published var time = 0.0
         

@@ -8,10 +8,12 @@
 import SwiftUI
 
 struct LeaderboardView: View {
-    @Binding var entries: [Model.Leaderboard.Rank]
+    let entries: [Model.Leaderboard.Entry]
+    
+    let deleteEntries: (_ offsets: IndexSet) -> Void
     
     func delete(at offsets: IndexSet) {
-        entries.remove(atOffsets: offsets)
+        deleteEntries(offsets)
     }
     
     var body: some View {
@@ -20,31 +22,25 @@ struct LeaderboardView: View {
                 .bold()
                 .font(.largeTitle)
             List {
-                ForEach(entries.sorted(), id: \.self) { entry in
+                ForEach(entries, id: \.self) { entry in
                     NavigationLink {
-                        List(entry.usedWords, id: \.self) { word in
-                            UsedWordView(word: word)
-                        }
+                        EntryDetailView(entry: entry)
                     } label: {
-                        RankView(rank: entry)
+                        EntryView(rank: entry)
                     }
                 }
                 .onDelete(perform: delete)
             }
-            
-            
             Spacer()
         }
-        .toolbar {
-            EditButton()
-        }
+        .toolbar { EditButton() }
     }
 }
 
 struct RankingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LeaderboardView(entries: .constant([.example]))
+            LeaderboardView(entries: [.example]) { _ in }
         }
     }
 }
