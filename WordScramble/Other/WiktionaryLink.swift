@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-//TODO: somehow wrap objects in a link to the wiktionary page
 public struct WiktionaryLink: ViewModifier {
     let word: String
+    private let wiktionaryLink = URL(string: "https://wiktionary.org/wiki/")!
     
     public func body(content: Content) -> some View {
-        Link(destination: URL(string: "https://wiktionary.org/wiki/\(word)") ?? URL(string: "https://wiktionary.org/wiki/")!) {
+        Link(destination: wiktionaryLink.appendingPathComponent(word)) {
             content
         }
     }

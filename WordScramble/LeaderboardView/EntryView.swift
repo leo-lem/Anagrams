@@ -13,25 +13,26 @@ struct EntryView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text("\(entry.name)")
+                Text("\(NSLocalizedString(entry.name, comment: ""))")
                     .font(.headline)
                 
-                //TODO: fix seconds not being translated correctly
                 if entry.time != nil {
-                    Text("took \(entry.time!.formatted()) \(entry.time == 1 ? "second" : "seconds")")
-                        .font(.subheadline)
+                    Text("took-seconds-label \(localizeIntWithLabel(entry.time!, label: .seconds))").font(.subheadline)
                 }
                 
-                Text("with '\(entry.word)' (\(entry.language))")
+                Text("with-word-label \(entry.word) \(entry.language)")
                     .font(.subheadline)
                 
-                Text("at \(entry.timestamp.formatted(date: .omitted, time: .shortened)) on \(entry.timestamp.formatted(date: .abbreviated, time: .omitted))")
+                Text("date-time-label \(entry.timestamp.formatted(date: .abbreviated, time: .omitted)) \(entry.timestamp.formatted(date: .omitted, time: .shortened))")
                     .font(.footnote)
             }
             
             Spacer()
             
-            Text("\(entry.score)").font(.title).bold()
+            VStack {
+                Text("\(entry.score)").font(.title).bold()
+                Text(entry.score == 1 ? "point-label" : "points-label").font(.footnote)
+            }
         }
     }
 }

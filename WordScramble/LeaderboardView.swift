@@ -18,7 +18,9 @@ struct LeaderboardView: View {
     
     var body: some View {
         VStack {
-            Text("Leaderboard").font(.largeTitle).bold()
+            Text("leaderboard-label").font(.largeTitle).bold()
+            
+            Divider()
             
             List {
                 ForEach(entries, id: \.self) { entry in

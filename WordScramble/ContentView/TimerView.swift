@@ -6,29 +6,29 @@
 //
 
 import SwiftUI
-import MyCustomUI
 
 struct TimerView: View {
-    @Binding var time: Double
-    var limit: Double
+    @Binding var time: Int
+    var limit: Int
     
-    private var remaining: Double { limit - time }
-    private var timesUp: Bool { time >= limit-0.1 }
+    private var remaining: Int { limit - time }
+    private var timesUp: Bool { time >= limit }
     
-    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("\(remaining.formatted())")
+            Text("\(remaining)")
                 .onReceive(timer) { input in
                     if !self.timesUp {
-                        self.time += timer.upstream.interval
+                        self.time += Int(timer.upstream.interval)
                     } else {
                         self.time = self.limit
                     }
                 }
-            Text(remaining == 1 ? "second" : "seconds").font(.caption2)
+            Text(remaining == 1 ? "second-label" : "seconds-label").font(.caption2)
         }
+        .foregroundColor(timesUp ? .red : .primary)
     }
 }
 

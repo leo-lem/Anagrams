@@ -6,4 +6,67 @@
   
 */
 
+"new-game-label" = "New Game";
+"settings-label" = "Preferences";
+"leaderboard-label" = "Leaderboard";
+"save-label" = "Save";
+"dont-save-label" = "Don't Save";
+"cancel-label" = "Cancel";
 
+"enter-word-label" = "Enter your word";
+"enter-name-to-save-label" = "Enter your name to save";
+"apply-and-new-game-label" = "Apply and Start New Game";
+"next-word-save-label" = "Save Current Score to Leaderboard?";
+
+"select-language-label" = "Select Game Language";
+"select-timelimit-label" = "Select Time Limit";
+
+"unknown-user" = "Unknown";
+
+"point-label" = "point";
+"points-label" = "points";
+
+"second-label" = "second";
+"seconds-label" = "seconds";
+
+"minute-label" = "minute";
+"minutes-label" = "minutes";
+
+
+//example: "took 21 seconds"
+"took-seconds-label %@" = "took %@";
+
+//example: "in 21 seconds"
+"in-seconds-label %@" = "in %@";
+
+//example: "with 'silkworm' (en)"
+"with-word-label %@ %@" = "with '%@' (%@)";
+
+//example: "on Dec 29, 2021 (5:32 PM)"
+"date-time-label %@ %@" = "on %@ (%@)";
+
+//example: "Leo scored 21 points"
+"name-score-label %@ %@" = "%@ scored %@";
+
+
+//informational in-game notifications
+"title-rootNotReal %@" = "You can't use '%@'!";
+"desc-rootNotReal" = "It's not a real word...";
+"title-rootTooShort %@" = "You can't use '%@'!";
+"desc-rootTooShort" = "It's too short... (use at least 6 letters)";
+
+"title-halftime" = "Half Time!";
+"desc-halftime" = "Keep it up!";
+"title-timesUp" = "Time's up!";
+"desc-timesUp" = "To keep playing disable the timer.";
+
+"title-isRoot %@" = "'%@' is the root word!";
+"desc-isRoot" = "Obviously you can't just use the original word...";
+"title-tooShort %@" = "'%@' is too short!";
+"desc-tooShort" = "Only words with more than 3 letters allowed...";
+"title-notNew %@" = "You already used '%@'!";
+"desc-notNew" = "Be more original...";
+"title-notPossible %@" = "'%@' is not possible!";
+"desc-notPossible" = "You can't just use any word, you know...";
+"title-notReal %@" = "'%@'?";
+"desc-notReal" = "That's not a word...";

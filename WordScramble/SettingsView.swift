@@ -8,61 +8,59 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @Binding var username: String
-    @Binding var startword: String
     @Binding var language: Model.SupportedLanguage
     @Binding var timelimit: Int
     
-    let save: () -> Void, newGame: () -> Void, apply: () -> Void
+    let apply: () -> Void
     
     var body: some View {
-        Form {
-            Section {
-                TextField("Enter your name to save", text: $username)
-            } header: {
-                Text("Save Game to Leaderboard")
-            } footer: {
-                Button("Save and Start New Game", action: save)
-                    .foregroundColor(username.isEmpty ? .gray : .blue)
-                    .disabled(username.isEmpty)
-            }
+        VStack {
+            Text("settings-label").font(.largeTitle).bold().padding()
             
-            Section {
-                TextField("Enter root word for next game (optional)", text: $startword)
-            } header: {
-                Text("Start a New Game")
-            } footer: {
-                Button("Start New Game", action: newGame)
-                    .foregroundColor(.blue)
-            }
+            Divider()
             
-            Section {
-                Picker("Select your language", selection: $language) {
-                    ForEach(Model.SupportedLanguage.allCases, id: \.self) { language in
-                        Text(language.rawValue)
+            Form {
+                Section {
+                    Picker("", selection: $language) {
+                        ForEach(Model.SupportedLanguage.allCases, id: \.self) { language in
+                            Text(language.rawValue)
+                        }
                     }
+                    .pickerStyle(.segmented)
+                } header: {
+                    Text("select-language-label")
+                } footer: {
+                    
                 }
-                .pickerStyle(.segmented)
                 
-                HStack {
-                    Text("Time Limit")
-                    Spacer()
-                    Text("\(timelimit)")
-                    Stepper("", value: $timelimit, in: 1...60).labelsHidden()
+                Section {
+                    HStack {
+                        Text(localizeIntWithLabel(timelimit, label: .minutes))
+                        Spacer()
+                        Stepper("", value: $timelimit, in: 1...60).labelsHidden()
+                    }
+                } header: {
+                    Text("select-timelimit-label")
                 }
-            } header: {
-                Text("Preferences")
-            } footer: {
-                Button("Apply and Start New Game", action: apply)
-                    .foregroundColor(.blue)
             }
+            
+            Divider()
+            
+            Button("apply-and-new-game-label", action: apply)
+                .buttonStyle(.borderedProminent)
+                .padding()
+        }
+        .overlay(alignment: .topTrailing) {
+            Button("cancel-label") { dismiss() }
+                .padding()
         }
     }
+    
+    @Environment(\.dismiss) var dismiss
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView(username: .constant("Leo"), startword: .constant(""),
-                     language: .constant(.german), timelimit: .constant(10)) {} newGame: {} apply: {}
+        SettingsView(language: .constant(.german), timelimit: .constant(10)) {}
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MyCustomUI
 
 struct UsedWordView: View {
     let word: String
@@ -15,9 +16,11 @@ struct UsedWordView: View {
             Image(systemName: "\(word.count).circle")
             Text(word)
             Spacer()
+            Image(systemName: "arrowshape.turn.up.right.circle")
+                .linkToWiktionary(word: word)
+                .buttonStyle(.borderless)
         }
         .font(.headline)
-        .linkToWiktionary(word: word)
         .foregroundColor(.primary)
     }
 }

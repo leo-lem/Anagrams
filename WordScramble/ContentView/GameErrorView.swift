@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct GameErrorView: View {
-    let title: String, description: String
+    let error: GameError
     
     var body: some View {
         VStack {
-            Text(title)
-                .font(.headline)
+            Text(title).font(.headline)
                 
-            Text(description)
+            Text(description).font(.footnote)
         }
-        .padding(5)
+        .padding(10)
         .frame(maxWidth: .infinity)
         .border(.foreground , width: 5)
         .cornerRadius(10)
@@ -25,8 +24,47 @@ struct GameErrorView: View {
     }
 }
 
+extension GameErrorView {
+    private var title: String {
+        var string = "title-"
+        
+        switch error.kind {
+        case .rootNotReal: string += "rootNotReal %@"
+        case .rootTooShort: string += "rootTooShort %@"
+        case .halftime: string += "halftime"
+        case .timesUp: string += "timesUp"
+        case .isRoot: string += "isRoot %@"
+        case .tooShort: string += "tooShort %@"
+        case .notNew: string += "notNew %@"
+        case .notPossible: string += "notPossible %@"
+        case .notReal: string += "notReal %@"
+        }
+        
+        let format = NSLocalizedString(string, comment: "")
+        return String.localizedStringWithFormat(format, error.word ?? "")
+    }
+    
+    private var description: String {
+        var string = "desc-"
+        
+        switch error.kind {
+        case .rootNotReal: string += "rootNotReal"
+        case .rootTooShort: string += "rootTooShort"
+        case .halftime: string += "halftime"
+        case .timesUp: string += "timesUp"
+        case .isRoot: string += "isRoot"
+        case .tooShort: string += "tooShort"
+        case .notNew: string += "notNew"
+        case .notPossible: string += "notPossible"
+        case .notReal: string += "notReal"
+        }
+        
+        return NSLocalizedString(string, comment: "")
+    }
+}
+
 struct CustomAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        GameErrorView(title: "Hello mon", description: "This is not what you should do!")
+        GameErrorView(error: GameError(.notNew))
     }
 }

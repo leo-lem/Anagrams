@@ -49,3 +49,33 @@ extension Model {
         }
     }
 }
+
+struct GameError: Error, Identifiable {
+    enum ErrorKind: Error {
+        case rootNotReal,
+             rootTooShort
+        
+        case halftime, timesUp
+        
+        case isRoot,
+             tooShort,
+             notPossible,
+             notNew,
+             notReal
+    }
+    
+    let id = UUID()
+    let kind: ErrorKind
+    let word: String?
+    
+    init(_ kind: ErrorKind, word: String? = nil) {
+        self.kind = kind
+        self.word = word
+    }
+}
+
+extension GameError: Equatable {
+    static func ==(lhs: GameError, rhs: GameError) -> Bool {
+        lhs.id == rhs.id
+    }
+}

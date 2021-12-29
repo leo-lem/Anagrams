@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MyOthers
 
 //TODO: add a synchronized leaderboard
 extension Model {
@@ -28,7 +29,7 @@ extension Model.Leaderboard {
             word: String,
             language: String,
             score: Int,
-            time: Double?,
+            time: Int?,
             usedWords: [String],
             timestamp: Date
         

@@ -13,10 +13,12 @@ struct EntryDetailView: View {
     var body: some View {
         VStack {
             Group {
-                Text("\(entry.name) got a score of \(entry.score)").font(.title).bold()
-                Text("with '\(entry.word)' (\(entry.language))").font(.title)
+                Text("name-score-label \(NSLocalizedString(entry.name, comment: "")) \(localizeIntWithLabel(entry.score, label: .points))").font(.title).bold()
+                
+                Text("with-word-label \(entry.word) \(entry.language)").font(.title)
+                
                 if entry.time != nil {
-                    Text("in \(entry.time!.formatted()) \(entry.time == 1 ? "second" : "seconds")").font(.title2)
+                    Text("in-seconds-label \(localizeIntWithLabel(entry.time!, label: .seconds))").font(.title2)
                 }
             }
             
@@ -24,7 +26,7 @@ struct EntryDetailView: View {
                 UsedWordView(word: word)
             }
             
-            Text("at \(entry.timestamp.formatted(date: .omitted, time: .shortened)) on \(entry.timestamp.formatted(date: .abbreviated, time: .omitted))").padding(.bottom)
+            Text("date-time-label \(entry.timestamp.formatted(date: .abbreviated, time: .omitted)) \(entry.timestamp.formatted(date: .omitted, time: .shortened))").padding(.bottom)
         }
     }
 }

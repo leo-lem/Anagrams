@@ -13,21 +13,11 @@ extension Model {
         
         @Published var root = "universal"
         @Published var used = [String]()
-        @Published var time = 0.0
+        @Published var time = 0
         
         init() { load() }
         
         var score: Int { used.joined(separator: "").count }
-        
-        var errors = [Error]() {
-            didSet {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                    if !self.errors.isEmpty {
-                        self.errors.remove(at: 0)
-                    }
-                }
-            }
-        }
     }
 }
 
@@ -41,7 +31,7 @@ extension Model.Game: PersistentStorage {
     func load() {
         self.root = user.defaults.object(forKey: "game.root") as? String ?? self.root
         self.used = user.defaults.object(forKey: "game.used") as? [String] ?? self.used
-        self.time = user.defaults.object(forKey: "game.time") as? Double ?? self.time
+        self.time = user.defaults.object(forKey: "game.time") as? Int ?? self.time
     }
 }
 
@@ -55,8 +45,6 @@ extension Model.Game: CustomStringConvertible {
             Used Words: \(self.used)
             Score: \(self.score)
             Time: \(self.time)
-            
-            Errors: \(self.errors))
         ---------------
         """
     }
@@ -64,50 +52,31 @@ extension Model.Game: CustomStringConvertible {
 
 //MARK: different game actions
 extension Model.Game {
-    func addWord(_ wordToAdd: String) {
-        let word = wordToAdd.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+    func addWord(_ wordToAdd: String) throws {
+        let word = wordToAdd.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         
-        if let error = checkWord(word) {
-            self.errors.append(error)
-        } else {
-            self.used.insert(word, at: 0)
-        }
+        try checkWord(word)
+        
+        self.used.insert(word, at: 0)
     }
     
     func restart(with root: String) {
-        self.root = validateRoot(root)
+        self.root = root
         self.used = [String]()
         self.time = 0
-        self.errors = []
     }
 }
 
 //MARK: various helper methods
 extension Model.Game {
-    private func validateRoot(_ root: String) -> String {
-        if root.isEmpty {
-            return Model().startword
-        } else if let error = checkRoot(root) {
-            self.errors.append(error)
-            return Model().startword
-        } else {
-            return root
+    private func checkWord(_ word: String) throws {
+        guard word != self.root else { throw GameError(.isRoot, word: word) }
+        guard word.count > 3 else { throw GameError(.tooShort, word: word) }
+        guard checkIfPossible(word: word) else { throw GameError(.notPossible, word: word) }
+        guard !self.used.contains(word) else { throw GameError(.notNew, word: word) }
+        guard checkIfReal(word: word.capitalized(with: Locale(identifier: user.language.rawValue))) else {
+            throw GameError(.notReal, word: word)
         }
-    }
-    
-    private func checkRoot(_ word: String) -> Error? {
-        guard word.count > 5 else { return .rootTooShort }
-        guard checkIfReal(word: word) else { return .rootNotReal }
-        return nil
-    }
-    
-    private func checkWord(_ word: String) -> Error? {
-        guard word != self.root else { return .isRoot }
-        guard word.count > 3 else { return .tooShort }
-        guard !self.used.contains(word) else { return .notNew }
-        guard checkIfPossible(word: word) else { return .notPossible }
-        guard checkIfReal(word: word) else { return .notReal }
-        return nil
     }
     
     private func checkIfPossible(word: String) -> Bool {

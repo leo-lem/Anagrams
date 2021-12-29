@@ -16,8 +16,6 @@ extension Model {
         @Published var timer = true
         @Published var timelimit = 5
         
-        var startword = ""
-        
         init() { load() }
     }
 }
@@ -58,8 +56,6 @@ extension Model.User: CustomStringConvertible {
             Name: \(self.name)
             Language: \(self.language)
             Timelimit: \(self.timelimit)
-        
-            Startword: \(self.startword.isEmpty ? "<None>" : self.startword)
         ---------------
         """
     }

@@ -1,91 +1,65 @@
-/* No comment provided by engineer. */
-"%@" = "%@";
 
-/* No comment provided by engineer. */
-"%@ got a score of %lld" = "%@ hat %lld Punkte geholt";
+"new-game-label" = "Neue Runde";
+"settings-label" = "Einstellungen";
+"leaderboard-label" = "Rangliste";
+"save-label" = "Speichern";
+"dont-save-label" = "Nicht Speichern";
+"cancel-label" = "Abbrechen";
 
-/* No comment provided by engineer. */
-"%lld" = "%lld";
+"enter-word-label" = "Gib dein Wort ein";
+"enter-name-to-save-label" = "Gib deinen Namen ein";
+"apply-and-new-game-label" = "Anwenden und neue Runde starten";
+"next-word-save-label" = "Diese Runde in der Rangliste speichern?";
 
-/* No comment provided by engineer. */
-"Apply and Start New Game" = "Anwenden und neue Runde";
+"select-language-label" = "In-Game-Sprache auswählen";
+"select-timelimit-label" = "Zeitbegrenzung";
 
-/* No comment provided by engineer. */
-"at %@ on %@" = "um %@, am %@";
+"unknown-user" = "Unbekannt";
 
-/* No comment provided by engineer. */
-"Enter root word for next game (optional)" = "Basiswort für nächste Runde";
+"point-label" = "Punkt";
+"points-label" = "Punkte";
 
-/* No comment provided by engineer. */
-"Enter your name to save" = "Gib deinen Namen ein";
+"second-label" = "Sekunde";
+"seconds-label" = "Sekunden";
 
-/* No comment provided by engineer. */
-"Enter your word" = "Gib ein Wort ein";
+"minute-label" = "minute";
+"minutes-label" = "minutes";
 
-/* No comment provided by engineer. */
-"in %@ %@" = "in %@ %@";
 
-/* No comment provided by engineer. */
-"Leaderboard" = "Rangliste";
+//example: "Leo hat 21 Punkte geholt"
+"name-score-label %@ %@" = "%@ hat %@ geholt";
 
-/* No comment provided by engineer. */
-"New Game" = "Neue Runde";
+//example: "hat 21 Sekunden gebraucht"
+"took-seconds-label %@" = "hat %@ gebraucht";
 
-/* No comment provided by engineer. */
-"points" = "Punkte";
+//example: "in 21 Sekunden"
+"in-seconds-label %@" = "in %@";
 
-/* No comment provided by engineer. */
-"Preferences" = "Einstellungen";
+//example: "mit 'lebendig' (en)"
+"with-word-label %@ %@" = "mit '%@' (%@)";
 
-/* No comment provided by engineer. */
-"Save and Start New Game" = "Speichern und neue Runde";
+//example: "am 29. Dez., 2021 (17:32)"
+"date-time-label %@ %@" = "am %@ (%@)";
 
-/* No comment provided by engineer. */
-"Save Game to Leaderboard" = "Speichere die Runde in der Rangliste";
 
-/* No comment provided by engineer. */
-"second" = "Sekunde";
+//informational in-game notifications
+"title-rootNotReal %@" = "'%@' ist nicht zulässig!";
+"desc-rootNotReal" = "Gibt's nicht, das Wort...";
+"title-rootTooShort %@" = "'%@' ist nicht zulässig!";
+"desc-rootTooShort" = "Ist zu kurz... (mind. 6 Buchstaben)";
 
-/* No comment provided by engineer. */
-"seconds" = "Sekunden";
+"title-halftime" = "Halbzeit!";
+"desc-halftime" = "Weiter so!";
+"title-timesUp" = "Zeit ist um!";
+"desc-timesUp" = "Wenn du weitermachen willst deaktivier' den Timer.";
 
-/* No comment provided by engineer. */
-"Select your language" = "Wähle deine Sprache";
-
-/* No comment provided by engineer. */
-"Start a New Game" = "Neue Runde";
-
-/* No comment provided by engineer. */
-"Start New Game" = "Neue Runde";
-
-/* No comment provided by engineer. */
-"Time Limit" = "Zeitbegrenzung";
-
-/* No comment provided by engineer. */
-"took %@ %@" = "hat %@ %@ gebraucht";
-
-/* No comment provided by engineer. */
-"with '%@' (%@)" = "mit '%@' (%@)";
-
-//figure out why this is not working
-"Cannot be used as root word!" = "Das kann nicht als Basiswort benutzt werden!";
-"That's no english word." = "Gibt's nicht, das Wort.";
-"That's too short." = "Zu kurz...";
-
-"Time's up!" = "Zeit ist um!";
-"You can start a new game (or disable the timer)." = "Du kannst 'ne neue Runde starten (oder den Timer deaktivieren)";
-
-"Word = root word!" = "Wort = Basiswort!";
-"Obviously you can't just use the original word" = "Das Gleiche kannst halt nicht einfach nehmen...";
-
-"Word too short!" = "Das ist zu kurz!";
-"Only words with more than 3 letters allowed" = "Mindestens vier Buchstaben...";
-
-"Word already used!" = "Das hast du schon!";
-"Be more original..." = "Denk dir was neues aus...";
-
-"Illegal word!" = "Das Wort passt nicht!";
-"You can't just use any word, you know." = "Du darfst nur die Buchstaben des Basisworts benutzen...";
-
-"Unknown Word!" = "Unbekanntes Wort!";
-"That is no english word." = "Das Wort gibt's doch gar nicht...";
+"title-isRoot %@" = "'%@' entspricht dem Basiswort!";
+"desc-isRoot" = "Das Gleiche kannst halt nicht einfach nehmen...";
+"title-tooShort %@" = "'%@' ist zu kurz!";
+"desc-tooShort" = "Mindestens vier Buchstaben...";
+"title-notNew %@" = "'%@' hattest du schon!";
+"desc-notNew" = "Denk dir was neues aus...";
+"title-notPossible %@" = "'%@' passt nicht!";
+"desc-notPossible" = "Du darfst nur die Buchstaben des Basisworts benutzen...";
+"title-notReal %@" = "'%@'?";
+"desc-notReal" = "Das Wort gibt's doch gar nicht...";

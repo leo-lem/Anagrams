@@ -13,7 +13,7 @@ struct ScoreView: View {
     var body: some View {
         VStack {
             Text("\(score)").font(.headline)
-            Text("points").font(.caption2)
+            Text(score == 1 ? "point-label" : "points-label").font(.caption2)
         }
     }
 }
