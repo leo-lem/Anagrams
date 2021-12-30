@@ -17,7 +17,7 @@ struct TimerView: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack {
             Text("\(remaining)")
                 .onReceive(timer) { input in
                     if !self.timesUp {

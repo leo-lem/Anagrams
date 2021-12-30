@@ -22,7 +22,6 @@ extension Model {
     }
 }
 
-//MARK: the Rank struct (single entry on the leaderboard)
 extension Model.Leaderboard {
     struct Entry: Comparable, Codable, Hashable {
         let name: String,
@@ -39,7 +38,6 @@ extension Model.Leaderboard {
     }
 }
 
-//MARK: saving an entry to the leaderboard
 extension Model.Leaderboard {
     func addEntry(game: Model.Game) {
         guard !game.user.name.isEmpty else { return }
@@ -53,8 +51,6 @@ extension Model.Leaderboard {
     }
 }
 
-//MARK: loading and saving the leaderboard
-//TODO: Implement proper error handling
 extension Model.Leaderboard: PersistentStorage {
     func save() {
         do {
@@ -71,12 +67,11 @@ extension Model.Leaderboard: PersistentStorage {
             
             self.entries = decoded
         } catch {
-            print("loading the leaderboard failed...")
+            print("no leaderboard available...")
         }
     }
 }
 
-//MARK: a description for easy access to the properties when debugging
 extension Model.Leaderboard: CustomStringConvertible {
     var description: String {
         """

@@ -47,7 +47,6 @@ extension Model.User: PersistentStorage {
     }
 }
 
-//MARK: a description for easy access to the properties when debugging
 extension Model.User: CustomStringConvertible {
     var description: String {
         """

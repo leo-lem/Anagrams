@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol PersistentStorage {
+public protocol PersistentStorage {
     func save() -> Void
     func load() -> Void
 }

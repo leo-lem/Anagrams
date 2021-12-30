@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MyCustomUI
 
 struct SettingsView: View {
     @Binding var language: Model.SupportedLanguage
@@ -15,7 +16,10 @@ struct SettingsView: View {
     
     var body: some View {
         VStack {
-            Text("settings-label").font(.largeTitle).bold().padding()
+            SymbolButton("chevron.down") { dismiss() }
+                .padding()
+            
+            Text("settings-label").font(.largeTitle).bold()
             
             Divider()
             
@@ -51,8 +55,7 @@ struct SettingsView: View {
                 .padding()
         }
         .overlay(alignment: .topTrailing) {
-            Button("cancel-label") { dismiss() }
-                .padding()
+            
         }
     }
     
