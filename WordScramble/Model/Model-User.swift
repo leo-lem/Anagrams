@@ -7,6 +7,7 @@
 
 import Foundation
 
+//TODO: sync these settings in iCloud key-value
 extension Model {
     class User: ObservableObject {
         let defaults = UserDefaults.standard
