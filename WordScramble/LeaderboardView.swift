@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct LeaderboardView: View {
-    let entries: [Model.Leaderboard.Entry]
+    @Environment(\.managedObjectContext) var context
     
-    let deleteEntries: (_ offsets: IndexSet) -> Void
-    
-    func delete(at offsets: IndexSet) {
-        deleteEntries(offsets)
-    }
+    @FetchRequest(
+        entity: Entry.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Entry.score, ascending: false)
+        ]
+    ) var entries: FetchedResults<Entry>
     
     var body: some View {
         VStack {
@@ -23,24 +24,22 @@ struct LeaderboardView: View {
             Divider()
             
             List {
-                ForEach(entries, id: \.self) { entry in
+                ForEach(entries) { entry in
                     NavigationLink {
                         EntryDetailView(entry: entry)
                     } label: {
                         EntryView(entry: entry)
                     }
                 }
-                .onDelete(perform: delete)
             }
         }
-        .toolbar { EditButton() }
     }
 }
 
 struct RankingView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            LeaderboardView(entries: [.example]) { _ in }
+            LeaderboardView()
         }
     }
 }

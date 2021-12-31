@@ -11,28 +11,35 @@ extension Model {
     class User: ObservableObject {
         let defaults = UserDefaults.standard
         
-        @Published var name = ""
-        @Published var language: SupportedLanguage = .english
-        @Published var timer = true
-        @Published var timelimit = 5
+        var name: String {
+            willSet { objectWillChange.send() }
+            didSet { defaults.set(name, forKey: "user.name") }
+        }
+        var language: SupportedLanguage = .english {
+            willSet { objectWillChange.send() }
+            didSet { defaults.set(language.rawValue, forKey: "user.language") }
+        }
+        var timer: Bool {
+            willSet { objectWillChange.send() }
+            didSet { defaults.set(timer, forKey: "user.timer") }
+        }
+        var timelimit: Int {
+            willSet { objectWillChange.send() }
+            didSet { defaults.set(timelimit, forKey: "user.timelimit") }
+        }
         
-        init() { load() }
+        init() {
+            self.name = defaults.object(forKey: "user.name") as? String ?? ""
+            self.timer = defaults.object(forKey: "user.timer") as? Bool ?? true
+            self.timelimit = defaults.object(forKey: "user.timelimit") as? Int ?? 5
+            
+            loadLanguage()
+        }
     }
 }
 
-extension Model.User: PersistentStorage {
-    func save() {
-        defaults.set(name, forKey: "user.name")
-        defaults.set(language.rawValue, forKey: "user.language")
-        defaults.set(timelimit, forKey: "user.timelimit")
-        defaults.set(timer, forKey: "user.timer")
-    }
-    
-    func load() {
-        self.name = defaults.object(forKey: "user.name") as? String ?? self.name
-        self.timer = defaults.object(forKey: "user.timer") as? Bool ?? self.timer
-        self.timelimit = defaults.object(forKey: "user.timelimit") as? Int ?? self.timelimit
-        
+extension Model.User {
+    func loadLanguage() {
         if let language = defaults.object(forKey: "user.language") as? String {
             if let supportedLanguage = Model.SupportedLanguage(rawValue: language) {
                 self.language = supportedLanguage

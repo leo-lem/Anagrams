@@ -13,7 +13,7 @@
 "dont-save-label" = "Don't Save";
 "cancel-label" = "Cancel";
 
-"enter-word-label" = "Enter your word";
+"enter-word-label %@" = "Enter your word (language: %@)";
 "enter-name-to-save-label" = "Enter your name to save";
 "apply-and-new-game-label" = "Apply and Start New Game";
 "next-word-save-label" = "Save Current Score to Leaderboard?";

@@ -6,7 +6,7 @@
 "dont-save-label" = "Nicht Speichern";
 "cancel-label" = "Abbrechen";
 
-"enter-word-label" = "Gib dein Wort ein";
+"enter-word-label %@" = "Gib dein Wort ein (Sprache: %@)";
 "enter-name-to-save-label" = "Gib deinen Namen ein";
 "apply-and-new-game-label" = "Anwenden und neue Runde starten";
 "next-word-save-label" = "Diese Runde in der Rangliste speichern?";

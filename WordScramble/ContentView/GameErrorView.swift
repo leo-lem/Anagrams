@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameErrorView: View {
-    let error: GameError
+    let error: Model.GameError
     
     var body: some View {
         VStack {
@@ -65,6 +65,6 @@ extension GameErrorView {
 
 struct CustomAlertView_Previews: PreviewProvider {
     static var previews: some View {
-        GameErrorView(error: GameError(.notNew))
+        GameErrorView(error: Model.GameError(.notNew))
     }
 }

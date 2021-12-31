@@ -24,7 +24,7 @@ struct SaveView: View {
                 .task { focused = true }
             
             SymbolButton("chevron.right.circle", saveAndNewGame)
-                .font(.title2)
+                .font(.title)
                 .foregroundColor(username.isEmpty ? .gray : .primary)
                 .disabled(username.isEmpty)
         }

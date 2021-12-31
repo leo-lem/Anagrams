@@ -7,17 +7,20 @@
 
 import Foundation
 
-//TODO: Figure out why these aren't properly publishing changes
 class Model: ObservableObject {
-    @Published var user = User()
-    @Published var leaderboard = Leaderboard()
-    @Published var game = Game()
+    static let singleton = Model()
+    
+    let persistence = PersistenceController.shared
+    
+    let user: User, game: Game
     
     var startWords = [String]()
     var startword: String { startWords.randomElement() ?? "" }
     
     init() {
-        game.user = user
+        self.user = User()
+        self.game = Game(user: user)
+        
         self.startWords = fetchStartWords()
     }
 }
@@ -43,39 +46,21 @@ extension Model {
             
             return decoded
         } catch {
-            //TODO: implement proper error handling
             print("Couldn't retrieve start words.")
             return []
         }
     }
 }
 
-struct GameError: Error, Identifiable {
-    enum ErrorKind: Error {
-        case rootNotReal,
-             rootTooShort
+//MARK: leaderboard
+extension Model {
+    func addLeaderboardEntry(game: Model.Game) {
+        let context = persistence.container.viewContext
         
-        case halftime, timesUp
+        guard !game.user.name.isEmpty else { return }
         
-        case isRoot,
-             tooShort,
-             notPossible,
-             notNew,
-             notReal
-    }
-    
-    let id = UUID()
-    let kind: ErrorKind
-    let word: String?
-    
-    init(_ kind: ErrorKind, word: String? = nil) {
-        self.kind = kind
-        self.word = word
-    }
-}
-
-extension GameError: Equatable {
-    static func ==(lhs: GameError, rhs: GameError) -> Bool {
-        lhs.id == rhs.id
+        _ = Entry(context: context, game: game)
+       
+        persistence.saveContext()
     }
 }

@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct EntryDetailView: View {
-    let entry: Model.Leaderboard.Entry
+    let entry: Entry
     
     var body: some View {
         VStack {
             Group {
-                Text("name-score-label \(NSLocalizedString(entry.name, comment: "")) \(localizeIntWithLabel(entry.score, label: .points))").font(.title).bold()
+                Text("name-score-label \(NSLocalizedString(entry.rUsername, comment: "")) \(localizeIntWithLabel(entry.rScore, label: .points))").font(.title).bold()
                 
-                Text("with-word-label \(entry.word) \(entry.language)").font(.title)
+                Text("with-word-label \(entry.rWord) \(entry.rLanguage)").font(.title)
                 
-                if entry.time != nil {
-                    Text("in-seconds-label \(localizeIntWithLabel(entry.time!, label: .seconds))").font(.title2)
+                if entry.rTime != nil {
+                    Text("in-seconds-label \(localizeIntWithLabel(entry.rTime!, label: .seconds))").font(.title2)
                 }
             }
             
-            List(entry.usedWords, id: \.self) { word in
+            List(entry.rUsedWords, id: \.self) { word in
                 UsedWordView(word: word)
             }
             
-            Text("date-time-label \(entry.timestamp.formatted(date: .abbreviated, time: .omitted)) \(entry.timestamp.formatted(date: .omitted, time: .shortened))").padding(.bottom)
+            Text("date-time-label \(entry.rTimestamp.formatted(date: .abbreviated, time: .omitted)) \(entry.rTimestamp.formatted(date: .omitted, time: .shortened))").padding(.bottom)
         }
     }
 }

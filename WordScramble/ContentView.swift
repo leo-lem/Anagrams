@@ -6,70 +6,71 @@
 //
 
 import SwiftUI
-import MyLayout
 import MyCustomUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel = ViewModel()
+    @StateObject var viewmodel = ViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                RootwordView(newRootword: $viewModel.newRootword, editingRootword: $viewModel.editingRootword,
-                             rootword: viewModel.rootword, isFirst: viewModel.previousWords.isEmpty) { rootword in
-                    withAnimation { viewModel.newGame(with: rootword) }
+                RootwordView(newRootword: $viewmodel.newRootword, editingRootword: $viewmodel.editingRootword,
+                             rootword: viewmodel.rootword, isFirst: viewmodel.previousWords.isEmpty) { rootword in
+                    withAnimation { viewmodel.newGame(with: rootword) }
                 } nextWord: {
                     withAnimation {
-                        viewModel.score != 0 ? viewModel.showingSaveAlert = true : viewModel.nextRootword() }
+                        viewmodel.score != 0 ? viewmodel.showingSaveAlert = true : viewmodel.nextRootword() }
                 } previousWord: {
-                    withAnimation { viewModel.previousRootword() }
+                    withAnimation { viewmodel.previousRootword() }
                 }
-                .alert("next-word-save-label", isPresented: $viewModel.showingSaveAlert) {
-                    Button("save-label") { viewModel.saveAndNextRootword() }
-                    Button("dont-save-label", role: .destructive) { viewModel.nextRootword() }
+                .alert("next-word-save-label", isPresented: $viewmodel.showingSaveAlert) {
+                    Button("save-label") { viewmodel.saveAndNextRootword() }
+                    Button("dont-save-label", role: .destructive) { viewmodel.nextRootword() }
                     Button("cancel-label", role: .cancel) {}
                 }
                 
                 Group {
-                    TextField("enter-word-label", text: $viewModel.newWordLowercase) {
-                        withAnimation { viewModel.addWord() }
+                    TextField("enter-word-label \(viewmodel.language.rawValue)", text: $viewmodel.newWord) {
+                        withAnimation { viewmodel.addWord(viewmodel.newWord) }
+                        viewmodel.newWord = ""
                         self.focused = true
                     }
                     .textFieldStyle(.roundedBorder)
                     .padding()
-                    .disabled(viewModel.timerEnabled && viewModel.timesUp)
+                    .disabled(viewmodel.timerEnabled && viewmodel.timesUp)
                     .focused($focused)
                     
-                    ForEach(viewModel.gameErrors.reversed()) { error in
+                    ForEach(viewmodel.gameErrors.reversed()) { error in
                         GameErrorView(error: error)
                             .transition(.slide)
+                            .onTapGesture {
+                                withAnimation { viewmodel.gameErrors.removeAll { $0.id == error.id } }
+                            }
                     }.zIndex(10)
                     
-                    List(viewModel.usedWords, id: \.self) { word in
+                    List(viewmodel.usedWords, id: \.self) { word in
                         UsedWordView(word: word)
                     }
                 }
-                .hidden(viewModel.editingRootword)
+                .hidden(viewmodel.editingRootword)
             }
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     SymbolButton("gear") {
-                        withAnimation { viewModel.showingSettings = true }
+                        withAnimation { viewmodel.showingSettings = true }
                     }
                 }
                 
                 ToolbarItem(placement: .principal) {
                     SymbolButton("increase.indent") {
-                        withAnimation { viewModel.showingSave.toggle() }
+                        withAnimation { viewmodel.showingSave.toggle() }
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink{
-                        LeaderboardView(entries: viewModel.leaderboardEntries) { offsets in
-                            withAnimation { viewModel.delete(at: offsets) }
-                        }
+                        LeaderboardView()
                     } label: {
                         Image(systemName: "list.star")
                     }
@@ -78,25 +79,25 @@ struct ContentView: View {
             
             .overlay(alignment: .bottom) {
                 HStack {
-                    TimerView(time: $viewModel.time, limit: viewModel.limitInSeconds)
+                    TimerView(time: $viewmodel.time, limit: viewmodel.limitInSeconds)
                         .onTapGesture {
-                            withAnimation { viewModel.timerEnabled = false}
+                            withAnimation { viewmodel.timerEnabled = false}
                         }
-                        .hidden(!viewModel.timerEnabled)
+                        .hidden(!viewmodel.timerEnabled)
                         .overlay {
-                            if !viewModel.timerEnabled {
+                            if !viewmodel.timerEnabled {
                                 SymbolButton("timer") {
-                                    withAnimation { viewModel.timerEnabled = true }
+                                    withAnimation { viewmodel.timerEnabled = true }
                                 }
                                 .font(.title2)
-                                .disabled(viewModel.timesUp)
-                                .foregroundColor(viewModel.timesUp ? .gray : .primary)
+                                .disabled(viewmodel.timesUp)
+                                .foregroundColor(viewmodel.timesUp ? .gray : .primary)
                             }
                         }
                         
                     Spacer()
                         
-                    ScoreView(score: viewModel.score)
+                    ScoreView(score: viewmodel.score)
                 }
                 .padding(.horizontal)
                 .padding(.vertical, 10)
@@ -105,24 +106,24 @@ struct ContentView: View {
             }
             
             .overlay(alignment: .top) {
-                if viewModel.showingSave {
+                if viewmodel.showingSave {
                     ZStack(alignment: .top) {
                         Color.black.opacity(0.2)
                             .onTapGesture {
-                                withAnimation { viewModel.showingSave = false }
+                                withAnimation { viewmodel.showingSave = false }
                             }
                         
-                        SaveView(username: $viewModel.username) {
-                            withAnimation { viewModel.saveAndNewGame() }
+                        SaveView(username: $viewmodel.username) {
+                            withAnimation { viewmodel.saveAndNewGame() }
                         }
-                        .padding(.top, 5)
+                        .padding()
                     }
                 }
             }
             
-            .sheet(isPresented: $viewModel.showingSettings) {
-                SettingsView(language: $viewModel.language, timelimit: $viewModel.timelimit) {
-                    withAnimation { viewModel.applyAndNewGame() }
+            .sheet(isPresented: $viewmodel.showingSettings) {
+                SettingsView(language: $viewmodel.language, timelimit: $viewmodel.timelimit) {
+                    withAnimation { viewmodel.applyAndNewGame() }
                 }
             }
             
