@@ -1,0 +1,77 @@
+
+"new-game-label" = "Neue Runde";
+"preferences-title" = "Einstellungen";
+"leaderboard-label" = "Rangliste";
+"save-label" = "Speichern";
+"dont-save-label" = "Nicht Speichern";
+"cancel-label" = "Abbrechen";
+
+"enter-word-label" = "Gib dein Wort ein";
+"enter-word-label %@" = "Gib dein Wort ein (Sprache: %@)";
+"enter-name-to-save-label" = "Gib deinen Namen ein";
+"apply-and-new-game-label" = "Anwenden und neue Runde starten";
+"next-word-save-label" = "Diese Runde in der Rangliste speichern?";
+
+"select-language-label" = "In-Game-Sprache auswählen";
+"select-timelimit-label" = "Zeitbegrenzung";
+
+"guest-user" = "Gast";
+"current-user-label %@" = "Gerade spielt '%@'";
+
+"username-label" = "Benutzername";
+"password-label" = "Passwort";
+"optional-password-label" = "(optional) Wähle ein Passwort";
+
+"login-label" = "Einloggen";
+"guest-login-label" = "Gast";
+"register-label" = "Registrieren";
+
+//example: "Leo hat 21 Punkte geholt"
+"name-score-label %@ %@" = "%@ hat %@ geholt";
+
+//example: "hat 21 Sekunden gebraucht"
+"took-seconds-label %@" = "hat %@ gebraucht";
+
+//example: "in 21 Sekunden"
+"in-seconds-label %@" = "in %@";
+
+//example: "mit 'lebendig' (en)"
+"with-word-label %@ %@" = "mit '%@' (%@)";
+
+//example: "am 29. Dez., 2021 (17:32)"
+"date-time-label %@ %@" = "am %@ (%@)";
+
+
+//alerts
+"title-login-connection" = "Verbindung zum Server fehlgeschlagen...";
+"desc-login-connection" = "Du kannst trotzdem offline spielen (als Gast).";
+"title-login-username" = "Nutzername unbekannt...";
+"desc-login-username" = "Willst du dich unter dem Namen registrieren?";
+"title-login-pin" = "Falsches Passwort :(";
+"desc-login-pin" = "Versuchs nochmal...";
+"title-login-registerUsername" = "Nutzername bereits vergeben...";
+"desc-login-registerUsername" = "Wähle einen anderen oder mach weiter als Gast.";
+"title-login-unknown" = "Unerwarteter Fehler";
+"desc-login-unknown" = "...";
+
+"title-root-notReal %@" = "'%@' ist nicht zulässig!";
+"desc-root-notReal" = "Gibt's nicht, das Wort...";
+"title-root-tooShort %@" = "'%@' ist nicht zulässig!";
+"desc-root-tooShort" = "Ist zu kurz... (mind. 6 Buchstaben)";
+
+"title-time-half" = "Halbzeit!";
+"desc-time-half" = "Weiter so!";
+"title-time-out" = "Zeit ist um!";
+"desc-time-out" = "Wenn du weitermachen willst deaktivier' den Timer.";
+
+"title-new-isRoot %@" = "'%@' entspricht dem Basiswort!";
+"desc-new-isRoot" = "Das Gleiche kannst' halt nicht einfach nehmen...";
+"title-new-tooShort %@" = "'%@' ist zu kurz!";
+"desc-new-tooShort" = "Mindestens vier Buchstaben...";
+"title-new-notNew %@" = "'%@' hattest du schon!";
+"desc-new-notNew" = "Denk dir was neues aus...";
+"title-new-notPossible %@" = "'%@' passt nicht!";
+"desc-new-notPossible" = "Nur die gegebenen Buchstaben sind erlaubt...";
+"title-new-notReal %@" = "'%@'?";
+"desc-new-notReal" = "Das Wort gibt's doch gar nicht...";
+

@@ -12,6 +12,7 @@ struct WordScrambleApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .disableAutocorrection(true)
         }
     }
 }

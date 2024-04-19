@@ -5,152 +5,172 @@
 //  Created by Leopold Lemmermann on 23.12.21.
 //
 
-import SwiftUI
-import MyOthers
+import Foundation
 
 extension ContentView {
     @MainActor class ViewModel: ObservableObject {
-        @Published private(set) var rootWord = "silkworm"
-        @Published private(set) var usedWords = [String]()
-        @Published var newWord = ""
-        private var answer: String {
-            newWord
-                .lowercased()
-                .trimmingCharacters(in: .whitespacesAndNewlines)
+        //model
+        private let model = Model.singleton
+        var rootword: String { model.game.root }
+        var usedWords: [String] { model.game.used }
+        var score: Int { model.game.used.joined(separator: "").count }
+        
+        //rootword
+        @Published var editingRootword = false
+        var newRootword = "" {
+            willSet { objectWillChange.send() }
+            didSet { newRootword = newRootword.lowercased() }
+        }
+        private(set) var previousWords = [String]()
+        
+        //game
+        var newWord = "" {
+            willSet { objectWillChange.send() }
+            didSet { newWord = newWord.lowercased() }
+        }
+        var gameErrors = [Model.GameError]() {
+            willSet { objectWillChange.send() }
+            didSet { removeError() }
         }
         
-        //error display if the word is not valid
-        @Published var error = ErrorDisplay()
-        class ErrorDisplay {
-            var title = "Oops!", message = "Something went wrong...", show = false
+        //timer
+        var time: Int {
+            willSet { objectWillChange.send() }
+            didSet { updateTimer() }
+        }
+        var timesUp: Bool { time >= limitInSeconds }
+        var limitInSeconds: Int { model.user.timelimit * 60 }
+        
+        //settings
+        @Published var showingSettings = false
+        @Published var language: Model.SupportedLanguage
+        @Published var timelimit: Int
+        var timerEnabled: Bool {
+            willSet { objectWillChange.send() }
+            didSet { model.user.timer = self.timerEnabled }
         }
         
-        //ranking stuff
-        @Published var showScoreSaveDialog = false
-        @Published var showRanking = false
-        
-        @Published private(set) var score = 0
-        
-        @Published var ranking = [Rank]() {
-            didSet {
-                UserDefaults.standard.setObject(ranking, forKey: "ranking")
+        //saving
+        @Published var showingSave = false
+        @Published var showingSaveAlert = false
+        var username: String {
+            get { model.user.name == "unknown-user" ? "" : model.user.name}
+            set {
+                objectWillChange.send()
+                model.user.name = newValue
             }
         }
         
-        func newGame(name: String = "", saveScore: Bool = false, newRootWord: String = "") {
-            if saveScore {
-                let rank = Rank(name: name, word: rootWord, score: self.score, time: Date())
-                ranking.append(rank)
-                ranking.sort()
-            }
-            showScoreSaveDialog = false
-            
-            newWord = ""
-            usedWords = []
-            score = 0
-            rootWord = newRootWord.isEmpty ? (startWords.randomElement() ?? rootWord) : newRootWord
-        }
-        
-        struct Rank: Comparable, Codable, Hashable {
-            let name: String, word: String, score: Int, time: Date
-            
-            static func < (lhs: Rank, rhs: Rank) -> Bool {
-                lhs.score < rhs.score
-            }
-        }
-        
-        //loading the start words during initialization
-        private let startWords: [String]
         init() {
-            do {
-                guard let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") else { throw URLError(.badURL) }
-                let startWordsString = try String(contentsOf: startWordsURL)
-                startWords = startWordsString.components(separatedBy: "\n")
-            } catch {
-                print("Error: Couldn't retrieve start words from text file")
-                startWords = []
-            }
-            newGame()
+            self.language = model.user.language
+            self.timerEnabled = model.user.timer
+            self.timelimit = model.user.timelimit
             
-            self.ranking = UserDefaults.standard.getObject(forKey: "ranking", castTo: [Rank].self) ?? [Rank]()
+            self.time = model.game.time
         }
     }
 }
 
-//MARK: Validating and adding the typed word
 extension ContentView.ViewModel {
-    func addWord() {
+    func addWord(_ word: String) {
         do {
-            try validateWord()
-            usedWords.insert(answer, at: 0)
-            score += answer.count
-        } catch WordError.isRootword(let title, let message) {
-            self.error.title = title
-            self.error.message = message
-            self.error.show = true
-        } catch WordError.notLongEnough(let title, let message){
-            self.error.title = title
-            self.error.message = message
-            self.error.show = true
-        } catch WordError.notOriginal(let title, let message) {
-            self.error.title = title
-            self.error.message = message
-            self.error.show = true
-        } catch WordError.notPossible(let title, let message) {
-            self.error.title = title
-            self.error.message = message
-            self.error.show = true
-        } catch WordError.notReal(let title, let message) {
-            self.error.title = title
-            self.error.message = message
-            self.error.show = true
-        } catch {
-            self.error.show = true
+            try model.game.addWord(word)
+        } catch let gameError as Model.GameError {
+            self.gameErrors.append(gameError)
+        } catch { print("Unexpected Error: \(error)") }
+        
+        self.previousWords.removeAll()
+    }
+    
+    func newGame(with rootword: String? = nil) {
+        do {
+            guard let root = rootword else { return restartWithRandom() }
+            guard rootword != "" else { return restartWithRandom() }
+            
+            try checkRoot(root)
+            
+            model.game.restart(with: root)
+        } catch let gameError as Model.GameError {
+            self.gameErrors.append(gameError)
+        } catch { print("Unexpected Error: \(error)") }
+    }
+    
+    func nextRootword() {
+        self.previousWords.append(model.game.root)
+        newGame()
+    }
+    
+    func previousRootword() {
+        newGame(with: previousWords.last)
+        self.previousWords.removeLast()
+    }
+    
+    func saveAndNextRootword() {
+        save()
+        nextRootword()
+    }
+    
+    func saveAndNewGame() {
+        save()
+        newGame()
+        self.showingSave = false
+    }
+    
+    func applyAndNewGame() {
+        model.user.language = language
+        model.user.timelimit = timelimit
+        
+        model.startWords = model.fetchStartWords()
+        newGame()
+        self.showingSettings = false
+    }
+    
+    private func restartWithRandom() {
+        model.game.restart(with: model.startword)
+        self.time = 0
+    }
+    
+    private func save() {
+        model.user.name = self.username.isEmpty ? "unknown-user" : self.username
+        model.addLeaderboardEntry(game: model.game)
+    }
+}
+
+extension ContentView.ViewModel {
+    private func checkRoot(_ word: String) throws {
+        guard word.count > 5 else { throw Model.GameError(.rootTooShort, word: word) }
+        guard word.capitalized(with: Locale(identifier: model.user.language.rawValue)).checkIfReal(language: model.user.language.rawValue) else {
+            throw Model.GameError(.rootNotReal, word: word)
+        }
+    }
+}
+
+import SwiftUI
+
+extension ContentView.ViewModel {
+    private func updateTimer() {
+        model.game.time = time
+        
+        guard timerEnabled else { return }
+        
+        if time == limitInSeconds / 2 {
+            self.gameErrors.append(Model.GameError(.halftime))
+        } else if time == limitInSeconds - 1 {
+            self.gameErrors.append(Model.GameError(.timesUp))
         }
     }
     
-    private enum WordError: Error {
-        case isRootword(title: String = "Word = root word!", message: String = "Obviously you can't just use the original word"),
-             notLongEnough(title: String = "Word too short!", message: String = "Only words with more than 2 letters allowed"),
-             notOriginal(title: String  = "Word used already!", message: String = "Be more original..."),
-             notPossible(title: String = "Word not recognized!", message: String = "You can't just make them up, you know!"),
-             notReal(title: String = "Word not possible!", message: String = "That is no english word!")
-    }
-    
-    private func validateWord() throws {
-        guard answer != rootWord else { throw WordError.isRootword() }
-        guard answer.count > 2 else { throw WordError.notLongEnough() }
-        guard isOriginal else { throw WordError.notOriginal() }
-        guard isPossible else { throw WordError.notPossible() }
-        guard isReal else { throw WordError.notReal() }
-    }
-    
-    private var isOriginal: Bool {
-        !usedWords.contains(answer)
-    }
-    
-    private var isPossible: Bool {
-        var isPossible = true
-        var chars = Array(rootWord)
+    private func removeError() {
+        guard gameErrors.count <= 3 else {
+            gameErrors.removeFirst()
+            return
+        }
         
-        answer.forEach { char in
-            if chars.contains(char) {
-                if let index = chars.firstIndex(where: { $0 == char }) {
-                    chars.remove(at: index)
-                } else {
-                    isPossible = false
-                }
+        if let gameError = gameErrors.first {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                //TODO: Figure out how to add this animation from the view itself
+                self.gameErrors.removeAll { $0.id == gameError.id }
             }
         }
-        
-        return isPossible
-    }
-    
-    private var isReal: Bool {
-        let checker = UITextChecker()
-        let range = NSRange(location: 0, length: answer.utf16.count)
-        let misspelledRange = checker.rangeOfMisspelledWord(in: answer, range: range, startingAt: 0, wrap: false, language: "en")
-        
-        return misspelledRange.location == NSNotFound
     }
 }

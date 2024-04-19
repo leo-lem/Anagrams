@@ -6,67 +6,134 @@
 //
 
 import SwiftUI
+import MyCustomUI
 
 struct ContentView: View {
-    @ObservedObject var viewModel = ViewModel()
-    
-    private func addWord() { viewModel.addWord() }
-    private func newGame(_ name: String, _ saveScore: Bool, _ newRootWord: String) {
-        viewModel.newGame(name: name, saveScore: saveScore, newRootWord: newRootWord)
-    }
-    private func newGame() { viewModel.newGame() }
+    @StateObject var viewmodel = ViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                Text(viewModel.rootWord)
-                    .bold()
-                    .font(.largeTitle)
-                    .onTapGesture {
-                        
-                    }
+                RootwordView(newRootword: $viewmodel.newRootword, editingRootword: $viewmodel.editingRootword,
+                             rootword: viewmodel.rootword, isFirst: viewmodel.previousWords.isEmpty) { rootword in
+                    withAnimation { viewmodel.newGame(with: rootword) }
+                } nextWord: {
+                    withAnimation {
+                        viewmodel.score != 0 ? viewmodel.showingSaveAlert = true : viewmodel.nextRootword() }
+                } previousWord: {
+                    withAnimation { viewmodel.previousRootword() }
+                }
+                .alert("next-word-save-label", isPresented: $viewmodel.showingSaveAlert) {
+                    Button("save-label") { viewmodel.saveAndNextRootword() }
+                    Button("dont-save-label", role: .destructive) { viewmodel.nextRootword() }
+                    Button("cancel-label", role: .cancel) {}
+                }
                 
-                TextField("Enter your word", text: $viewModel.newWord, onCommit: addWord)
+                Group {
+                    TextField("enter-word-label \(viewmodel.language.rawValue)", text: $viewmodel.newWord) {
+                        withAnimation { viewmodel.addWord(viewmodel.newWord) }
+                        viewmodel.newWord = ""
+                        self.focused = true
+                    }
                     .textFieldStyle(.roundedBorder)
                     .padding()
-                    .autocapitalization(.none)
-                
-                List(viewModel.usedWords, id: \.self) { word in
-                    HStack {
-                        Image(systemName: "\(word.count).circle")
-                        Text(word)
+                    .disabled(viewmodel.timerEnabled && viewmodel.timesUp)
+                    .focused($focused)
+                    
+                    ForEach(viewmodel.gameErrors.reversed()) { error in
+                        GameErrorView(error: error)
+                            .transition(.slide)
+                            .onTapGesture {
+                                withAnimation { viewmodel.gameErrors.removeAll { $0.id == error.id } }
+                            }
+                    }.zIndex(10)
+                    
+                    List(viewmodel.usedWords, id: \.self) { word in
+                        UsedWordView(word: word)
                     }
-                    .accessibilityElement()
-                    .accessibilityLabel("\(word), \(word.count) letters")
                 }
-                
-                Text("Your score is \(viewModel.score).")
-                    .padding()
-                    .font(.headline)
+                .hidden(viewmodel.editingRootword)
             }
-            .navigationBarTitleDisplayMode(.inline)
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationLink("Highscores") { RankingView(ranking: viewModel.ranking) }
+                    SymbolButton("gear") {
+                        withAnimation { viewmodel.showingSettings = true }
+                    }
                 }
+                
+                ToolbarItem(placement: .principal) {
+                    SymbolButton("increase.indent") {
+                        withAnimation { viewmodel.showingSave.toggle() }
+                    }
+                }
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("New Game") { viewModel.showScoreSaveDialog = true }
+                    NavigationLink{
+                        LeaderboardView()
+                    } label: {
+                        Image(systemName: "list.star")
+                    }
                 }
             }
-            .sheet(isPresented: $viewModel.showScoreSaveDialog) {
-                VStack {
-                    NewGameView(score: viewModel.score, newGame: newGame)
-                    Divider()
-                    RankingView(ranking: viewModel.ranking)
+            
+            .overlay(alignment: .bottom) {
+                HStack {
+                    TimerView(time: $viewmodel.time, limit: viewmodel.limitInSeconds)
+                        .onTapGesture {
+                            withAnimation { viewmodel.timerEnabled = false}
+                        }
+                        .hidden(!viewmodel.timerEnabled)
+                        .overlay {
+                            if !viewmodel.timerEnabled {
+                                SymbolButton("timer") {
+                                    withAnimation { viewmodel.timerEnabled = true }
+                                }
+                                .font(.title2)
+                                .disabled(viewmodel.timesUp)
+                                .foregroundColor(viewmodel.timesUp ? .gray : .primary)
+                            }
+                        }
+                        
+                    Spacer()
+                        
+                    ScoreView(score: viewmodel.score)
+                }
+                .padding(.horizontal)
+                .padding(.vertical, 10)
+                .background(.bar)
+                
+            }
+            
+            .overlay(alignment: .top) {
+                if viewmodel.showingSave {
+                    ZStack(alignment: .top) {
+                        Color.black.opacity(0.2)
+                            .onTapGesture {
+                                withAnimation { viewmodel.showingSave = false }
+                            }
+                        
+                        SaveView(username: $viewmodel.username) {
+                            withAnimation { viewmodel.saveAndNewGame() }
+                        }
+                        .padding()
+                    }
                 }
             }
-            .alert(isPresented: $viewModel.error.show) {
-                Alert(title: Text(viewModel.error.title),
-                      message: Text(viewModel.error.message),
-                      dismissButton: .default(Text("OK")))
+            
+            .sheet(isPresented: $viewmodel.showingSettings) {
+                SettingsView(language: $viewmodel.language, timelimit: $viewmodel.timelimit) {
+                    withAnimation { viewmodel.applyAndNewGame() }
+                }
             }
+            
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .foregroundColor(.primary)
+        .navigationViewStyle(.stack)
     }
+    
+    @FocusState private var focused: Bool
 }
 
 struct ContentView_Previews: PreviewProvider {
