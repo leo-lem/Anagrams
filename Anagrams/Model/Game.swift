@@ -1,41 +1,47 @@
 //
-//  ContentView-ViewModel-Game.swift
-//  WordScramble
+//  Game.swift
+//  Anagrams
 //
-//  Created by Leopold Lemmermann on 27.12.21.
+//  Created by Leopold Lemmermann on 14.02.22.
 //
 
 import Foundation
 
-struct Game: Codable {
+struct Game: Codable, Identifiable {
     let id: UUID, timestamp: Date
-    //let mode: Mode TODO: Implement different game modes
-    let settings: Settings
-    
-    var newWord: NewWord? = nil, foundWords: [FoundWord] = [], timer: Bool
-    var time: Int = 0
-    
-    var score: Int { foundWords.reduce(0) { $0 + $1.points } }
+    let config: Configuration
+    var new: String? = nil,
+        found: [String] = [],
+        timer: Bool,
+        time: Int = 0
 }
 
 extension Game {
-    struct Settings: Codable {
-        let language: Language, rootWord: RootWord, timelimit: Int
-        
-        static let `default` = Settings(language: .english,
-                                        rootWord: RootWord("universal", language: .english),
-                                        timelimit: 300)
+    init(word: String, preferences: User.Preferences) {
+        self.init(
+            id: UUID(),
+            timestamp: Date(),
+            config: Configuration(word: word, language: preferences.language, timelimit: preferences.timelimit),
+            timer: preferences.timer
+        )
     }
 }
 
+//MARK: - Configuration
 extension Game {
-    init(rootWord: RootWord, preferences: User.Preferences) {
-        self.id = UUID()
-        self.timestamp = Date()
+    struct Configuration: Codable {
+        let word: String, language: Language, timelimit: Int
         
-        self.timer = preferences.timer
-        self.settings = Settings(language: preferences.language,
-                                 rootWord: rootWord,
-                                 timelimit: preferences.timelimit)
+        static let `default` = Self(word: "universal", language: .english, timelimit: 300)
+    }
+}
+
+//MARK: - Supported
+extension Game {
+    enum Language: String, CaseIterable, Codable {
+        case english = "en",
+             german = "de",
+             spanish = "es",
+             french = "fr"
     }
 }

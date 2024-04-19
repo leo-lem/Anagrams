@@ -2,7 +2,7 @@
 //  AnagramsApp.swift
 //  Anagrams
 //
-//  Created by Leopold Lemmermann on 11.01.22.
+//  Created by Leopold Lemmermann on 08.02.22.
 //
 
 import SwiftUI

@@ -7,395 +7,159 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E6F96862790621600145DB7 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6F96852790621600145DB7 /* Model.swift */; };
-		6E714537278E18B700C04362 /* AnagramsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714536278E18B700C04362 /* AnagramsApp.swift */; };
-		6E714539278E18B700C04362 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714538278E18B700C04362 /* ContentView.swift */; };
-		6E71458D278E1AAC00C04362 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71458A278E1AAC00C04362 /* Game.swift */; };
-		6E71458E278E1AAC00C04362 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71458B278E1AAC00C04362 /* Entry.swift */; };
-		6E71458F278E1AAC00C04362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71458C278E1AAC00C04362 /* User.swift */; };
-		6E714591278E1AC500C04362 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714590278E1AC500C04362 /* Persistence.swift */; };
-		6E7145AB278E1C6E00C04362 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E7145AA278E1C6E00C04362 /* Assets.xcassets */; };
-		6E7145C5278E1CE700C04362 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E7145BF278E1CE700C04362 /* Localizable.strings */; };
-		6E7145C6278E1CE700C04362 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 6E7145C1278E1CE700C04362 /* Localizable.stringsdict */; };
-		6E7145D1278E1D1000C04362 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E7145D0278E1D1000C04362 /* CloudKit.framework */; };
-		6E7145D4278E1D2000C04362 /* MyPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6E7145D3278E1D2000C04362 /* MyPackage */; };
-		6E7145D9278E1DA200C04362 /* Content-VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E7145D8278E1DA200C04362 /* Content-VM.swift */; };
-		6E714601278EBAA500C04362 /* AnagramsAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714600278EBAA500C04362 /* AnagramsAlgorithm.swift */; };
-		6E714622278EBE3500C04362 /* randomWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714615278EBE3500C04362 /* randomWord.swift */; };
-		6E714623278EBE3500C04362 /* NewWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714617278EBE3500C04362 /* NewWord.swift */; };
-		6E714624278EBE3500C04362 /* FoundWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714618278EBE3500C04362 /* FoundWord.swift */; };
-		6E714625278EBE3500C04362 /* RootWord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714619278EBE3500C04362 /* RootWord.swift */; };
-		6E714626278EBE3500C04362 /* LoginAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71461B278EBE3500C04362 /* LoginAlert.swift */; };
-		6E714627278EBE3500C04362 /* TimeAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71461C278EBE3500C04362 /* TimeAlert.swift */; };
-		6E714628278EBE3500C04362 /* NewAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71461D278EBE3500C04362 /* NewAlert.swift */; };
-		6E714629278EBE3500C04362 /* RootAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71461E278EBE3500C04362 /* RootAlert.swift */; };
-		6E71462B278EBE3500C04362 /* SupportGameModes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E714621278EBE3500C04362 /* SupportGameModes.swift */; };
-		6E71462F278EBE9600C04362 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E71462D278EBE9600C04362 /* Preview Assets.xcassets */; };
-		6E714630278EBE9600C04362 /* Object Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E71462E278EBE9600C04362 /* Object Examples.swift */; };
-		6E714635278EF31000C04362 /* words-es.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E714631278EF31000C04362 /* words-es.json */; };
-		6E714636278EF31000C04362 /* words-de.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E714632278EF31000C04362 /* words-de.json */; };
-		6E714637278EF31000C04362 /* words-en.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E714633278EF31000C04362 /* words-en.json */; };
-		6E714638278EF31000C04362 /* words-fr.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E714634278EF31000C04362 /* words-fr.json */; };
-		6E91CEF9279071EA00468CCC /* Login-VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CEF7279071EA00468CCC /* Login-VM.swift */; };
-		6E91CEFA279071EA00468CCC /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CEF8279071EA00468CCC /* LoginView.swift */; };
-		6E91CEFE279071F100468CCC /* LoginButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CEFC279071F100468CCC /* LoginButtonsView.swift */; };
-		6E91CEFF279071F100468CCC /* EnterDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CEFD279071F100468CCC /* EnterDetailsView.swift */; };
-		6E91CF1D27908ABA00468CCC /* SupportedLanguages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF1C27908ABA00468CCC /* SupportedLanguages.swift */; };
-		6E91CF1F27908B0C00468CCC /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF1E27908B0C00468CCC /* Word.swift */; };
-		6E91CF2127908B1B00468CCC /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF2027908B1B00468CCC /* CustomAlert.swift */; };
-		6E91CF2327908B3600468CCC /* CustomAlertsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF2227908B3600468CCC /* CustomAlertsList.swift */; };
-		6E91CF2627908B5800468CCC /* Game-VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF2527908B5800468CCC /* Game-VM.swift */; };
-		6E91CF2827908B7500468CCC /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF2727908B7500468CCC /* GameView.swift */; };
-		6E91CF2A27908B8000468CCC /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF2927908B8000468CCC /* BoardView.swift */; };
-		6E91CF2C27908B8500468CCC /* Board-VM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E91CF2B27908B8500468CCC /* Board-VM.swift */; };
-		6ED7DA92279184D400914046 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DA91279184D400914046 /* UserRepository.swift */; };
-		6ED7DA95279186A300914046 /* Repository-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DA94279186A300914046 /* Repository-Protocol.swift */; };
-		6ED7DA992791970B00914046 /* CK-Repository-Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DA982791970B00914046 /* CK-Repository-Protocol.swift */; };
-		6ED7DA9B279199F900914046 /* GameRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DA9A279199F900914046 /* GameRepository.swift */; };
-		6ED7DA9D27919B8500914046 /* EntryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DA9C27919B8500914046 /* EntryRepository.swift */; };
-		6ED7DAB22791BA4400914046 /* AnagramsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DAB12791BA4400914046 /* AnagramsTests.swift */; };
+		6E1A49B627BA8F4D00A85AD8 /* MyPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 6E1A49B527BA8F4D00A85AD8 /* MyPackage */; };
+		6E1A49B827BA8F8D00A85AD8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A49B727BA8F8D00A85AD8 /* User.swift */; };
+		6E1A49BA27BA8FA800A85AD8 /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A49B927BA8FA800A85AD8 /* Entry.swift */; };
+		6E1A49BC27BA8FBC00A85AD8 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A49BB27BA8FBC00A85AD8 /* Game.swift */; };
+		6E1A49BE27BA94D700A85AD8 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E1A49BD27BA94D700A85AD8 /* StateController.swift */; };
+		6E437CC127B2B7A3003FE897 /* AnagramsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E437CC027B2B7A3003FE897 /* AnagramsApp.swift */; };
+		6E437CC327B2B7A3003FE897 /* AnagramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E437CC227B2B7A3003FE897 /* AnagramsView.swift */; };
+		6E437CC527B2B7A4003FE897 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E437CC427B2B7A4003FE897 /* Assets.xcassets */; };
+		6E437CC827B2B7A4003FE897 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6E437CC727B2B7A4003FE897 /* Preview Assets.xcassets */; };
+		6E437CD927B2B95E003FE897 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6E437CDB27B2B95E003FE897 /* Localizable.strings */; };
+		6E437CE527B2B9E3003FE897 /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 6E437CE327B2B9E3003FE897 /* Localizable.stringsdict */; };
+		6E437CEB27B2BB5D003FE897 /* Translations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E437CEA27B2BB5D003FE897 /* Translations.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		6ED7DAB32791BA4400914046 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6E71452B278E18B700C04362 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6E714532278E18B700C04362;
-			remoteInfo = Anagrams;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		6E6F96852790621600145DB7 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
-		6E714533278E18B700C04362 /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anagrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E714536278E18B700C04362 /* AnagramsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsApp.swift; sourceTree = "<group>"; };
-		6E714538278E18B700C04362 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		6E71458A278E1AAC00C04362 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		6E71458B278E1AAC00C04362 /* Entry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
-		6E71458C278E1AAC00C04362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		6E714590278E1AC500C04362 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		6E7145AA278E1C6E00C04362 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Resources/Assets.xcassets; sourceTree = SOURCE_ROOT; };
-		6E7145C0278E1CE700C04362 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		6E7145C2278E1CE700C04362 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = de; path = de.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		6E7145C3278E1CE700C04362 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		6E7145C4278E1CE700C04362 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
-		6E7145D0278E1D1000C04362 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		6E7145D5278E1D3000C04362 /* Anagrams.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Anagrams.entitlements; sourceTree = "<group>"; };
-		6E7145D6278E1D3700C04362 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6E7145D8278E1DA200C04362 /* Content-VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Content-VM.swift"; sourceTree = "<group>"; };
-		6E714600278EBAA500C04362 /* AnagramsAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsAlgorithm.swift; sourceTree = "<group>"; };
-		6E714615278EBE3500C04362 /* randomWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = randomWord.swift; sourceTree = "<group>"; };
-		6E714617278EBE3500C04362 /* NewWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewWord.swift; sourceTree = "<group>"; };
-		6E714618278EBE3500C04362 /* FoundWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoundWord.swift; sourceTree = "<group>"; };
-		6E714619278EBE3500C04362 /* RootWord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootWord.swift; sourceTree = "<group>"; };
-		6E71461B278EBE3500C04362 /* LoginAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAlert.swift; sourceTree = "<group>"; };
-		6E71461C278EBE3500C04362 /* TimeAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAlert.swift; sourceTree = "<group>"; };
-		6E71461D278EBE3500C04362 /* NewAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewAlert.swift; sourceTree = "<group>"; };
-		6E71461E278EBE3500C04362 /* RootAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootAlert.swift; sourceTree = "<group>"; };
-		6E714621278EBE3500C04362 /* SupportGameModes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportGameModes.swift; sourceTree = "<group>"; };
-		6E71462D278EBE9600C04362 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		6E71462E278EBE9600C04362 /* Object Examples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Object Examples.swift"; sourceTree = "<group>"; };
-		6E714631278EF31000C04362 /* words-es.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "words-es.json"; sourceTree = "<group>"; };
-		6E714632278EF31000C04362 /* words-de.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "words-de.json"; sourceTree = "<group>"; };
-		6E714633278EF31000C04362 /* words-en.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "words-en.json"; sourceTree = "<group>"; };
-		6E714634278EF31000C04362 /* words-fr.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "words-fr.json"; sourceTree = "<group>"; };
-		6E71463B278F016800C04362 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		6E91CEF7279071EA00468CCC /* Login-VM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Login-VM.swift"; sourceTree = "<group>"; };
-		6E91CEF8279071EA00468CCC /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		6E91CEFC279071F100468CCC /* LoginButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginButtonsView.swift; sourceTree = "<group>"; };
-		6E91CEFD279071F100468CCC /* EnterDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterDetailsView.swift; sourceTree = "<group>"; };
-		6E91CF1C27908ABA00468CCC /* SupportedLanguages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportedLanguages.swift; sourceTree = "<group>"; };
-		6E91CF1E27908B0C00468CCC /* Word.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
-		6E91CF2027908B1B00468CCC /* CustomAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
-		6E91CF2227908B3600468CCC /* CustomAlertsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomAlertsList.swift; sourceTree = "<group>"; };
-		6E91CF2527908B5800468CCC /* Game-VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game-VM.swift"; sourceTree = "<group>"; };
-		6E91CF2727908B7500468CCC /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
-		6E91CF2927908B8000468CCC /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
-		6E91CF2B27908B8500468CCC /* Board-VM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Board-VM.swift"; sourceTree = "<group>"; };
-		6ED7DA91279184D400914046 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		6ED7DA94279186A300914046 /* Repository-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Repository-Protocol.swift"; sourceTree = "<group>"; };
-		6ED7DA982791970B00914046 /* CK-Repository-Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CK-Repository-Protocol.swift"; sourceTree = "<group>"; };
-		6ED7DA9A279199F900914046 /* GameRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameRepository.swift; sourceTree = "<group>"; };
-		6ED7DA9C27919B8500914046 /* EntryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryRepository.swift; sourceTree = "<group>"; };
-		6ED7DAAF2791BA4400914046 /* AnagramsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AnagramsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6ED7DAB12791BA4400914046 /* AnagramsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsTests.swift; sourceTree = "<group>"; };
+		6E1A49B727BA8F8D00A85AD8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6E1A49B927BA8FA800A85AD8 /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		6E1A49BB27BA8FBC00A85AD8 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		6E1A49BD27BA94D700A85AD8 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
+		6E437CBD27B2B7A3003FE897 /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anagrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E437CC027B2B7A3003FE897 /* AnagramsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsApp.swift; sourceTree = "<group>"; };
+		6E437CC227B2B7A3003FE897 /* AnagramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsView.swift; sourceTree = "<group>"; };
+		6E437CC427B2B7A4003FE897 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6E437CC727B2B7A4003FE897 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6E437CD327B2B8C3003FE897 /* MyPackage */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = MyPackage; path = ../../MyPackage; sourceTree = "<group>"; };
+		6E437CD627B2B8EE003FE897 /* Anagrams.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Anagrams.entitlements; sourceTree = "<group>"; };
+		6E437CDA27B2B95E003FE897 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6E437CE627B2B9E8003FE897 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = "../../../Anagrams-Project/Resources/Locale/en.lproj/Localizable.stringsdict"; sourceTree = "<group>"; };
+		6E437CEA27B2BB5D003FE897 /* Translations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Translations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6E714530278E18B700C04362 /* Frameworks */ = {
+		6E437CBA27B2B7A3003FE897 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E7145D1278E1D1000C04362 /* CloudKit.framework in Frameworks */,
-				6E7145D4278E1D2000C04362 /* MyPackage in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6ED7DAAC2791BA4400914046 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				6E1A49B627BA8F4D00A85AD8 /* MyPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6E71452A278E18B700C04362 = {
+		6E1A49B427BA8F4D00A85AD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6E714535278E18B700C04362 /* Anagrams */,
-				6ED7DAB02791BA4400914046 /* AnagramsTests */,
-				6E714534278E18B700C04362 /* Products */,
-				6E7145CF278E1D1000C04362 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		6E714534278E18B700C04362 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				6E714533278E18B700C04362 /* Anagrams.app */,
-				6ED7DAAF2791BA4400914046 /* AnagramsTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		6E714535278E18B700C04362 /* Anagrams */ = {
-			isa = PBXGroup;
-			children = (
-				6E91CF2E27908BA500468CCC /* to package */,
-				6E714536278E18B700C04362 /* AnagramsApp.swift */,
-				6E7145DA278E1DAF00C04362 /* ContentView */,
-				6E714589278E1AAC00C04362 /* Model */,
-				6E7145A9278E1C5C00C04362 /* Resources */,
-				6E7145D7278E1D7700C04362 /* Setup */,
-			);
-			path = Anagrams;
-			sourceTree = "<group>";
-		};
-		6E714589278E1AAC00C04362 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				6ED7DA932791869300914046 /* Repositories */,
-				6E714590278E1AC500C04362 /* Persistence.swift */,
-				6E6F96852790621600145DB7 /* Model.swift */,
-				6E71458C278E1AAC00C04362 /* User.swift */,
-				6E71458A278E1AAC00C04362 /* Game.swift */,
-				6E71458B278E1AAC00C04362 /* Entry.swift */,
-				6E714614278EBE3500C04362 /* Other */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		6E7145A9278E1C5C00C04362 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6E714600278EBAA500C04362 /* AnagramsAlgorithm.swift */,
-				6E7145AA278E1C6E00C04362 /* Assets.xcassets */,
-				6E7145BE278E1CE700C04362 /* Locale */,
-				6E71460B278EBAE200C04362 /* word-lists */,
-				6E71462C278EBE9600C04362 /* previews */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		6E7145BE278E1CE700C04362 /* Locale */ = {
-			isa = PBXGroup;
-			children = (
-				6E7145BF278E1CE700C04362 /* Localizable.strings */,
-				6E7145C1278E1CE700C04362 /* Localizable.stringsdict */,
-			);
-			name = Locale;
-			path = Resources/Locale;
-			sourceTree = SOURCE_ROOT;
-		};
-		6E7145CF278E1D1000C04362 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6E71463B278F016800C04362 /* XCTest.framework */,
-				6E7145D0278E1D1000C04362 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6E7145D7278E1D7700C04362 /* Setup */ = {
+		6E437CB427B2B7A3003FE897 = {
 			isa = PBXGroup;
 			children = (
-				6E7145D6278E1D3700C04362 /* Info.plist */,
-				6E7145D5278E1D3000C04362 /* Anagrams.entitlements */,
+				6E437CD227B2B8C3003FE897 /* Packages */,
+				6E437CBF27B2B7A3003FE897 /* Anagrams */,
+				6E437CBE27B2B7A3003FE897 /* Products */,
+				6E1A49B427BA8F4D00A85AD8 /* Frameworks */,
 			);
-			path = Setup;
 			sourceTree = "<group>";
 		};
-		6E7145DA278E1DAF00C04362 /* ContentView */ = {
+		6E437CBE27B2B7A3003FE897 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6E714538278E18B700C04362 /* ContentView.swift */,
-				6E7145D8278E1DA200C04362 /* Content-VM.swift */,
-				6E91CEF42790717F00468CCC /* Login */,
-				6E91CEF52790718D00468CCC /* Game */,
-				6E91CEF6279071A500468CCC /* Board */,
+				6E437CBD27B2B7A3003FE897 /* Anagrams.app */,
 			);
-			path = ContentView;
+			name = Products;
 			sourceTree = "<group>";
 		};
-		6E71460B278EBAE200C04362 /* word-lists */ = {
+		6E437CBF27B2B7A3003FE897 /* Anagrams */ = {
 			isa = PBXGroup;
 			children = (
-				6E714632278EF31000C04362 /* words-de.json */,
-				6E714633278EF31000C04362 /* words-en.json */,
-				6E714631278EF31000C04362 /* words-es.json */,
-				6E714634278EF31000C04362 /* words-fr.json */,
+				6E437CD627B2B8EE003FE897 /* Anagrams.entitlements */,
+				6E437CC027B2B7A3003FE897 /* AnagramsApp.swift */,
+				6E437CCF27B2B7F8003FE897 /* model */,
+				6E437CD027B2B7FA003FE897 /* controller */,
+				6E437CCE27B2B7CE003FE897 /* view */,
+				6E437CD127B2B7FF003FE897 /* resources */,
 			);
-			name = "word-lists";
-			path = "Resources/word-lists";
-			sourceTree = SOURCE_ROOT;
-		};
-		6E714614278EBE3500C04362 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				6E714615278EBE3500C04362 /* randomWord.swift */,
-				6E714616278EBE3500C04362 /* Words */,
-				6E71461A278EBE3500C04362 /* Alerts */,
-				6E71461F278EBE3500C04362 /* Supported */,
-			);
-			path = Other;
+			path = Anagrams;
 			sourceTree = "<group>";
 		};
-		6E714616278EBE3500C04362 /* Words */ = {
+		6E437CC627B2B7A4003FE897 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				6E714617278EBE3500C04362 /* NewWord.swift */,
-				6E714618278EBE3500C04362 /* FoundWord.swift */,
-				6E714619278EBE3500C04362 /* RootWord.swift */,
-				6E91CF1E27908B0C00468CCC /* Word.swift */,
+				6E437CC727B2B7A4003FE897 /* Preview Assets.xcassets */,
 			);
-			path = Words;
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		6E71461A278EBE3500C04362 /* Alerts */ = {
+		6E437CCE27B2B7CE003FE897 /* view */ = {
 			isa = PBXGroup;
 			children = (
-				6E71461B278EBE3500C04362 /* LoginAlert.swift */,
-				6E71461C278EBE3500C04362 /* TimeAlert.swift */,
-				6E71461D278EBE3500C04362 /* NewAlert.swift */,
-				6E71461E278EBE3500C04362 /* RootAlert.swift */,
-				6E91CF2027908B1B00468CCC /* CustomAlert.swift */,
+				6E437CC227B2B7A3003FE897 /* AnagramsView.swift */,
 			);
-			path = Alerts;
+			path = view;
 			sourceTree = "<group>";
 		};
-		6E71461F278EBE3500C04362 /* Supported */ = {
+		6E437CCF27B2B7F8003FE897 /* model */ = {
 			isa = PBXGroup;
 			children = (
-				6E91CF1C27908ABA00468CCC /* SupportedLanguages.swift */,
-				6E714621278EBE3500C04362 /* SupportGameModes.swift */,
+				6E1A49B727BA8F8D00A85AD8 /* User.swift */,
+				6E1A49B927BA8FA800A85AD8 /* Entry.swift */,
+				6E1A49BB27BA8FBC00A85AD8 /* Game.swift */,
 			);
-			path = Supported;
+			path = model;
 			sourceTree = "<group>";
 		};
-		6E71462C278EBE9600C04362 /* previews */ = {
+		6E437CD027B2B7FA003FE897 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				6E71462D278EBE9600C04362 /* Preview Assets.xcassets */,
-				6E71462E278EBE9600C04362 /* Object Examples.swift */,
+				6E1A49BD27BA94D700A85AD8 /* StateController.swift */,
 			);
-			name = previews;
-			path = Resources/previews;
-			sourceTree = SOURCE_ROOT;
-		};
-		6E91CEF42790717F00468CCC /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				6E91CEF8279071EA00468CCC /* LoginView.swift */,
-				6E91CEF7279071EA00468CCC /* Login-VM.swift */,
-				6E91CEFB279071F100468CCC /* LoginView */,
-			);
-			path = Login;
+			path = controller;
 			sourceTree = "<group>";
 		};
-		6E91CEF52790718D00468CCC /* Game */ = {
+		6E437CD127B2B7FF003FE897 /* resources */ = {
 			isa = PBXGroup;
 			children = (
-				6E91CF2727908B7500468CCC /* GameView.swift */,
-				6E91CF2527908B5800468CCC /* Game-VM.swift */,
-				6E91CF2427908B3C00468CCC /* GameView */,
+				6E437CC427B2B7A4003FE897 /* Assets.xcassets */,
+				6E437CE927B2BB4A003FE897 /* Locale */,
+				6E437CC627B2B7A4003FE897 /* Preview Content */,
 			);
-			path = Game;
+			path = resources;
 			sourceTree = "<group>";
 		};
-		6E91CEF6279071A500468CCC /* Board */ = {
+		6E437CD227B2B8C3003FE897 /* Packages */ = {
 			isa = PBXGroup;
 			children = (
-				6E91CF2B27908B8500468CCC /* Board-VM.swift */,
-				6E91CF2927908B8000468CCC /* BoardView.swift */,
-				6E91CF2D27908B8B00468CCC /* BoardView */,
+				6E437CD327B2B8C3003FE897 /* MyPackage */,
 			);
-			path = Board;
+			name = Packages;
 			sourceTree = "<group>";
 		};
-		6E91CEFB279071F100468CCC /* LoginView */ = {
+		6E437CE927B2BB4A003FE897 /* Locale */ = {
 			isa = PBXGroup;
 			children = (
-				6E91CEFC279071F100468CCC /* LoginButtonsView.swift */,
-				6E91CEFD279071F100468CCC /* EnterDetailsView.swift */,
+				6E437CEA27B2BB5D003FE897 /* Translations.swift */,
+				6E437CDB27B2B95E003FE897 /* Localizable.strings */,
+				6E437CE327B2B9E3003FE897 /* Localizable.stringsdict */,
 			);
-			path = LoginView;
-			sourceTree = "<group>";
-		};
-		6E91CF2427908B3C00468CCC /* GameView */ = {
-			isa = PBXGroup;
-			children = (
-				6E91CF2227908B3600468CCC /* CustomAlertsList.swift */,
-			);
-			path = GameView;
-			sourceTree = "<group>";
-		};
-		6E91CF2D27908B8B00468CCC /* BoardView */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BoardView;
-			sourceTree = "<group>";
-		};
-		6E91CF2E27908BA500468CCC /* to package */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "to package";
-			sourceTree = "<group>";
-		};
-		6ED7DA932791869300914046 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				6ED7DA94279186A300914046 /* Repository-Protocol.swift */,
-				6ED7DA982791970B00914046 /* CK-Repository-Protocol.swift */,
-				6ED7DA91279184D400914046 /* UserRepository.swift */,
-				6ED7DA9A279199F900914046 /* GameRepository.swift */,
-				6ED7DA9C27919B8500914046 /* EntryRepository.swift */,
-			);
-			path = Repositories;
-			sourceTree = "<group>";
-		};
-		6ED7DAB02791BA4400914046 /* AnagramsTests */ = {
-			isa = PBXGroup;
-			children = (
-				6ED7DAB12791BA4400914046 /* AnagramsTests.swift */,
-			);
-			path = AnagramsTests;
+			path = Locale;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6E714532278E18B700C04362 /* Anagrams */ = {
+		6E437CBC27B2B7A3003FE897 /* Anagrams */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E714541278E18B800C04362 /* Build configuration list for PBXNativeTarget "Anagrams" */;
+			buildConfigurationList = 6E437CCB27B2B7A4003FE897 /* Build configuration list for PBXNativeTarget "Anagrams" */;
 			buildPhases = (
-				6E71452F278E18B700C04362 /* Sources */,
-				6E714530278E18B700C04362 /* Frameworks */,
-				6E714531278E18B700C04362 /* Resources */,
+				6E437CB927B2B7A3003FE897 /* Sources */,
+				6E437CBA27B2B7A3003FE897 /* Frameworks */,
+				6E437CBB27B2B7A3003FE897 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -403,50 +167,28 @@
 			);
 			name = Anagrams;
 			packageProductDependencies = (
-				6E7145D3278E1D2000C04362 /* MyPackage */,
+				6E1A49B527BA8F4D00A85AD8 /* MyPackage */,
 			);
 			productName = Anagrams;
-			productReference = 6E714533278E18B700C04362 /* Anagrams.app */;
+			productReference = 6E437CBD27B2B7A3003FE897 /* Anagrams.app */;
 			productType = "com.apple.product-type.application";
-		};
-		6ED7DAAE2791BA4400914046 /* AnagramsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6ED7DAB52791BA4400914046 /* Build configuration list for PBXNativeTarget "AnagramsTests" */;
-			buildPhases = (
-				6ED7DAAB2791BA4400914046 /* Sources */,
-				6ED7DAAC2791BA4400914046 /* Frameworks */,
-				6ED7DAAD2791BA4400914046 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6ED7DAB42791BA4400914046 /* PBXTargetDependency */,
-			);
-			name = AnagramsTests;
-			productName = AnagramsTests;
-			productReference = 6ED7DAAF2791BA4400914046 /* AnagramsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6E71452B278E18B700C04362 /* Project object */ = {
+		6E437CB527B2B7A3003FE897 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1320;
 				TargetAttributes = {
-					6E714532278E18B700C04362 = {
+					6E437CBC27B2B7A3003FE897 = {
 						CreatedOnToolsVersion = 13.2;
-					};
-					6ED7DAAE2791BA4400914046 = {
-						CreatedOnToolsVersion = 13.2;
-						TestTargetID = 6E714532278E18B700C04362;
 					};
 				};
 			};
-			buildConfigurationList = 6E71452E278E18B700C04362 /* Build configuration list for PBXProject "Anagrams" */;
+			buildConfigurationList = 6E437CB827B2B7A3003FE897 /* Build configuration list for PBXProject "Anagrams" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -455,122 +197,60 @@
 				Base,
 				de,
 			);
-			mainGroup = 6E71452A278E18B700C04362;
-			packageReferences = (
-				6E7145D2278E1D2000C04362 /* XCRemoteSwiftPackageReference "MyPackage" */,
-			);
-			productRefGroup = 6E714534278E18B700C04362 /* Products */;
+			mainGroup = 6E437CB427B2B7A3003FE897;
+			productRefGroup = 6E437CBE27B2B7A3003FE897 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6E714532278E18B700C04362 /* Anagrams */,
-				6ED7DAAE2791BA4400914046 /* AnagramsTests */,
+				6E437CBC27B2B7A3003FE897 /* Anagrams */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6E714531278E18B700C04362 /* Resources */ = {
+		6E437CBB27B2B7A3003FE897 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E71462F278EBE9600C04362 /* Preview Assets.xcassets in Resources */,
-				6E714638278EF31000C04362 /* words-fr.json in Resources */,
-				6E714635278EF31000C04362 /* words-es.json in Resources */,
-				6E714636278EF31000C04362 /* words-de.json in Resources */,
-				6E714637278EF31000C04362 /* words-en.json in Resources */,
-				6E7145C5278E1CE700C04362 /* Localizable.strings in Resources */,
-				6E7145AB278E1C6E00C04362 /* Assets.xcassets in Resources */,
-				6E7145C6278E1CE700C04362 /* Localizable.stringsdict in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6ED7DAAD2791BA4400914046 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				6E437CC827B2B7A4003FE897 /* Preview Assets.xcassets in Resources */,
+				6E437CD927B2B95E003FE897 /* Localizable.strings in Resources */,
+				6E437CE527B2B9E3003FE897 /* Localizable.stringsdict in Resources */,
+				6E437CC527B2B7A4003FE897 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6E71452F278E18B700C04362 /* Sources */ = {
+		6E437CB927B2B7A3003FE897 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E714626278EBE3500C04362 /* LoginAlert.swift in Sources */,
-				6E71458E278E1AAC00C04362 /* Entry.swift in Sources */,
-				6E91CF2C27908B8500468CCC /* Board-VM.swift in Sources */,
-				6E714623278EBE3500C04362 /* NewWord.swift in Sources */,
-				6E714539278E18B700C04362 /* ContentView.swift in Sources */,
-				6E714630278EBE9600C04362 /* Object Examples.swift in Sources */,
-				6E714625278EBE3500C04362 /* RootWord.swift in Sources */,
-				6E91CEFE279071F100468CCC /* LoginButtonsView.swift in Sources */,
-				6E714622278EBE3500C04362 /* randomWord.swift in Sources */,
-				6E71458D278E1AAC00C04362 /* Game.swift in Sources */,
-				6E7145D9278E1DA200C04362 /* Content-VM.swift in Sources */,
-				6E91CF1D27908ABA00468CCC /* SupportedLanguages.swift in Sources */,
-				6ED7DA9B279199F900914046 /* GameRepository.swift in Sources */,
-				6E91CF1F27908B0C00468CCC /* Word.swift in Sources */,
-				6ED7DA9D27919B8500914046 /* EntryRepository.swift in Sources */,
-				6E91CF2127908B1B00468CCC /* CustomAlert.swift in Sources */,
-				6ED7DA92279184D400914046 /* UserRepository.swift in Sources */,
-				6ED7DA95279186A300914046 /* Repository-Protocol.swift in Sources */,
-				6E714591278E1AC500C04362 /* Persistence.swift in Sources */,
-				6E71462B278EBE3500C04362 /* SupportGameModes.swift in Sources */,
-				6E714601278EBAA500C04362 /* AnagramsAlgorithm.swift in Sources */,
-				6E714627278EBE3500C04362 /* TimeAlert.swift in Sources */,
-				6E714629278EBE3500C04362 /* RootAlert.swift in Sources */,
-				6E91CF2827908B7500468CCC /* GameView.swift in Sources */,
-				6E71458F278E1AAC00C04362 /* User.swift in Sources */,
-				6E714624278EBE3500C04362 /* FoundWord.swift in Sources */,
-				6E91CF2627908B5800468CCC /* Game-VM.swift in Sources */,
-				6E91CEFF279071F100468CCC /* EnterDetailsView.swift in Sources */,
-				6E91CF2327908B3600468CCC /* CustomAlertsList.swift in Sources */,
-				6E91CEF9279071EA00468CCC /* Login-VM.swift in Sources */,
-				6E6F96862790621600145DB7 /* Model.swift in Sources */,
-				6ED7DA992791970B00914046 /* CK-Repository-Protocol.swift in Sources */,
-				6E91CEFA279071EA00468CCC /* LoginView.swift in Sources */,
-				6E91CF2A27908B8000468CCC /* BoardView.swift in Sources */,
-				6E714537278E18B700C04362 /* AnagramsApp.swift in Sources */,
-				6E714628278EBE3500C04362 /* NewAlert.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6ED7DAAB2791BA4400914046 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6ED7DAB22791BA4400914046 /* AnagramsTests.swift in Sources */,
+				6E1A49BA27BA8FA800A85AD8 /* Entry.swift in Sources */,
+				6E1A49BE27BA94D700A85AD8 /* StateController.swift in Sources */,
+				6E1A49BC27BA8FBC00A85AD8 /* Game.swift in Sources */,
+				6E1A49B827BA8F8D00A85AD8 /* User.swift in Sources */,
+				6E437CC327B2B7A3003FE897 /* AnagramsView.swift in Sources */,
+				6E437CEB27B2BB5D003FE897 /* Translations.swift in Sources */,
+				6E437CC127B2B7A3003FE897 /* AnagramsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		6ED7DAB42791BA4400914046 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6E714532278E18B700C04362 /* Anagrams */;
-			targetProxy = 6ED7DAB32791BA4400914046 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
-		6E7145BF278E1CE700C04362 /* Localizable.strings */ = {
+		6E437CDB27B2B95E003FE897 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E7145C0278E1CE700C04362 /* de */,
-				6E7145C3278E1CE700C04362 /* en */,
+				6E437CDA27B2B95E003FE897 /* en */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		6E7145C1278E1CE700C04362 /* Localizable.stringsdict */ = {
+		6E437CE327B2B9E3003FE897 /* Localizable.stringsdict */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6E7145C2278E1CE700C04362 /* de */,
-				6E7145C4278E1CE700C04362 /* en */,
+				6E437CE627B2B9E8003FE897 /* en */,
 			);
 			name = Localizable.stringsdict;
 			sourceTree = "<group>";
@@ -578,7 +258,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		6E71453F278E18B800C04362 /* Debug */ = {
+		6E437CC927B2B7A4003FE897 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -629,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -639,7 +319,7 @@
 			};
 			name = Debug;
 		};
-		6E714540278E18B800C04362 /* Release */ = {
+		6E437CCA27B2B7A4003FE897 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -684,7 +364,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -694,19 +374,18 @@
 			};
 			name = Release;
 		};
-		6E714542278E18B800C04362 /* Debug */ = {
+		6E437CCC27B2B7A4003FE897 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Anagrams/Setup/Anagrams.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Anagrams/Anagrams.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"Anagrams/Preview Content\"";
 				DEVELOPMENT_TEAM = 4UUEFBYP76;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Anagrams/Setup/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -720,25 +399,25 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LeoLem.Anagrams;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		6E714543278E18B800C04362 /* Release */ = {
+		6E437CCD27B2B7A4003FE897 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Anagrams/Setup/Anagrams.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Anagrams/Anagrams.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_ASSET_PATHS = "\"Anagrams/Preview Content\"";
 				DEVELOPMENT_TEAM = 4UUEFBYP76;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Anagrams/Setup/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -752,100 +431,42 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LeoLem.Anagrams;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		6ED7DAB62791BA4400914046 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4UUEFBYP76;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = LeoLem.AnagramsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Anagrams.app/Anagrams";
-			};
-			name = Debug;
-		};
-		6ED7DAB72791BA4400914046 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4UUEFBYP76;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = LeoLem.AnagramsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Anagrams.app/Anagrams";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6E71452E278E18B700C04362 /* Build configuration list for PBXProject "Anagrams" */ = {
+		6E437CB827B2B7A3003FE897 /* Build configuration list for PBXProject "Anagrams" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6E71453F278E18B800C04362 /* Debug */,
-				6E714540278E18B800C04362 /* Release */,
+				6E437CC927B2B7A4003FE897 /* Debug */,
+				6E437CCA27B2B7A4003FE897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E714541278E18B800C04362 /* Build configuration list for PBXNativeTarget "Anagrams" */ = {
+		6E437CCB27B2B7A4003FE897 /* Build configuration list for PBXNativeTarget "Anagrams" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6E714542278E18B800C04362 /* Debug */,
-				6E714543278E18B800C04362 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6ED7DAB52791BA4400914046 /* Build configuration list for PBXNativeTarget "AnagramsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6ED7DAB62791BA4400914046 /* Debug */,
-				6ED7DAB72791BA4400914046 /* Release */,
+				6E437CCC27B2B7A4003FE897 /* Debug */,
+				6E437CCD27B2B7A4003FE897 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		6E7145D2278E1D2000C04362 /* XCRemoteSwiftPackageReference "MyPackage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Leo-Lem/MyPackage";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
 /* Begin XCSwiftPackageProductDependency section */
-		6E7145D3278E1D2000C04362 /* MyPackage */ = {
+		6E1A49B527BA8F4D00A85AD8 /* MyPackage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6E7145D2278E1D2000C04362 /* XCRemoteSwiftPackageReference "MyPackage" */;
 			productName = MyPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 6E71452B278E18B700C04362 /* Project object */;
+	rootObject = 6E437CB527B2B7A3003FE897 /* Project object */;
 }
