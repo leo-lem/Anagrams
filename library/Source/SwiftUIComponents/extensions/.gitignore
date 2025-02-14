@@ -1,0 +1,14 @@
+# Xcode
+UserInterfaceState.xcuserstate
+
+# SwiftPM
+.build
+Packages
+xcuserdata/
+DerivedData/
+.swiftpm/config/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+
+# MacOS
+.DS_STORE
+Icon?

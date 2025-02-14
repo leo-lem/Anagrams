@@ -13,8 +13,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6E2C41B32D5F7EE400B86530 /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Anagrams.app; path = "/Users/leolem/Library/Mobile Documents/com~apple~CloudDocs/Dev/anagrams/build/Debug-iphoneos/Anagrams.app"; sourceTree = "<absolute>"; };
 		6E2C41B72D5F837A00B86530 /* features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = features; sourceTree = "<group>"; };
+		6E2C41CD2D5F91E600B86530 /* library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = library; sourceTree = "<group>"; };
+		6E6D76792D5F965900A21857 /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anagrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E6D76CA2D5F966700A21857 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = extensions; sourceTree = "<group>"; };
 		6EA6A1F92D5F76C900F152D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6EA6A1FB2D5F76EE00F152D0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6ED7DAC42791BAAD00914046 /* Anagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anagrams.swift; sourceTree = "<group>"; };
@@ -52,9 +54,12 @@
 				6EA6A1F92D5F76C900F152D0 /* README.md */,
 				6ED7DAC42791BAAD00914046 /* Anagrams.swift */,
 				6E2C41B72D5F837A00B86530 /* features */,
+				6E2C41CD2D5F91E600B86530 /* library */,
+				6E6D76CA2D5F966700A21857 /* extensions */,
 				6EA6A1FD2D5F776E00F152D0 /* resource */,
 				6EA6A2B02D5F77E200F152D0 /* parked */,
 				6EA6A1FB2D5F76EE00F152D0 /* LICENSE */,
+				6E6D76792D5F965900A21857 /* Anagrams.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,7 +86,7 @@
 			packageProductDependencies = (
 			);
 			productName = Anagrams;
-			productReference = 6E2C41B32D5F7EE400B86530 /* Anagrams.app */;
+			productReference = 6E6D76792D5F965900A21857 /* Anagrams.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

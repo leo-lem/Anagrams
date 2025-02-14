@@ -1,0 +1,84 @@
+{
+  "configurations" : [
+    {
+      "id" : "30AD90DB-8F7C-4562-AE93-481E4624B5C7",
+      "name" : "Config",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:",
+          "identifier" : "Concurrency",
+          "name" : "Concurrency"
+        },
+        {
+          "containerPath" : "container:",
+          "identifier" : "Errors",
+          "name" : "Errors"
+        },
+        {
+          "containerPath" : "container:",
+          "identifier" : "LeosMisc",
+          "name" : "LeosMisc"
+        },
+        {
+          "containerPath" : "container:",
+          "identifier" : "Previews",
+          "name" : "Previews"
+        },
+        {
+          "containerPath" : "container:",
+          "identifier" : "Queries",
+          "name" : "Queries"
+        }
+      ]
+    },
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "PreviewsTests",
+        "name" : "PreviewsTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ConcurrencyTests",
+        "name" : "ConcurrencyTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ExtensionsTests",
+        "name" : "ExtensionsTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "ErrorsTests",
+        "name" : "ErrorsTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "QueriesTests",
+        "name" : "QueriesTests"
+      }
+    }
+  ],
+  "version" : 1
+}
