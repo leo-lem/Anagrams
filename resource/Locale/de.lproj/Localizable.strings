@@ -6,6 +6,7 @@
   
 */
 
+// TODO: move to string catalogs
 //game view
 "enter-word-label" = "Enter your word";
 "enter-word-label %@" = "Enter your word (language: %@)";
