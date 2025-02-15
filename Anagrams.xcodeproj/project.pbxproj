@@ -19,7 +19,7 @@
 		6E6D76CA2D5F966700A21857 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = extensions; sourceTree = "<group>"; };
 		6EA6A1F92D5F76C900F152D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6EA6A1FB2D5F76EE00F152D0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		6EBA71B22D6119AF00706F7C /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Anagrams.app; path = "/Users/leolem/Library/Mobile Documents/com~apple~CloudDocs/Dev/anagrams/build/Debug-iphoneos/Anagrams.app"; sourceTree = "<absolute>"; };
+		6EBA71C62D61290500706F7C /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Anagrams.app; path = "/Users/leolem/Library/Mobile Documents/com~apple~CloudDocs/Dev/anagrams/build/Debug-iphoneos/Anagrams.app"; sourceTree = "<absolute>"; };
 		6ED7DAC42791BAAD00914046 /* Anagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anagrams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +100,7 @@
 				6E8FB3022D60C92D00CAD488 /* App */,
 			);
 			productName = Anagrams;
-			productReference = 6EBA71B22D6119AF00706F7C /* Anagrams.app */;
+			productReference = 6EBA71C62D61290500706F7C /* Anagrams.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

@@ -9,7 +9,6 @@
     }
   ],
   "defaultOptions" : {
-    "codeCoverage" : false,
     "targetForVariableExpansion" : {
       "containerPath" : "container:anagrams.xcodeproj",
       "identifier" : "6ED7DAC02791BAAD00914046",
