@@ -1,0 +1,36 @@
+{
+  "configurations" : [
+    {
+      "id" : "32749577-C1C9-4A49-A870-8A51105B531C",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:anagrams.xcodeproj",
+      "identifier" : "6ED7DAC02791BAAD00914046",
+      "name" : "Anagrams"
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:features",
+        "identifier" : "FeaturesTest",
+        "name" : "FeaturesTest"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:library",
+        "identifier" : "LibraryTest",
+        "name" : "LibraryTest"
+      }
+    }
+  ],
+  "version" : 1
+}
