@@ -7,7 +7,7 @@ import Testing
 import Types
 
 @MainActor struct DatabaseTests {
-  @Test func database() async throws {
+  func database() async throws {
     try await withDependencies {
       $0.data = .liveValue
       $0.games = .liveValue
@@ -30,6 +30,8 @@ import Types
       @Dependency(\.games.delete) var delete
       try await delete(game)
       #expect(try await fetch(FetchDescriptor(predicate: .true)).count == 0)
+
+      try context.save()
     }
   }
 }

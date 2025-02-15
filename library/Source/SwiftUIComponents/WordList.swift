@@ -13,7 +13,7 @@ public struct WordList: View {
         Button(word, systemImage: "\(word.count).circle") {
           Task {
             @Dependency(\.openURL) var open
-            await open(Bundle.main[url: "DictionaryUrl"])
+            await open(Bundle.main[url: "DictionaryUrl"].appending(component: word))
           }
         }
         .labelStyle(.external(color: .white, transfer: true))
@@ -22,7 +22,7 @@ public struct WordList: View {
       }
 
       if words.isEmpty {
-        Text("enter-word-label")
+        Text(.localizable(.placeholder))
           .foregroundStyle(.secondary)
       }
     }

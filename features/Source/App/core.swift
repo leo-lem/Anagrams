@@ -1,9 +1,9 @@
 // Created by Leopold Lemmermann on 15.02.25.
 
 import ComposableArchitecture
+import Database
 import Game
 import Preferences
-import SwiftData
 import Types
 
 @Reducer public struct Anagrams {
@@ -40,13 +40,11 @@ import Types
         return .none
 
       case .preferences(.resume):
-//        state = .game(Game.State())
         return .none
 
-      case let .games(.presented(.single(.save(game)))):
-        return .run { [state] _ in
-          
-        }
+      case .games(.presented(.single(.complete))):
+        state.games = nil
+        return .none
 
       case .preferences:
         return .none
@@ -56,6 +54,5 @@ import Types
       }
     }
     .ifLet(\.$games, action: \.games)
-
   }
 }

@@ -73,7 +73,7 @@ public struct SingleplayerView: View {
     .toolbar {
       ToolbarItem(placement: .topBarLeading) {
         if store.game.limit != nil, let countdown = store.countdown {
-          Text(countdown, format: .units(maximumUnitCount: 1))
+          Text(max(countdown, .zero), format: .units(maximumUnitCount: 1))
             .foregroundColor(store.outOfTime ? .red : .primary)
         } else {
           Button(.localizable(.timer), systemImage: "timer") { store.game.limit = .seconds(180) }
@@ -87,10 +87,10 @@ public struct SingleplayerView: View {
           .font(.headline)
       }
 
-      ToolbarItemGroup(placement: .confirmationAction) {
-        Button(.localizable(.save), systemImage: "checkmark.seal") { send(.saveButtonTapped) }
-          .tint(.green)
-      }
+//      ToolbarItem(placement: .confirmationAction) {
+//        Button(.localizable(.save), systemImage: "checkmark.seal") { send(.saveButtonTapped) }
+//          .tint(.green)
+//      }
     }
   }
 

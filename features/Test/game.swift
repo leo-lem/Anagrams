@@ -12,7 +12,7 @@ import Testing
     )
 
     await store.send(.view(.saveButtonTapped))
-    await store.receive(\.save)
+    await store.receive(\.complete)
   }
 
   // TODO: more tests

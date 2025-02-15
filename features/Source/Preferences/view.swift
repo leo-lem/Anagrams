@@ -25,7 +25,7 @@ public struct PreferencesView: View {
 
       Section {
         Button(.localizable(.start), systemImage: "arrowtriangle.right.circle") { send(.startButtonTapped) }
-        Button(.localizable(.continue), systemImage: "arrow.uturn.forward.circle") { send(.resumeButtonTapped) }
+//        Button(.localizable(.continue), systemImage: "arrow.uturn.forward.circle") { send(.resumeButtonTapped) }
       }
     }
   }

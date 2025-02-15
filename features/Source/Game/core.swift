@@ -1,6 +1,7 @@
 // Created by Leopold Lemmermann on 15.02.25.
 
 import ComposableArchitecture
+import Database
 import Foundation
 import Types
 import Words
@@ -32,7 +33,7 @@ import Words
   }
 
   public enum Action: ViewAction, Sendable {
-    case save(_ game: SingleplayerGame)
+    case complete
     case start
     case addWord
     case tick
@@ -83,10 +84,19 @@ import Words
         state.game.time += .seconds(1)
         return .none
 
+      case .complete:
+        return .none
+//        return .run { [game = state.game] _ in
+//          @Dependency(\.games) var games
+//          try await games.add(game)
+//        } catch: { error, _ in
+//          print("Error saving game: \(error)")
+//        }
+
       case let .view(action):
         switch action {
         case .saveButtonTapped:
-          return .send(.save(state.game))
+          return .send(.complete)
 
         case .newRootSubmitted:
           return .send(.start)
@@ -109,9 +119,6 @@ import Words
         case .menuTapped: return .none
         case .binding: return .none
         }
-
-      case .save:
-        return .none
       }
     }
   }

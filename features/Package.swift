@@ -8,14 +8,15 @@ let ext = Target.Dependency.product(name: "Extensions", package: "extensions")
 let comps = Target.Dependency.product(name: "SwiftUIComponents", package: "library")
 let types = Target.Dependency.product(name: "Types", package: "library")
 let words = Target.Dependency.product(name: "Words", package: "library")
+let database = Target.Dependency.product(name: "Database", package: "library")
+
 let lint = Target.PluginUsage.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
+
 let libs: [Target] = [
-  .target(name: "App", dependencies: [tca, str, "Game", "Preferences"], plugins: [lint]),
+  .target(name: "App", dependencies: [tca, str, database, "Game", "Preferences"], plugins: [lint]),
   .target(name: "Game", dependencies: [tca, str, comps, words], plugins: [lint]),
   .target(name: "Preferences", dependencies: [tca, str, comps, types], plugins: [lint]),
 ]
-
-
 
 let package = Package(
   name: "Features",

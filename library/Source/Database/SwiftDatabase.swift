@@ -1,20 +1,11 @@
 // Created by Leopold Lemmermann on 15.02.25.
 
-import Dependencies
-import SwiftData
-
-extension DependencyValues {
-  var data: SwiftDatabase {
-    get { self[SwiftDatabase.self] }
-    set { self[SwiftDatabase.self] = newValue }
-  }
-}
-
-struct SwiftDatabase: Sendable {
+/// For internal use. The ModelContainer has to be initialized, though.
+public struct SwiftDatabase: Sendable {
   var context: @MainActor @Sendable () throws -> ModelContext
 
-  /// configure the container here.
-  @MainActor static var container: ModelContainer?
+  /// Configure the container here.
+  @MainActor public static var container: ModelContainer?
 }
 
 extension SwiftDatabase: DependencyKey {
@@ -24,4 +15,11 @@ extension SwiftDatabase: DependencyKey {
       return container.mainContext
     }
   )
+}
+
+extension DependencyValues {
+  var data: SwiftDatabase {
+    get { self[SwiftDatabase.self] }
+    set { self[SwiftDatabase.self] = newValue }
+  }
 }

@@ -44,13 +44,22 @@ import Types
 
     Reduce { state, action in
       switch action {
-      case .start: .none
-      case .resume: .none
+      case .start:
+          .none
+
+      case .resume:
+          .none
+        
       case let .view(action):
         switch action {
-        case .startButtonTapped: .send(.start(state.language, state.limit))
-        case .resumeButtonTapped: .send(.resume)
-        case .binding: .none
+        case .startButtonTapped:
+            .send(.start(state.language, state.limit))
+
+        case .resumeButtonTapped:
+            .send(.resume)
+
+        case .binding:
+            .none
         }
       }
     }

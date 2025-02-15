@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,14 +17,14 @@
 		6E2C41B72D5F837A00B86530 /* features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = features; sourceTree = "<group>"; };
 		6E2C41CD2D5F91E600B86530 /* library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = library; sourceTree = "<group>"; };
 		6E6D76CA2D5F966700A21857 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = extensions; sourceTree = "<group>"; };
-		6E8FB2ED2D60C41000CAD488 /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anagrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA6A1F92D5F76C900F152D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6EA6A1FB2D5F76EE00F152D0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		6EBA71B22D6119AF00706F7C /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Anagrams.app; path = "/Users/leolem/Library/Mobile Documents/com~apple~CloudDocs/Dev/anagrams/build/Debug-iphoneos/Anagrams.app"; sourceTree = "<absolute>"; };
 		6ED7DAC42791BAAD00914046 /* Anagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anagrams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6EA6A1FE2D5F777300F152D0 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		6EA6A1FE2D5F777300F152D0 /* Exceptions for "resource" folder in "Anagrams" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				info.plist,
@@ -34,8 +34,19 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6EA6A1FD2D5F776E00F152D0 /* resource */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (6EA6A1FE2D5F777300F152D0 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = resource; sourceTree = "<group>"; };
-		6EA6A2B02D5F77E200F152D0 /* parked */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = parked; sourceTree = "<group>"; };
+		6EA306392D61194B007041E5 /* test */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = test;
+			sourceTree = "<group>";
+		};
+		6EA6A1FD2D5F776E00F152D0 /* resource */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6EA6A1FE2D5F777300F152D0 /* Exceptions for "resource" folder in "Anagrams" target */,
+			);
+			path = resource;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,13 +61,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6E8FB3012D60C92D00CAD488 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		6ED7DAB82791BAAD00914046 = {
 			isa = PBXGroup;
 			children = (
@@ -65,11 +69,9 @@
 				6E2C41B72D5F837A00B86530 /* features */,
 				6E2C41CD2D5F91E600B86530 /* library */,
 				6E6D76CA2D5F966700A21857 /* extensions */,
+				6EA306392D61194B007041E5 /* test */,
 				6EA6A1FD2D5F776E00F152D0 /* resource */,
-				6EA6A2B02D5F77E200F152D0 /* parked */,
 				6EA6A1FB2D5F76EE00F152D0 /* LICENSE */,
-				6E8FB2ED2D60C41000CAD488 /* Anagrams.app */,
-				6E8FB3012D60C92D00CAD488 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +92,7 @@
 				6E2C41B62D5F832F00B86530 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				6EA306392D61194B007041E5 /* test */,
 				6EA6A1FD2D5F776E00F152D0 /* resource */,
 			);
 			name = Anagrams;
@@ -97,7 +100,7 @@
 				6E8FB3022D60C92D00CAD488 /* App */,
 			);
 			productName = Anagrams;
-			productReference = 6E8FB2ED2D60C41000CAD488 /* Anagrams.app */;
+			productReference = 6EBA71B22D6119AF00706F7C /* Anagrams.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -116,18 +119,17 @@
 				};
 			};
 			buildConfigurationList = 6ED7DABC2791BAAD00914046 /* Build configuration list for PBXProject "anagrams" */;
-			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 				de,
 			);
 			mainGroup = 6ED7DAB82791BAAD00914046;
 			packageReferences = (
 				6E2C41B42D5F832300B86530 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = 6ED7DAB82791BAAD00914046;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,7 +300,6 @@
 				CODE_SIGN_ENTITLEMENTS = resource/entitlements.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4UUEFBYP76;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -332,7 +333,6 @@
 				CODE_SIGN_ENTITLEMENTS = resource/entitlements.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = 4UUEFBYP76;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
