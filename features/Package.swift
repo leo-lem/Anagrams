@@ -14,7 +14,7 @@ let lint = Target.PluginUsage.plugin(name: "SwiftLintBuildToolPlugin", package: 
 
 let libs: [Target] = [
   .target(name: "App", dependencies: [tca, str, database, "Game", "Preferences"], plugins: [lint]),
-  .target(name: "Game", dependencies: [tca, str, comps, words], plugins: [lint]),
+  .target(name: "Game", dependencies: [tca, str, comps, words, types], plugins: [lint]),
   .target(name: "Preferences", dependencies: [tca, str, comps, types], plugins: [lint]),
 ]
 
