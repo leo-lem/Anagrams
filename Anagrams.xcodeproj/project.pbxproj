@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6E8FB3032D60C92D00CAD488 /* App in Frameworks */ = {isa = PBXBuildFile; productRef = 6E8FB3022D60C92D00CAD488 /* App */; };
-		6EA6A1FA2D5F76C900F152D0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EA6A1F92D5F76C900F152D0 /* README.md */; };
-		6EA6A1FC2D5F76EE00F152D0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6EA6A1FB2D5F76EE00F152D0 /* LICENSE */; };
 		6ED7DAC52791BAAD00914046 /* Anagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DAC42791BAAD00914046 /* Anagrams.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,9 +90,6 @@
 			dependencies = (
 				6E2C41B62D5F832F00B86530 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				6EA306392D61194B007041E5 /* test */,
-			);
 			name = Anagrams;
 			packageProductDependencies = (
 				6E8FB3022D60C92D00CAD488 /* App */,
@@ -144,8 +139,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EA6A1FC2D5F76EE00F152D0 /* LICENSE in Resources */,
-				6EA6A1FA2D5F76C900F152D0 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
