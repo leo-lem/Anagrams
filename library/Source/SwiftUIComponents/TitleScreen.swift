@@ -1,26 +1,32 @@
 //  Created by Leopold Lemmermann on 14.01.22.
 
-import SwiftUI
+public struct TitleScreen: View {
+  public var body: some View {
+    VStack {
+      Logo()
 
-struct TitleScreen: View {
-    let spinner: Bool
-    
-    var body: some View {
-        VStack {
-            Logo()
-            if spinner && startSpinner { Spinner(size: .medium) }
-        }
-        .onAppear {
-          DispatchQueue.main.asyncAfter(deadline: .now() + 1) { withAnimation { startSpinner = true } }
-        }
+      if let load, load { ProgressView() }
     }
-    
-    @State private var startSpinner = false
+    .task {
+      if load != nil {
+        try? await Task.sleep(for: .seconds(1))
+        load = true
+      }
+    }
+    .animation(.default, value: load)
+  }
+
+  @State var load: Bool?
+
+  public init(load: Bool = false) {
+    _load = .init(initialValue: load ? false : nil)
+  }
 }
 
-//MARK: - Previews
-struct LogoView_Previews: PreviewProvider {
-    static var previews: some View {
-        TitleScreen(spinner: true)
-    }
+#Preview {
+  TitleScreen()
+}
+
+#Preview("Loading") {
+  TitleScreen(load: true)
 }

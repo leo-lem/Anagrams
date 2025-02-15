@@ -15,6 +15,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Preferences"
+               BuildableName = "Preferences"
+               BlueprintName = "Preferences"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "Game"
+               BuildableName = "Game"
+               BlueprintName = "Game"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "App"
                BuildableName = "App"
                BlueprintName = "App"
@@ -55,9 +83,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "App"
-            BuildableName = "App"
-            BlueprintName = "App"
+            BlueprintIdentifier = "Preferences"
+            BuildableName = "Preferences"
+            BlueprintName = "Preferences"
             ReferencedContainer = "container:">
          </BuildableReference>
       </MacroExpansion>

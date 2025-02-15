@@ -1,7 +1,7 @@
 {
   "configurations" : [
     {
-      "id" : "60D45CA2-0D15-461E-A364-F0082768DD74",
+      "id" : "A400D43A-B849-4E57-BB7C-87E4629B2D94",
       "name" : "Test Scheme Action",
       "options" : {
 
@@ -15,8 +15,8 @@
     {
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "FeaturesTest",
-        "name" : "FeaturesTest"
+        "identifier" : "LibraryTest",
+        "name" : "LibraryTest"
       }
     }
   ],

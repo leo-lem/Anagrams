@@ -1,11 +1,13 @@
 //  Created by Leopold Lemmermann on 16.01.22.
 
-import SwiftUI
-
 public struct Logo: View {
-  var body: some View {
-    Text("Leos Anagrams").font(.largeTitle)
+  public var body: some View {
+    Text("Leos Anagrams")
+      .font(.largeTitle)
+      .foregroundStyle(Color.accentColor)
   }
+
+  public init() {}
 }
 
 #Preview {
