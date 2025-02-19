@@ -29,15 +29,13 @@ public struct SingleplayerView: View {
         }
         .overlay {
           if editingRoot {
-            textField(
-              LocalizedStringKey(store.game.root),
-              text: $store.newRoot,
-              focus: $focussingRoot,
-              canSubmit: store.isValidRoot
+            SubmittableTextField(
+              LocalizedStringKey(store.game.root), text: $store.newRoot, submittable: store.isValidRoot
             ) {
               send(.newRootSubmitted)
               editingRoot = false
             }
+            .focused($focussingRoot)
             .font(.largeTitle)
           }
         }
@@ -45,19 +43,19 @@ public struct SingleplayerView: View {
 
       WordList(store.game.words)
         .disabled(editingRoot)
+        .notification(.localizable(.rootAlertTitle), item: $store.rootAlert)
+        .notification(.localizable(.wordAlertTitle), item: $store.wordAlert)
 
-      textField(
-        .localizable(.enterWord(store.game.root)),
-        text: $store.newWord,
-        focus: $focussingWord,
-        canSubmit: store.isValidWord
+      SubmittableTextField(
+        .localizable(.enterWord(store.game.root)), text: $store.newWord, submittable: store.isValidWord
       ) {
-          send(.newWordSubmitted)
-          focussingWord = true
-        }
-        .textFieldStyle(.roundedBorder)
-        .disabled(store.outOfTime || editingRoot)
-        .padding()
+        send(.newWordSubmitted)
+        focussingWord = true
+      }
+      .focused($focussingWord)
+      .textFieldStyle(.roundedBorder)
+      .disabled(store.outOfTime || editingRoot)
+      .padding()
     }
     .onAppear {
       send(.appeared)
@@ -99,29 +97,6 @@ public struct SingleplayerView: View {
   @State var editingRoot = false
 
   public init(store: StoreOf<Singleplayer>) { self.store = store }
-
-  func textField(
-    _ title: LocalizedStringKey,
-    text: Binding<String>,
-    focus: FocusState<Bool>.Binding,
-    canSubmit: Bool,
-    onSubmit submit: @escaping () -> Void
-  ) -> some View {
-    HStack {
-      TextField(title, text: text)
-        .focused(focus)
-        .disableAutocorrection(true)
-        .textInputAutocapitalization(.never)
-        .onSubmit(submit)
-
-      Button(.localizable(.submit), systemImage: canSubmit ? "checkmark" : "xmark", action: submit)
-        .font(nil)
-        .labelStyle(.iconOnly)
-        .buttonStyle(.bordered)
-        .buttonBorderShape(.circle)
-        .tint(canSubmit ? .green : .red)
-    }
-  }
 }
 
 #Preview {

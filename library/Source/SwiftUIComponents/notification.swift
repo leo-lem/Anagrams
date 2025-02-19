@@ -1,43 +1,37 @@
 //  Created by Leopold Lemmermann on 04.01.22.
 
 import Extensions
-import SwiftUI
 
 public extension View {
   func notification<T: Transition>(
     _ title: LocalizedStringKey,
-    message: LocalizedStringKey,
-    isPresented: Binding<Bool>,
+    item: Binding<String?>,
     transition: T = .opacity.combined(with: .move(edge: .top))
   ) -> some View {
     self.overlay(alignment: .top) {
       Group {
-        if isPresented.wrappedValue {
+        if let wrapped = item.wrappedValue {
           VStack {
             Text(title).font(.headline)
-            Text(message).font(.footnote)
+            Text(wrapped).font(.footnote)
           }
           .padding()
           .frame(maxWidth: .infinity)
           .background(Material.thin.shadow(.inner(radius: 1)), in: .rect(cornerRadius: 10))
           .padding(.horizontal)
-          .onTapGesture { isPresented.wrappedValue = false }
+          .onTapGesture { item.wrappedValue = nil }
           .transition(transition)
         }
       }
-      .animation(.default, value: isPresented.wrappedValue)
+      .animation(.default, value: item.wrappedValue)
     }
   }
 }
 
 #Preview {
-  @Previewable @State var isPresented = false
+  @Previewable @State var item: String?
 
-  Button("Alert") { isPresented.toggle() }
+  Button(String("Alert")) { item = item == nil ? "This is an alert!" : nil }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .notification(
-      "Hello",
-      message: "This is an alert!",
-      isPresented: $isPresented
-    )
+    .notification("Hello", item: $item)
 }

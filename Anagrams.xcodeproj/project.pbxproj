@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6E8FB3032D60C92D00CAD488 /* App in Frameworks */ = {isa = PBXBuildFile; productRef = 6E8FB3022D60C92D00CAD488 /* App */; };
-		6EA6A1FA2D5F76C900F152D0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6EA6A1F92D5F76C900F152D0 /* README.md */; };
-		6EA6A1FC2D5F76EE00F152D0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6EA6A1FB2D5F76EE00F152D0 /* LICENSE */; };
 		6ED7DAC52791BAAD00914046 /* Anagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DAC42791BAAD00914046 /* Anagrams.swift */; };
 /* End PBXBuildFile section */
 
@@ -17,17 +15,17 @@
 		6E2C41B72D5F837A00B86530 /* features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = features; sourceTree = "<group>"; };
 		6E2C41CD2D5F91E600B86530 /* library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = library; sourceTree = "<group>"; };
 		6E6D76CA2D5F966700A21857 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = extensions; sourceTree = "<group>"; };
+		6E8895EF2D662BBC0097118D /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anagrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA6A1F92D5F76C900F152D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6EA6A1FB2D5F76EE00F152D0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		6EBA71B22D6119AF00706F7C /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Anagrams.app; path = "/Users/leolem/Library/Mobile Documents/com~apple~CloudDocs/Dev/anagrams/build/Debug-iphoneos/Anagrams.app"; sourceTree = "<absolute>"; };
 		6ED7DAC42791BAAD00914046 /* Anagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anagrams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6EA6A1FE2D5F777300F152D0 /* Exceptions for "resource" folder in "Anagrams" target */ = {
+		6E57A6282D612F3F006C34DD /* Exceptions for "resource" folder in "Anagrams" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				info.plist,
+				Assets.xcassets,
 			);
 			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
 		};
@@ -42,7 +40,7 @@
 		6EA6A1FD2D5F776E00F152D0 /* resource */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				6EA6A1FE2D5F777300F152D0 /* Exceptions for "resource" folder in "Anagrams" target */,
+				6E57A6282D612F3F006C34DD /* Exceptions for "resource" folder in "Anagrams" target */,
 			);
 			path = resource;
 			sourceTree = "<group>";
@@ -72,6 +70,7 @@
 				6EA306392D61194B007041E5 /* test */,
 				6EA6A1FD2D5F776E00F152D0 /* resource */,
 				6EA6A1FB2D5F76EE00F152D0 /* LICENSE */,
+				6E8895EF2D662BBC0097118D /* Anagrams.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -91,16 +90,12 @@
 			dependencies = (
 				6E2C41B62D5F832F00B86530 /* PBXTargetDependency */,
 			);
-			fileSystemSynchronizedGroups = (
-				6EA306392D61194B007041E5 /* test */,
-				6EA6A1FD2D5F776E00F152D0 /* resource */,
-			);
 			name = Anagrams;
 			packageProductDependencies = (
 				6E8FB3022D60C92D00CAD488 /* App */,
 			);
 			productName = Anagrams;
-			productReference = 6EBA71B22D6119AF00706F7C /* Anagrams.app */;
+			productReference = 6E8895EF2D662BBC0097118D /* Anagrams.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -144,8 +139,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6EA6A1FC2D5F76EE00F152D0 /* LICENSE in Resources */,
-				6EA6A1FA2D5F76C900F152D0 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,7 +309,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.leolem.anagrams;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -349,7 +342,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.leolem.anagrams;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
