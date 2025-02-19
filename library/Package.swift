@@ -12,7 +12,7 @@ let libs: [Target] = [
   .target(name: "Words", dependencies: [deps, "Types"], resources: [
     .process("de.json"), .process("en.json"), .process("fr.json"), .process("es.json")
   ], plugins: [lint]),
-  .target(name: "Database", dependencies: [deps], plugins: [lint]),
+  .target(name: "Database", dependencies: [deps, "Types"], plugins: [lint]),
 //  .target(name: "CKClient", dependencies: [ext, "Types"], plugins: [lint]),
 ]
 
