@@ -14,10 +14,10 @@
 /* Begin PBXFileReference section */
 		6E2C41B72D5F837A00B86530 /* features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = features; sourceTree = "<group>"; };
 		6E2C41CD2D5F91E600B86530 /* library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = library; sourceTree = "<group>"; };
-		6E57A5FC2D612AC8006C34DD /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Anagrams.app; path = "/Users/leolem/Library/Mobile Documents/com~apple~CloudDocs/Dev/anagrams/build/Debug-iphoneos/Anagrams.app"; sourceTree = "<absolute>"; };
 		6E6D76CA2D5F966700A21857 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = extensions; sourceTree = "<group>"; };
 		6EA6A1F92D5F76C900F152D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6EA6A1FB2D5F76EE00F152D0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		6ECECF172D6613C400EEFB78 /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Anagrams.app; path = "/Users/leolem/Library/Mobile Documents/com~apple~CloudDocs/Dev/anagrams/build/Debug-iphoneos/Anagrams.app"; sourceTree = "<absolute>"; };
 		6ED7DAC42791BAAD00914046 /* Anagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anagrams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -26,7 +26,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
-				info.plist,
 			);
 			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
 		};
@@ -95,7 +94,7 @@
 				6E8FB3022D60C92D00CAD488 /* App */,
 			);
 			productName = Anagrams;
-			productReference = 6E57A5FC2D612AC8006C34DD /* Anagrams.app */;
+			productReference = 6ECECF172D6613C400EEFB78 /* Anagrams.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

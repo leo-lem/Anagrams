@@ -11,6 +11,17 @@
           }
         }
       }
+    },
+    "submit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Submit"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -14,6 +14,9 @@ import Words
 
     var game: SingleplayerGame
 
+    var rootAlert: String?
+    var wordAlert: String?
+
     public init(
       roots: [String] = [],
       root: String? = nil,
@@ -57,8 +60,19 @@ import Words
       switch action {
       case .start:
         guard state.isValidRoot else {
-          // TODO: show alert
-          return .none
+          state.rootAlert = switch false {
+          case state.rootIsLongEnough: String(localizable: .rootAlertLength)
+          case state.rootExists: String(localizable: .rootAlertExists)
+          default: nil
+          }
+          return .concatenate(
+            .cancel(id: "rootAlert"),
+            .run { send in
+              @Dependency(\.continuousClock) var clock
+              try? await clock.sleep(for: .seconds(2))
+              await send(.view(.binding(.set(\.rootAlert, nil))))
+            }.cancellable(id: "rootAlert")
+          )
         }
 
         state.game = SingleplayerGame(state.newRoot, language: state.game.language, limit: state.game.limit)
@@ -73,9 +87,24 @@ import Words
 
       case .addWord:
         guard state.isValidWord else {
-          // TODO: show alert
-          return .none
+          state.wordAlert = switch false {
+          case state.wordIsNotRoot: String(localizable: .wordAlertIsRoot)
+          case state.wordIsLongEnough: String(localizable: .wordAlertLength)
+          case state.wordIsNew: String(localizable: .wordAlertNotNew)
+          case state.wordIsInRoot: String(localizable: .wordAlertNotInRoot(state.game.root))
+          case state.wordExists: String(localizable: .wordAlertExists(state.newWord))
+          default: nil
+          }
+          return .concatenate(
+            .cancel(id: "wordAlert"),
+            .run { send in
+              @Dependency(\.continuousClock) var clock
+              try? await clock.sleep(for: .seconds(2))
+              await send(.view(.binding(.set(\.wordAlert, nil))))
+            }.cancellable(id: "wordAlert")
+          )
         }
+
         state.game.words.append(state.newWord)
         state.newWord = ""
         return .none
@@ -135,18 +164,20 @@ extension Singleplayer.State {
     roots.firstIndex(of: game.root) ?? 0 > 0
   }
 
-  public var isValidRoot: Bool {
+  public var isValidRoot: Bool { rootIsLongEnough && rootExists }
+  fileprivate var rootIsLongEnough: Bool { newRoot.count > 5 }
+  fileprivate var rootExists: Bool {
     @Dependency(\.words.exists) var exists
-    return newRoot.count > 5
-    && exists(newRoot, game.language)
+    return exists(newRoot, game.language)
   }
 
-  public var isValidWord: Bool {
+  public var isValidWord: Bool { wordIsNotRoot && wordIsLongEnough && wordIsNew && wordExists && wordIsInRoot }
+  fileprivate var wordIsNotRoot: Bool { newWord != game.root }
+  fileprivate var wordIsLongEnough: Bool { newWord.count > 1 }
+  fileprivate var wordIsNew: Bool { !game.words.contains(newWord) }
+  fileprivate var wordExists: Bool {
     @Dependency(\.words.exists) var exists
-    return newWord != game.root
-    && newWord.count > 1
-    && !game.words.contains(newWord)
-    && exists(newWord, game.language)
-    && newWord.allSatisfy(game.root.contains)
+    return exists(newWord, game.language)
   }
+  fileprivate var wordIsInRoot: Bool { newWord.allSatisfy(game.root.contains) }
 }
