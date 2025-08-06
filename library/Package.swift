@@ -7,13 +7,9 @@ let xcstrings = Target.Dependency.product(name: "XCStringsToolPlugin", package: 
 let ext = Target.Dependency.product(name: "Extensions", package: "extensions")
 let lint = Target.PluginUsage.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
 let libs: [Target] = [
-  .target(name: "SwiftUIComponents", dependencies: [xcstrings, deps, ext], plugins: [lint]),
-  .target(name: "Types", dependencies: [ext], plugins: [lint]),
-  .target(name: "Words", dependencies: [deps, "Types"], resources: [
+  .target(name: "Words", dependencies: [deps], resources: [
     .process("de.json"), .process("en.json"), .process("fr.json"), .process("es.json")
-  ], plugins: [lint]),
-  .target(name: "Database", dependencies: [deps, "Types"], plugins: [lint]),
-//  .target(name: "CKClient", dependencies: [ext, "Types"], plugins: [lint]),
+  ], plugins: [lint])
 ]
 
 let package = Package(
@@ -23,7 +19,7 @@ let package = Package(
   products: libs.map { .library(name: $0.name, targets: [$0.name]) },
   dependencies: [
     .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.0.0"),
-    .package(url: "https://github.com/liamnichols/xcstrings-tool-plugin.git", from: "0.1.0"),
+    .package(url: "https://github.com/liamnichols/xcstrings-tool-plugin.git", from: "1.0.0"),
     .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.1.0"),
     .package(path: "../extensions"),
   ],

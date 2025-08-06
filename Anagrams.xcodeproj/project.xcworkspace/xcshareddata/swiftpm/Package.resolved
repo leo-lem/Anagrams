@@ -1,5 +1,5 @@
 {
-  "originHash" : "dc5041afb3f9d7b2d6c030588d2a82ce1fd402b253f9ff75a25748d687063513",
+  "originHash" : "ac0dc7aad80d44b76ebbef8f457ac95ac7f4bb18afc92017de8b8462d7ce0421",
   "pins" : [
     {
       "identity" : "combine-schedulers",
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/liamnichols/xcstrings-tool-plugin.git",
       "state" : {
-        "revision" : "e99d6ad477aaf87d5808997b09ad0accb420a25e",
-        "version" : "0.5.2"
+        "revision" : "bebb29f791e92f6ee5d9b6200f89c45249149957",
+        "version" : "1.2.0"
       }
     },
     {

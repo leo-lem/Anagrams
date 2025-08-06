@@ -1,11 +1,12 @@
 //  Created by Leopold Lemmermann on 04.01.22.
 
+import SwiftUI
 import Extensions
 
 public extension View {
   func notification<T: Transition>(
-    _ title: LocalizedStringKey,
-    item: Binding<String?>,
+    _ title: LocalizedStringResource,
+    item: Binding<LocalizedStringResource?>,
     transition: T = .opacity.combined(with: .move(edge: .top))
   ) -> some View {
     self.overlay(alignment: .top) {
@@ -24,12 +25,20 @@ public extension View {
         }
       }
       .animation(.default, value: item.wrappedValue)
+      .onChange(of: item.wrappedValue) {
+        if $1 != nil {
+          Task {
+            try? await Task.sleep(for: .seconds(2))
+            item.wrappedValue = nil
+          }
+        }
+      }
     }
   }
 }
 
 #Preview {
-  @Previewable @State var item: String?
+  @Previewable @State var item: LocalizedStringResource?
 
   Button(String("Alert")) { item = item == nil ? "This is an alert!" : nil }
     .frame(maxWidth: .infinity, maxHeight: .infinity)

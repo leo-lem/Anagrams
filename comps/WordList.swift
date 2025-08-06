@@ -1,7 +1,7 @@
 //  Created by Leopold Lemmermann on 16.01.22.
 
 import Dependencies
-import Extensions
+import SwiftUIExtensions
 import SwiftUI
 
 public struct WordList: View {
@@ -22,7 +22,7 @@ public struct WordList: View {
       }
 
       if words.isEmpty {
-        Text(.localizable(.placeholder))
+        Text(.placeholder)
           .foregroundStyle(.secondary)
       }
     }

@@ -2,7 +2,6 @@
 
 import Dependencies
 import Foundation
-import Types
 
 public struct Words: Sendable {
   public var new: @Sendable (Locale.Language) -> String

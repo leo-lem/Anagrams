@@ -18,13 +18,6 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:features",
-        "identifier" : "FeaturesTest",
-        "name" : "FeaturesTest"
-      }
-    },
-    {
-      "target" : {
         "containerPath" : "container:library",
         "identifier" : "LibraryTest",
         "name" : "LibraryTest"
