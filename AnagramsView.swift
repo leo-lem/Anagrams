@@ -16,12 +16,12 @@ public struct AnagramsView: View {
       }
       .toolbar {
         ToolbarItem {
-          if game.limit != nil, let countdown = countdown {
-            Text(max(countdown, .zero), format: .units(maximumUnitCount: 1))
+          if game.limit != nil, let countdown {
+            Text(max(Duration.seconds(countdown), .zero), format: .units(maximumUnitCount: 1))
               .foregroundColor(outOfTime ? .red : .primary)
               .padding()
           } else {
-            Button(.timer, systemImage: "timer") { game.limit = .seconds(180) }
+            Button(.timer, systemImage: "timer") { game.limit = 180 }
               .font(.title2)
               .disabled(outOfTime)
           }
@@ -62,7 +62,7 @@ public struct AnagramsView: View {
 
 extension AnagramsView {
   var score: Int { game.score }
-  var countdown: Duration? { game.limit.flatMap { $0 - game.time } }
+  var countdown: Double? { game.limit.flatMap { $0 - game.time } }
   var outOfTime: Bool { game.limit.flatMap { $0 < game.time } ?? false }
 
   func start(_ root: String) {

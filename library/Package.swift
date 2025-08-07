@@ -3,7 +3,6 @@
 import PackageDescription
 
 let deps = Target.Dependency.product(name: "Dependencies", package: "swift-dependencies")
-let xcstrings = Target.Dependency.product(name: "XCStringsToolPlugin", package: "xcstrings-tool-plugin")
 let ext = Target.Dependency.product(name: "Extensions", package: "extensions")
 let lint = Target.PluginUsage.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
 let libs: [Target] = [

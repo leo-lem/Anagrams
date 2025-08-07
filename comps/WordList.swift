@@ -10,11 +10,10 @@ public struct WordList: View {
   public var body: some View {
     List {
       ForEach(words, id: \.self) { word in
-        Button(word, systemImage: "\(word.count).circle") {
-          Task {
-            @Dependency(\.openURL) var open
-            await open(Bundle.main[url: "DictionaryUrl"].appending(component: word))
-          }
+        AsyncButton {
+          await open(Bundle.main[url: "DictionaryUrl"].appending(component: word))
+        } label: {
+          Label(word, systemImage: "\(word.count).circle")
         }
         .labelStyle(.external(color: .white, transfer: true))
         .foregroundStyle(.primary)
@@ -28,7 +27,9 @@ public struct WordList: View {
     }
   }
 
-  public init(_ words: [String]) {
+  @Dependency(\.openURL) var open
+
+  init(_ words: [String]) {
     self.words = words
   }
 }

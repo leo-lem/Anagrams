@@ -1,6 +1,12 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld points" : {
+
+    },
+    "%lld words" : {
+
+    },
     "editRoot" : {
       "extractionState" : "manual",
       "localizations" : {

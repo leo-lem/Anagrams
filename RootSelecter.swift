@@ -5,7 +5,7 @@ import Words
 
 public struct RootSelecter: View {
   let root: String
-  let language: Locale.Language
+  let language: Language
   let start: (_ root: String) -> Void
 
   public var body: some View {
@@ -37,7 +37,7 @@ public struct RootSelecter: View {
       }
 
       Button(.next, systemImage: "chevron.right") {
-        start(new(language))
+        start(new(language.locale))
       }
       .labelStyle(.iconOnly)
       .disabled(focussingRoot)
@@ -59,7 +59,7 @@ public struct RootSelecter: View {
 extension RootSelecter {
   var isValidRoot: Bool { rootIsLongEnough && rootExists }
   var rootIsLongEnough: Bool { newRoot.count > 4 }
-  var rootExists: Bool { exists(newRoot, language) }
+  var rootExists: Bool { exists(newRoot, language.locale) }
 
   var previousAvailable: Bool {
     roots.firstIndex(of: root) ?? 0 > 0

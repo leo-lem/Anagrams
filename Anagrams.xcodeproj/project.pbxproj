@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		6E0CFED22E43ADB100D24DBF /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */; };
-		6E0CFED32E43AEF400D24DBF /* AnagramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E46016E2E4389EE0083928F /* AnagramsView.swift */; };
-		6E0CFED42E43AEF400D24DBF /* RootSelecter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CFED02E43A79500D24DBF /* RootSelecter.swift */; };
-		6E0CFED52E43AEF400D24DBF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CFECE2E43A53A00D24DBF /* GameView.swift */; };
+		6E11E1E02E447EE200A062F4 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11E1DE2E447EE200A062F4 /* Game.swift */; };
+		6E11E1FF2E448E7700A062F4 /* AnagramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E46016E2E4389EE0083928F /* AnagramsView.swift */; };
+		6E11E2002E448E7700A062F4 /* RootSelecter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CFED02E43A79500D24DBF /* RootSelecter.swift */; };
+		6E11E2012E448E7700A062F4 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CFECE2E43A53A00D24DBF /* GameView.swift */; };
 		6E4601772E438B4F0083928F /* Extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4601762E438B4F0083928F /* Extensions */; };
 		6E4601792E438B4F0083928F /* SwiftUIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4601782E438B4F0083928F /* SwiftUIExtensions */; };
 		6E46017B2E438C4C0083928F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6E46017A2E438C470083928F /* Localizable.xcstrings */; };
@@ -22,6 +23,7 @@
 		6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		6E0CFECE2E43A53A00D24DBF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		6E0CFED02E43A79500D24DBF /* RootSelecter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootSelecter.swift; sourceTree = "<group>"; };
+		6E11E1DE2E447EE200A062F4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		6E2C41B72D5F837A00B86530 /* features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = features; sourceTree = "<group>"; };
 		6E2C41CD2D5F91E600B86530 /* library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = library; sourceTree = "<group>"; };
 		6E46016E2E4389EE0083928F /* AnagramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsView.swift; sourceTree = "<group>"; };
@@ -43,18 +45,11 @@
 			);
 			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
 		};
-		6E4601902E4390680083928F /* Exceptions for "types" folder in "Anagrams" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Game.swift,
-				Language.swift,
-			);
-			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
-		};
 		6E57A6282D612F3F006C34DD /* Exceptions for "resource" folder in "Anagrams" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Assets.xcassets,
+				"previews/Game+Example.swift",
 			);
 			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
 		};
@@ -67,14 +62,6 @@
 				6E4601892E438E270083928F /* Exceptions for "comps" folder in "Anagrams" target */,
 			);
 			path = comps;
-			sourceTree = "<group>";
-		};
-		6E46018F2E4390650083928F /* types */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				6E4601902E4390680083928F /* Exceptions for "types" folder in "Anagrams" target */,
-			);
-			path = types;
 			sourceTree = "<group>";
 		};
 		6EA306392D61194B007041E5 /* test */ = {
@@ -116,7 +103,7 @@
 				6E0CFECE2E43A53A00D24DBF /* GameView.swift */,
 				6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */,
 				6E46017A2E438C470083928F /* Localizable.xcstrings */,
-				6E46018F2E4390650083928F /* types */,
+				6E11E1DE2E447EE200A062F4 /* Game.swift */,
 				6E46017E2E438E140083928F /* comps */,
 				6E2C41B72D5F837A00B86530 /* features */,
 				6E2C41CD2D5F91E600B86530 /* library */,
@@ -209,9 +196,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E0CFED32E43AEF400D24DBF /* AnagramsView.swift in Sources */,
-				6E0CFED42E43AEF400D24DBF /* RootSelecter.swift in Sources */,
-				6E0CFED52E43AEF400D24DBF /* GameView.swift in Sources */,
+				6E11E1FF2E448E7700A062F4 /* AnagramsView.swift in Sources */,
+				6E11E2002E448E7700A062F4 /* RootSelecter.swift in Sources */,
+				6E11E2012E448E7700A062F4 /* GameView.swift in Sources */,
+				6E11E1E02E447EE200A062F4 /* Game.swift in Sources */,
 				6ED7DAC52791BAAD00914046 /* Anagrams.swift in Sources */,
 				6E0CFED22E43ADB100D24DBF /* LeaderboardView.swift in Sources */,
 			);
@@ -364,7 +352,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = resource/info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Anagrams;
+				INFOPLIST_KEY_CFBundleDisplayName = Ngrams;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -376,7 +365,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.leolem.anagrams;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -396,7 +385,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = resource/info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Anagrams;
+				INFOPLIST_KEY_CFBundleDisplayName = Ngrams;
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.word-games";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -408,7 +398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = dev.leolem.anagrams;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

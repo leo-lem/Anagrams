@@ -7,7 +7,7 @@ public struct LeaderboardView: View {
   @Query var games: [Game]
 
   public var body: some View {
-    List(games) { game in
+    List(games.sorted(by: \.score, using: >)) { game in
       VStack(alignment: .leading) {
         HStack {
           Text(game.root)
@@ -21,7 +21,7 @@ public struct LeaderboardView: View {
             .font(.caption)
             .foregroundStyle(.secondary)
         }
-        Text("\(game.words.count) words")
+        Text("\(game.count) words")
           .font(.caption2)
       }
       .padding(.vertical, 4)

@@ -34,7 +34,7 @@ extension GameView {
   var wordIsNotRoot: Bool { newWord != game.root }
   var wordIsLongEnough: Bool { newWord.count > 1 }
   var wordIsNew: Bool { !game.words.contains(newWord) }
-  var wordExists: Bool { exists(newWord, game.language) }
+  var wordExists: Bool { exists(newWord, game.language.locale) }
   var wordIsInRoot: Bool { newWord.allSatisfy(game.root.contains) }
 }
 

@@ -7,9 +7,8 @@ import SwiftUI
 struct AnagramsApp: App {
   var body: some Scene {
     WindowGroup {
-//      AnagramsView()
-      LeaderboardView()
+      AnagramsView()
     }
-    .modelContainer(for: Game.self)
+    .modelContainer(for: Game.self, isUndoEnabled: false)
   }
 }
