@@ -14,10 +14,7 @@ import SwiftData
   public var score: Int { words.reduce(0) { $0 + $1.count } }
   public var count: Int { words.count }
   public var isCompleted: Bool {
-    completedAt != nil
-    || limit != nil
-    ? time >= limit!
-    : false
+    (completedAt != nil) || (limit != nil && time >= limit!)
   }
 
   public init(
