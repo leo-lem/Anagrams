@@ -14,22 +14,37 @@ public struct AnagramsView: View {
         GameView(game: game)
           .disabled(outOfTime)
       }
+      .background { Background() }
       .toolbar {
-        ToolbarItem {
+        ToolbarItem(placement: .status) {
           if game.limit != nil, let countdown {
-            Text(max(Duration.seconds(countdown), .zero), format: .units(maximumUnitCount: 1))
-              .foregroundColor(outOfTime ? .red : .primary)
-              .padding()
-          } else {
+            Text(
+              max(Duration.seconds(countdown), .zero), format: .units(width: .narrow, maximumUnitCount: 1)
+            )
+            .foregroundStyle(outOfTime ? .red : .primary)
+          }
+        }
+
+        ToolbarItem {
+          Menu("Settings", systemImage: "gear") {
+            Picker(.language, selection: $language) {
+              ForEach(Language.allCases, id: \.self) { language in
+                Text(
+                  Locale.current.localizedString(forIdentifier: language.locale.minimalIdentifier)!
+                )
+                .tag(language)
+              }
+            }
+            .onChange(of: language) { start(new($1.locale)) }
+
             Button(.timer, systemImage: "timer") { game.limit = 180 }
               .font(.title2)
-              .disabled(outOfTime)
+              .disabled(game.limit != nil || outOfTime)
           }
         }
 
         ToolbarItem(placement: .principal) {
-          Text(.score(score))
-            .font(.headline)
+
         }
 
         ToolbarItem(placement: .confirmationAction) {
@@ -38,24 +53,29 @@ public struct AnagramsView: View {
             context.insert(game)
             try? context.save()
           }
-          .tint(.green)
         }
 
         ToolbarItem(placement: .topBarLeading) {
-          NavigationLink { LeaderboardView() } label: {
+          NavigationLink {
+            LeaderboardView()
+              .background { Background() }
+          } label: {
             Label(.leaderboard, systemImage: "trophy")
-              .labelStyle(.iconOnly)
           }
         }
       }
+      .navigationTitle(.score(game.score))
+      .navigationBarTitleDisplayMode(.inline)
     }
+    .foregroundStyle(.text)
     .scrollContentBackground(.hidden)
-    .preferredColorScheme(.dark)
   }
 
-  @State var game = Game("universe", language: .english, limit: nil)
-  @State var language: Locale.Language = .english
-  @State var limit: Duration?
+  @State var language: Language = .english
+  @State var limit: Double?
+  @State var game = Game("universal", language: .english, limit: nil)
+
+  @Dependency(\.words.new) var new
 
   @Environment(\.modelContext) var context
 }

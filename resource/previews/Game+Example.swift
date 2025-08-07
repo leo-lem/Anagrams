@@ -9,7 +9,7 @@ extension Game {
     language: .english,
     limit: 120,
     words: ["hell", "ell"],
-    time: 110,
+    time: .random(in: 0...120),
     completedAt: .now
   )
 }

@@ -15,14 +15,16 @@ public struct WordList: View {
         } label: {
           Label(word, systemImage: "\(word.count).circle")
         }
-        .labelStyle(.external(color: .white, transfer: true))
+        .labelStyle(.external(color: .accent, transfer: true))
         .foregroundStyle(.primary)
         .font(.headline)
+        .listRowBackground(Color.secondaryBackground)
       }
 
       if words.isEmpty {
         Text(.placeholder)
           .foregroundStyle(.secondary)
+          .listRowBackground(Color.secondaryBackground)
       }
     }
   }

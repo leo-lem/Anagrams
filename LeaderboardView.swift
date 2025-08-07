@@ -7,30 +7,50 @@ public struct LeaderboardView: View {
   @Query var games: [Game]
 
   public var body: some View {
-    List(games.sorted(by: \.score, using: >)) { game in
-      VStack(alignment: .leading) {
+    List(Array(games.sorted(by: \.score, using: >).enumerated()), id: \.element.id) { index, game in
+      VStack {
         HStack {
-          Text(game.root)
-            .font(.headline)
+          Label(game.root, systemImage: icon(index))
           Spacer()
-          Text("\(game.score) points")
+          Text(.score(game.score))
             .bold()
         }
-        if let date = game.completedAt {
-          Text(date.formatted(date: .abbreviated, time: .shortened))
-            .font(.caption)
+
+        HStack {
+          if let date = game.completedAt {
+            Text(date.formatted(date: .abbreviated, time: .shortened))
+              .font(.caption)
+              .foregroundStyle(.secondary)
+          }
+          Spacer()
+          Text(.words(game.count))
+            .font(.caption2)
             .foregroundStyle(.secondary)
         }
-        Text("\(game.count) words")
-          .font(.caption2)
       }
-      .padding(.vertical, 4)
+      .padding()
+      .listRowSeparator(.hidden)
+      .listRowBackground(RoundedRectangle(cornerRadius: 12).fill(Color.secondaryBackground).padding())
     }
+    .listStyle(.plain)
     .navigationTitle(.leaderboard)
+  }
+}
+
+extension LeaderboardView {
+  func icon(_ index: Int) -> String {
+    switch index {
+    case 0: "star"
+    case 1: "2.circle.fill"
+    case 2: "3.circle.fill"
+    default: "circle"
+    }
   }
 }
 
 #Preview {
   LeaderboardView()
-    .modelContainer(for: Game.self, inMemory: true)
+    .modelContainer(for: Game.self, inMemory: true) {
+      (try? $0.get())?.mainContext.insert(Game.example)
+    }
 }

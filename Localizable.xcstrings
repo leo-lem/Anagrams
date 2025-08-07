@@ -1,11 +1,16 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "%lld points" : {
-
-    },
     "%lld words" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld words"
+          }
+        }
+      }
     },
     "editRoot" : {
       "extractionState" : "manual",
@@ -30,6 +35,18 @@
         }
       }
     },
+    "language" : {
+      "comment" : "Label of the language picker.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Language"
+          }
+        }
+      }
+    },
     "Leaderboard" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -37,6 +54,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Leaderboard"
+          }
+        }
+      }
+    },
+    "limit %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ time limit"
           }
         }
       }

@@ -12,24 +12,23 @@ public struct SubmittableTextField: View {
 
   public var body: some View {
     HStack {
-      if #available(iOS 26.0, *) {
-        TextField(label, text: $text)
-          .disableAutocorrection(true)
-          .textInputAutocapitalization(.never)
-          .onSubmit(submit)
-      } else {
-        TextField(LocalizedStringKey(stringLiteral: label.key), text: $text)
-          .disableAutocorrection(true)
-          .textInputAutocapitalization(.never)
-          .onSubmit(submit)
+      Group {
+        if #available(iOS 26.0, *) {
+          TextField(label, text: $text)
+        } else {
+          TextField(LocalizedStringKey(stringLiteral: label.key), text: $text)
+        }
       }
+      .disableAutocorrection(true)
+      .textInputAutocapitalization(.never)
+      .onSubmit(submit)
 
       Button(.submit, systemImage: submittable ? "checkmark" : "xmark", action: submit)
         .font(nil)
         .labelStyle(.iconOnly)
         .buttonStyle(.bordered)
         .buttonBorderShape(.circle)
-        .tint(submittable ? .green : .red)
+        .tint(submittable ? .accent : .red)
     }
     .accessibilityElement()
     .accessibilityAddTraits(.isButton)
@@ -51,4 +50,17 @@ public struct SubmittableTextField: View {
     self.submittable = submittable
     self.submit = submit
   }
+}
+
+#Preview {
+@Previewable @State var text = ""
+  @Previewable @State var submittable = true
+
+  SubmittableTextField(
+    "Enter text",
+    text: $text,
+    submittable: submittable,
+    submit: { submittable.toggle() }
+  )
+  .textFieldStyle(.roundedBorder)
 }

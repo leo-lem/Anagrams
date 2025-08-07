@@ -44,6 +44,7 @@ public struct RootSelecter: View {
     }
     .notification(.rootAlertTitle, item: $rootAlert)
     .onChange(of: root) { newRoot = "" }
+    .padding(.horizontal)
   }
 
   @State var newRoot = ""
@@ -54,6 +55,16 @@ public struct RootSelecter: View {
 
   @Dependency(\.words.new) var new
   @Dependency(\.words.exists) var exists
+
+  init(
+    root: String,
+    language: Language,
+    start: @escaping (_: String) -> Void
+  ) {
+    self.root = root
+    self.language = language
+    self.start = start
+  }
 }
 
 extension RootSelecter {
@@ -66,6 +77,8 @@ extension RootSelecter {
   }
 
   func startValid() {
+    if newRoot.isEmpty { return editingRoot = false }
+
     guard isValidRoot else {
       return rootAlert = switch false {
       case rootIsLongEnough: .rootAlertLength
@@ -78,4 +91,10 @@ extension RootSelecter {
     editingRoot = false
     start(newRoot)
   }
+}
+
+#Preview {
+  @Previewable @State var root = "universe"
+
+  RootSelecter(root: root, language: .english, start: { root = $0 })
 }

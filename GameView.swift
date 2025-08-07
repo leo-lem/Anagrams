@@ -30,7 +30,9 @@ public struct GameView: View {
 }
 
 extension GameView {
-  var isValidWord: Bool { wordIsNotRoot && wordIsLongEnough && wordIsNew && wordExists && wordIsInRoot }
+  var isValidWord: Bool {
+    wordIsNotRoot && wordIsLongEnough && wordIsNew && wordExists && wordIsInRoot
+  }
   var wordIsNotRoot: Bool { newWord != game.root }
   var wordIsLongEnough: Bool { newWord.count > 1 }
   var wordIsNew: Bool { !game.words.contains(newWord) }
