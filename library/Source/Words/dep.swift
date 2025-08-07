@@ -1,6 +1,6 @@
 // Created by Leopold Lemmermann on 15.02.25.
 
-import Dependencies
+@_exported import Dependencies
 
 extension Words: DependencyKey {
   public static let liveValue = Words(

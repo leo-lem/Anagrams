@@ -3,7 +3,6 @@
 import Dependencies
 import Foundation
 import Testing
-import Types
 @testable import Words
 
 struct Test {
@@ -12,7 +11,7 @@ struct Test {
   @Test(arguments: Locale.Language.supported)
   func givenSupportedLanguages_whenGettingNewWord_thenIsReturned(language: Locale.Language) async throws {
     withDependencies { $0.words = .liveValue } operation: {
-      #expect(words.new(language) != nil)
+      #expect(!words.new(language).isEmpty)
     }
   }
 
