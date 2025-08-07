@@ -8,8 +8,8 @@
 
 ## 🕹 Gameplay
 
-- Start from a root word (e.g. "universal")
-- Find valid English words hidden within it
+- Start from a root word (e.g., "universal")
+- Find valid words hidden within it in many different languages
 - Score is based on word length and number of correct entries
 - Track your performance and revisit completed rounds
 
