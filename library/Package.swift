@@ -3,8 +3,8 @@
 import PackageDescription
 
 let deps = Target.Dependency.product(name: "Dependencies", package: "swift-dependencies")
-let ext = Target.Dependency.product(name: "Extensions", package: "extensions")
 let lint = Target.PluginUsage.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
+
 let libs: [Target] = [
   .target(name: "Words", dependencies: [deps], resources: [
     .process("de.json"), .process("en.json"), .process("fr.json"), .process("es.json")
@@ -19,7 +19,6 @@ let package = Package(
   dependencies: [
     .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.0.0"),
     .package(url: "https://github.com/SimplyDanny/SwiftLintPlugins", from: "0.1.0"),
-//    .package(path: "../extensions"),
   ],
   targets: libs + [
     .testTarget(name: "LibraryTest", dependencies: libs.map { .byName(name: $0.name) }, path: "Test", plugins: [lint])

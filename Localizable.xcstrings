@@ -163,6 +163,9 @@
         }
       }
     },
+    "Settings" : {
+
+    },
     "submit" : {
       "extractionState" : "manual",
       "localizations" : {

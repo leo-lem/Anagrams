@@ -22,14 +22,12 @@
 		6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
 		6E0CFECE2E43A53A00D24DBF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		6E11E1DE2E447EE200A062F4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		6E2C41B72D5F837A00B86530 /* features */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = features; sourceTree = "<group>"; };
 		6E2C41CD2D5F91E600B86530 /* library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = library; sourceTree = "<group>"; };
 		6E46016E2E4389EE0083928F /* AnagramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsView.swift; sourceTree = "<group>"; };
 		6E46017A2E438C470083928F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6E6D76CA2D5F966700A21857 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = extensions; sourceTree = "<group>"; };
 		6E8895EF2D662BBC0097118D /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anagrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA6A1F92D5F76C900F152D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		6EA6A1FB2D5F76EE00F152D0 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		6ED7DAC42791BAAD00914046 /* Anagrams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anagrams.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +55,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		6E16ABBF2E44AD4100949C28 /* parked */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = parked;
+			sourceTree = "<group>";
+		};
 		6E46017E2E438E140083928F /* comps */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -104,13 +107,12 @@
 				6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */,
 				6E11E1DE2E447EE200A062F4 /* Game.swift */,
 				6E46017A2E438C470083928F /* Localizable.xcstrings */,
+				6E16ABBF2E44AD4100949C28 /* parked */,
 				6E46017E2E438E140083928F /* comps */,
-				6E2C41B72D5F837A00B86530 /* features */,
 				6E2C41CD2D5F91E600B86530 /* library */,
 				6E6D76CA2D5F966700A21857 /* extensions */,
 				6EA306392D61194B007041E5 /* test */,
 				6EA6A1FD2D5F776E00F152D0 /* resource */,
-				6EA6A1FB2D5F76EE00F152D0 /* LICENSE */,
 				6E8895EF2D662BBC0097118D /* Anagrams.app */,
 			);
 			sourceTree = "<group>";
