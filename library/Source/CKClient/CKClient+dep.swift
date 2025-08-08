@@ -35,7 +35,9 @@ extension CKClient: DependencyKey {
     },
     delete: { game in
       do {
-        try await database.deleteRecord(withID: game.toRecord().recordID)
+        if let id = game.id {
+          try await database.deleteRecord(withID: id)
+        }
       } catch {
 #if DEBUG
         print("❌ Error deleting record: \(error.localizedDescription)")

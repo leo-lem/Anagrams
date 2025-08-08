@@ -7,6 +7,7 @@ import CloudKit
 public struct SharedGame: Game {
   public static let recordType = "SharedGame"
 
+  public var id: CKRecord.ID?
   public var name: String
   public var root: String
   public var language: Language
@@ -22,6 +23,7 @@ public struct SharedGame: Game {
   }
 
   public init(record: CKRecord) {
+    self.id = record.recordID
     self.name = record["name"] as? String ?? ""
     self.root = record["root"] as? String ?? ""
     self.language = (record["language"] as? String).flatMap(Language.init) ?? .english
@@ -30,7 +32,11 @@ public struct SharedGame: Game {
   }
 
   public func toRecord() -> CKRecord {
-    let record = CKRecord(recordType: Self.recordType)
+    let record = if let id {
+      CKRecord(recordType: Self.recordType, recordID: id)
+    } else {
+      CKRecord(recordType: Self.recordType)
+    }
     record["name"] = name as NSString
     record["root"] = root as NSString
     record["score"] = score as NSNumber
