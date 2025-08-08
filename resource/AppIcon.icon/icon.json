@@ -1,6 +1,6 @@
 {
   "fill" : {
-    "automatic-gradient" : "extended-srgb:0.00000,0.47843,1.00000,1.00000"
+    "automatic-gradient" : "srgb:0.92143,0.92145,0.92144,1.00000"
   },
   "groups" : [
     {
@@ -11,7 +11,7 @@
             "solid" : "srgb:0.53333,0.58824,0.33333,1.00000"
           },
           "glass" : true,
-          "image-name" : "Letter_A_icon.svg.png",
+          "image-name" : "a.png",
           "name" : "A",
           "opacity" : 1,
           "position" : {
