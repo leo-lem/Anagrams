@@ -7,24 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6E0CFED22E43ADB100D24DBF /* LeaderboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */; };
 		6E11E1E02E447EE200A062F4 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E11E1DE2E447EE200A062F4 /* Game.swift */; };
-		6E11E1FF2E448E7700A062F4 /* AnagramsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E46016E2E4389EE0083928F /* AnagramsView.swift */; };
-		6E11E2012E448E7700A062F4 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0CFECE2E43A53A00D24DBF /* GameView.swift */; };
 		6E4601772E438B4F0083928F /* Extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4601762E438B4F0083928F /* Extensions */; };
 		6E4601792E438B4F0083928F /* SwiftUIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4601782E438B4F0083928F /* SwiftUIExtensions */; };
-		6E46017B2E438C4C0083928F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6E46017A2E438C470083928F /* Localizable.xcstrings */; };
 		6E46018E2E438E7F0083928F /* Words in Frameworks */ = {isa = PBXBuildFile; productRef = 6E46018D2E438E7F0083928F /* Words */; };
+		6EBAC83A2E4523B50041966E /* CloudKitService in Frameworks */ = {isa = PBXBuildFile; productRef = 6EBAC8392E4523B50041966E /* CloudKitService */; };
 		6ED7DAC52791BAAD00914046 /* Anagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DAC42791BAAD00914046 /* Anagrams.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardView.swift; sourceTree = "<group>"; };
-		6E0CFECE2E43A53A00D24DBF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		6E11E1DE2E447EE200A062F4 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		6E2C41CD2D5F91E600B86530 /* library */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = library; sourceTree = "<group>"; };
-		6E46016E2E4389EE0083928F /* AnagramsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnagramsView.swift; sourceTree = "<group>"; };
-		6E46017A2E438C470083928F /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		6E6D76CA2D5F966700A21857 /* extensions */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = extensions; sourceTree = "<group>"; };
 		6E8895EF2D662BBC0097118D /* Anagrams.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Anagrams.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EA6A1F92D5F76C900F152D0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -32,12 +25,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		6E4601892E438E270083928F /* Exceptions for "comps" folder in "Anagrams" target */ = {
+		6E4601892E438E270083928F /* Exceptions for "ui" folder in "Anagrams" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Background.swift,
 				notification.swift,
 				RootSelecter.swift,
+				SignInButton.swift,
 				SubmittableTextField.swift,
 				WordList.swift,
 			);
@@ -48,24 +42,29 @@
 			membershipExceptions = (
 				AppIcon.icon,
 				Assets.xcassets,
+				Localizable.xcstrings,
 				"previews/Game+Example.swift",
+			);
+			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
+		};
+		6EBAC8372E451C320041966E /* Exceptions for "app" folder in "Anagrams" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AnagramsView.swift,
+				GameView.swift,
+				LeaderboardView.swift,
 			);
 			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		6E16ABBF2E44AD4100949C28 /* parked */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = parked;
-			sourceTree = "<group>";
-		};
-		6E46017E2E438E140083928F /* comps */ = {
+		6E46017E2E438E140083928F /* ui */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				6E4601892E438E270083928F /* Exceptions for "comps" folder in "Anagrams" target */,
+				6E4601892E438E270083928F /* Exceptions for "ui" folder in "Anagrams" target */,
 			);
-			path = comps;
+			path = ui;
 			sourceTree = "<group>";
 		};
 		6EA306392D61194B007041E5 /* test */ = {
@@ -81,6 +80,14 @@
 			path = resource;
 			sourceTree = "<group>";
 		};
+		6EBAC8362E451C2E0041966E /* app */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				6EBAC8372E451C320041966E /* Exceptions for "app" folder in "Anagrams" target */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +98,7 @@
 				6E46018E2E438E7F0083928F /* Words in Frameworks */,
 				6E4601792E438B4F0083928F /* SwiftUIExtensions in Frameworks */,
 				6E4601772E438B4F0083928F /* Extensions in Frameworks */,
+				6EBAC83A2E4523B50041966E /* CloudKitService in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,13 +110,9 @@
 			children = (
 				6EA6A1F92D5F76C900F152D0 /* README.md */,
 				6ED7DAC42791BAAD00914046 /* Anagrams.swift */,
-				6E46016E2E4389EE0083928F /* AnagramsView.swift */,
-				6E0CFECE2E43A53A00D24DBF /* GameView.swift */,
-				6E0CFECC2E43A05500D24DBF /* LeaderboardView.swift */,
 				6E11E1DE2E447EE200A062F4 /* Game.swift */,
-				6E46017A2E438C470083928F /* Localizable.xcstrings */,
-				6E16ABBF2E44AD4100949C28 /* parked */,
-				6E46017E2E438E140083928F /* comps */,
+				6EBAC8362E451C2E0041966E /* app */,
+				6E46017E2E438E140083928F /* ui */,
 				6E2C41CD2D5F91E600B86530 /* library */,
 				6E6D76CA2D5F966700A21857 /* extensions */,
 				6EA306392D61194B007041E5 /* test */,
@@ -138,6 +142,7 @@
 				6E4601762E438B4F0083928F /* Extensions */,
 				6E4601782E438B4F0083928F /* SwiftUIExtensions */,
 				6E46018D2E438E7F0083928F /* Words */,
+				6EBAC8392E4523B50041966E /* CloudKitService */,
 			);
 			productName = Anagrams;
 			productReference = 6E8895EF2D662BBC0097118D /* Anagrams.app */;
@@ -187,7 +192,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E46017B2E438C4C0083928F /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -198,11 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E11E1FF2E448E7700A062F4 /* AnagramsView.swift in Sources */,
-				6E11E2012E448E7700A062F4 /* GameView.swift in Sources */,
 				6E11E1E02E447EE200A062F4 /* Game.swift in Sources */,
 				6ED7DAC52791BAAD00914046 /* Anagrams.swift in Sources */,
-				6E0CFED22E43ADB100D24DBF /* LeaderboardView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,7 +363,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -396,7 +397,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,6 +473,10 @@
 		6E46018D2E438E7F0083928F /* Words */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Words;
+		};
+		6EBAC8392E4523B50041966E /* CloudKitService */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CloudKitService;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

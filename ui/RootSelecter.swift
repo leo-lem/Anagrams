@@ -12,10 +12,13 @@ public struct RootSelecter: View {
     HStack {
       Button(.previous, systemImage: "chevron.left") {
         newRoot = roots.removeLast()
-        startValid()
+        startValid(saveRoot: false)
       }
       .labelStyle(.iconOnly)
+      .buttonStyle(.bordered)
       .disabled(focussingRoot || !previousAvailable)
+
+      Spacer()
 
       if !editingRoot {
         Text(root)
@@ -30,28 +33,35 @@ public struct RootSelecter: View {
           .disabled(editingRoot)
           .padding(.leading, -15)
       } else {
-        SubmittableTextField(root, text: $newRoot, submittable: isValidRoot, submit: startValid)
+        SubmittableTextField(raw: root, text: $newRoot, submittable: isValidRoot) {
+          startValid()
+        }
           .focused($focussingRoot)
           .font(.largeTitle)
-          .padding()
       }
 
+      Spacer()
+
       Button(.next, systemImage: "chevron.right") {
-        start(new(language.locale))
+        newRoot = new(language.locale)
+        startValid()
       }
       .labelStyle(.iconOnly)
+      .buttonStyle(.bordered)
       .disabled(focussingRoot)
     }
     .notification(.rootAlertTitle, item: $rootAlert)
     .onChange(of: root) { newRoot = "" }
+    .onChange(of: language) { roots = [] }
     .padding(.horizontal)
   }
 
   @State var newRoot = ""
   @State var editingRoot = false
-  @State var roots = [String]()
   @State var rootAlert: LocalizedStringResource?
   @FocusState var focussingRoot: Bool
+
+  @State var roots = [String]()
 
   @Dependency(\.words.new) var new
   @Dependency(\.words.exists) var exists
@@ -69,14 +79,12 @@ public struct RootSelecter: View {
 
 extension RootSelecter {
   var isValidRoot: Bool { rootIsLongEnough && rootExists }
-  var rootIsLongEnough: Bool { newRoot.count > 4 }
+  var rootIsLongEnough: Bool { newRoot.count > 3 }
   var rootExists: Bool { exists(newRoot, language.locale) }
 
-  var previousAvailable: Bool {
-    roots.firstIndex(of: root) ?? 0 > 0
-  }
+  var previousAvailable: Bool { !roots.isEmpty }
 
-  func startValid() {
+  func startValid(saveRoot: Bool = true) {
     if newRoot.isEmpty { return editingRoot = false }
 
     guard isValidRoot else {
@@ -87,14 +95,14 @@ extension RootSelecter {
       }
     }
 
-    roots += [root]
+    if saveRoot { roots += [root] }
     editingRoot = false
     start(newRoot)
   }
 }
 
 #Preview {
-  @Previewable @State var root = "universe"
+  @Previewable @State var root = "universal"
 
   RootSelecter(root: root, language: .english, start: { root = $0 })
 }

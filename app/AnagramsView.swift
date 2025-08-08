@@ -9,14 +9,14 @@ public struct AnagramsView: View {
   public var body: some View {
     NavigationStack {
       VStack {
-        RootSelecter(root: game.root, language: game.language, start: start)
+        RootSelecter(root: game.root, language: language, start: start)
 
         GameView(game: game)
           .disabled(outOfTime)
       }
       .background { Background() }
       .toolbar {
-        ToolbarItem(placement: .status) {
+        ToolbarItem(placement: .topBarLeading) {
           if game.limit != nil, let countdown {
             Text(
               max(Duration.seconds(countdown), .zero), format: .units(width: .narrow, maximumUnitCount: 1)
@@ -25,8 +25,33 @@ public struct AnagramsView: View {
           }
         }
 
-        ToolbarItem {
-          Menu("Settings", systemImage: "gear") {
+        ToolbarItem(placement: .confirmationAction) {
+          Menu(.save, systemImage: "checkmark.seal") {
+            Button(.save, systemImage: "checkmark.seal") {
+              game.completedAt = .now
+              context.insert(game)
+              try? context.save()
+            }
+
+            NavigationLink {
+              LeaderboardView()
+                .background { Background() }
+            } label: {
+              Label(.leaderboard, systemImage: "trophy")
+            }
+          }
+        }
+
+        ToolbarItem(placement: .primaryAction) {
+          Menu(.settings, systemImage: "gear") {
+            Button(.timer, systemImage: "timer") {
+              game.limit = game.limit == nil ? 180 : nil
+            }
+            .font(.title2)
+            .onChange(of: limit) {
+              if $1 == nil { start() }
+            }
+
             Picker(.language, selection: $language) {
               ForEach(Language.allCases, id: \.self) { language in
                 Text(
@@ -35,39 +60,13 @@ public struct AnagramsView: View {
                 .tag(language)
               }
             }
-            .onChange(of: language) { start(new($1.locale)) }
-
-            Button(.timer, systemImage: "timer") { game.limit = 180 }
-              .font(.title2)
-              .disabled(game.limit != nil || outOfTime)
-          }
-        }
-
-        ToolbarItem(placement: .principal) {
-
-        }
-
-        ToolbarItem(placement: .confirmationAction) {
-          Button(.save, systemImage: "checkmark.seal") {
-            game.completedAt = .now
-            context.insert(game)
-            try? context.save()
-          }
-        }
-
-        ToolbarItem(placement: .topBarLeading) {
-          NavigationLink {
-            LeaderboardView()
-              .background { Background() }
-          } label: {
-            Label(.leaderboard, systemImage: "trophy")
+            .onChange(of: language) { start() }
           }
         }
       }
       .navigationTitle(.score(game.score))
       .navigationBarTitleDisplayMode(.inline)
     }
-    .foregroundStyle(.text)
     .scrollContentBackground(.hidden)
   }
 
@@ -85,8 +84,8 @@ extension AnagramsView {
   var countdown: Double? { game.limit.flatMap { $0 - game.time } }
   var outOfTime: Bool { game.limit.flatMap { $0 < game.time } ?? false }
 
-  func start(_ root: String) {
-    game = Game(root, language: game.language, limit: game.limit)
+  func start(_ root: String? = nil) {
+    game = Game(root ?? new(language.locale), language: language, limit: limit)
   }
 }
 
