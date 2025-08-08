@@ -20,12 +20,11 @@ public struct WordList: View {
         .font(.headline)
         .listRowBackground(Color.secondaryBackground)
       }
+    }
 
-      if words.isEmpty {
-        Text(.placeholder)
-          .foregroundStyle(.secondary)
-          .listRowBackground(Color.secondaryBackground)
-      }
+    if words.isEmpty {
+      Text(.placeholder)
+        .foregroundStyle(.secondary)
     }
   }
 

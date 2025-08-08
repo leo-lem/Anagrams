@@ -1,32 +1,51 @@
 // Created by Leopold Lemmermann on 06.08.25.
 
+import Model
 import Words
 import SwiftUI
+import SwiftData
 
 public struct GameView: View {
-  let game: Game
+  public let game: LocalGame
 
   public var body: some View {
     VStack {
       WordList(game.words)
         .notification(.wordAlertTitle, item: $wordAlert)
 
-      SubmittableTextField(.enterWord(game.root), text: $newWord, submittable: isValidWord) {
+      SubmittableTextField(.whatWordCanBeMade, text: $newWord, submittable: isValidWord) {
         addWord()
         focussingWord = true
       }
-      .focused($focussingWord)
+      .focused($focussingWord).onAppear { focussingWord = true }
       .textFieldStyle(.roundedBorder)
       .padding()
-      .onAppear { focussingWord = true }
+    }
+    .toolbar {
+      if AnagramsApp.enableTimer {
+        ToolbarItem(placement: .topBarLeading) {
+          if game.limit != nil {
+            Text(game.countdown)
+              .foregroundStyle(game.outOfTime ? .red : .primary)
+          }
+        }
+      }
+    }
+    .onChange(of: game) {
+      if !$1.words.isEmpty { $1.save(to: context) }
     }
   }
 
-  @FocusState var focussingWord: Bool
-  @State var wordAlert: LocalizedStringResource?
   @State var newWord = ""
+  @State var wordAlert: LocalizedStringResource?
+  @FocusState var focussingWord: Bool
 
+  @Environment(\.modelContext) var context
   @Dependency(\.words.exists) var exists
+
+  public init(_ game: LocalGame) {
+    self.game = game
+  }
 }
 
 extension GameView {
@@ -38,7 +57,7 @@ extension GameView {
     newWord.count >= Bundle.main.object(forInfoDictionaryKey: "MinGuessLength") as? Int ?? 1
   }
   var wordIsNew: Bool { !game.words.contains(newWord) }
-  var wordExists: Bool { exists(newWord, game.language.locale) }
+  var wordExists: Bool { exists(newWord, game.language) }
   var wordIsInRoot: Bool {
     var rootSet: Set<Character> = Set(game.root)
     for character in newWord where rootSet.remove(character) == nil {
@@ -46,9 +65,7 @@ extension GameView {
     }
     return true
   }
-}
 
-extension GameView {
   func addWord() {
     guard isValidWord else {
       return wordAlert = switch false {
@@ -67,5 +84,5 @@ extension GameView {
 }
 
 #Preview {
-  GameView(game: Game("hello", language: .english, limit: nil))
+  GameView(.example)
 }

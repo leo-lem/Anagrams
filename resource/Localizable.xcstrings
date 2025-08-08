@@ -35,6 +35,26 @@
         }
       }
     },
+    "Delete" : {
+
+    },
+    "Do you want to publish your score?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willst du dein Spiel veröffentlichen?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Do you want to publish your score?"
+          }
+        }
+      }
+    },
     "editRoot" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -48,23 +68,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit the root word"
-          }
-        }
-      }
-    },
-    "English" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Englisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "English"
           }
         }
       }
@@ -86,41 +89,6 @@
         }
       }
     },
-    "enterWord %@" : {
-      "comment" : "Placeholder for word entering TextField.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Welche Worte kann man aus %@ machen?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What word can be made from %@?"
-          }
-        }
-      }
-    },
-    "French" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Französisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "French"
-          }
-        }
-      }
-    },
     "Game Summary" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -134,23 +102,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Game Summary"
-          }
-        }
-      }
-    },
-    "German" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deutsch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "German"
           }
         }
       }
@@ -304,7 +255,24 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Enter a word below to get started."
+            "value" : "Type a word below to get started."
+          }
+        }
+      }
+    },
+    "Player: %@" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spieler: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Player: %@"
           }
         }
       }
@@ -502,6 +470,23 @@
         }
       }
     },
+    "Share" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veröffentlichen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        }
+      }
+    },
     "Sign %@ out?" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -536,23 +521,6 @@
         }
       }
     },
-    "Spanish" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spanisch"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Spanish"
-          }
-        }
-      }
-    },
     "submit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -566,6 +534,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Submit"
+          }
+        }
+      }
+    },
+    "Time Limit (%lld minutes)" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeitlimit (%lld minutes)"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Time Limit (%lld minutes)"
           }
         }
       }
@@ -604,20 +589,37 @@
         }
       }
     },
-    "timer" : {
+    "timerOff" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Timer aus"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disable countdown"
+          }
+        }
+      }
+    },
+    "timerOn" : {
       "comment" : "Label for activating timing.",
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Timer an/aus"
+            "value" : "Timer an"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toggle Timer"
+            "value" : "Enable countdown"
           }
         }
       }
@@ -652,6 +654,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Username"
+          }
+        }
+      }
+    },
+    "What word can be made?" : {
+      "comment" : "Placeholder for word entering TextField.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welche Worte kann man aus den Buchstaben machen?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "What word can be made?"
           }
         }
       }

@@ -1,6 +1,6 @@
 // Created by Leopold Lemmermann on 07.08.25.
 
-import CloudKit
+import CKClient
 import SwiftUI
 import SwiftUIExtensions
 
@@ -10,8 +10,7 @@ public struct SignInButton: View {
   public var body: some View {
     AsyncButton {
       if username == nil {
-        let status = try? await CKContainer.default().accountStatus()
-        if status == .available {
+        if await isAvailable() {
           signingIn = true
         } else {
           showSettingsPrompt = true
@@ -50,6 +49,8 @@ public struct SignInButton: View {
   @State var signingOut = false
   @State var newUsername = ""
   @State private var showSettingsPrompt = false
+
+  @Dependency(\.cloudkit.isAvailable) var isAvailable
 
   public init(_ username: Binding<String?>) {
     _username = username

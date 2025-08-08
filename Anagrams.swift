@@ -1,6 +1,6 @@
 //  Created by Leopold Lemmermann on 14.01.22.
 
-import SwiftData
+import Model
 import SwiftUI
 
 @main
@@ -9,6 +9,10 @@ struct AnagramsApp: App {
     WindowGroup {
       AnagramsView()
     }
-    .modelContainer(for: Game.self, isUndoEnabled: false)
+    .modelContainer(for: LocalGame.self, isUndoEnabled: false)
   }
+}
+
+extension AnagramsApp {
+  static let enableTimer = false
 }

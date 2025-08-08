@@ -1,4 +1,4 @@
-# Ngrams
+# Ngrms
 
 [![App Store](https://img.shields.io/badge/App%20Store-Download-blue?logo=app-store)](https://apps.apple.com/us/app/ngrams/id6742056026)
 [![Get Beta Access](https://img.shields.io/badge/TestFlight-Beta_Access-007AFF?logo=apple)](https://testflight.apple.com/join/zmgtWQYS)
