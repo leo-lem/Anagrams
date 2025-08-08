@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Ngrams is a fast-paced word game that challenges your vocabulary — and your speed." />
+  <meta name="keywords" content="Ngrams, word game, anagrams, language, iOS app, SwiftData, CloudKit, leaderboard" />
+  <meta name="author" content="Leopold Lemmermann" />
+
+  <title>Ngrams - Find the Words Within</title>
+  <link rel="icon" href="/logo.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
+
+  <meta property="og:title" content="Ngrams – Find the Words Within" />
+  <meta property="og:description"
+    content="A beautifully simple word game. Pick a root, find the hidden words, and climb the leaderboard." />
+  <meta property="og:image" content="/social.jpg" />
+  <meta property="og:url" content="https://ngrams.leolem.dev/" />
+  <meta name="twitter:card" content="summary_large_image" />
+</head>
+
+<body>
+  <header>
+    <a href="https://ngrams.leolem.dev/" class="app-icon-container">
+      <img
+        src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/6c/f4/9e/6cf49ebf-b5a6-4d57-02cf-2f2a8b4baabc/AppIcon-1x_U007epad-0-1-85-220-0.png/540x540bb.jpg"
+        alt="Ngrams App Icon" class="app-icon" />
+      <svg class="app-icon-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230.5 230.5">
+        <path fill="none" stroke="#000" stroke-linejoin="round" stroke-miterlimit="1.4" stroke-opacity=".1"
+          stroke-width="1"
+          d="M158.2 230H64.1a320 320 0 0 1-7-.1c-5 0-10-.5-15-1.3a50.8 50.8 0 0 1-14.4-4.8 48.2 48.2 0 0 1-21-21 50.9 50.9 0 0 1-4.8-14.4 100.7 100.7 0 0 1-1.3-15v-7l-.1-8.2V64.1a320 320 0 0 1 .1-7c0-5 .5-10 1.3-15a50.7 50.7 0 0 1 4.8-14.4 48.2 48.2 0 0 1 21-21 51 51 0 0 1 14.4-4.8c5-.8 10-1.2 15-1.3a320 320 0 0 1 7 0l8.2-.1h94.1a320 320 0 0 1 7 .1c5 0 10 .5 15 1.3a52 52 0 0 1 14.4 4.8 48.2 48.2 0 0 1 21 21 50.9 50.9 0 0 1 4.8 14.4c.8 5 1.2 10 1.3 15a320 320 0 0 1 .1 7v102.3l-.1 7c0 5-.5 10-1.3 15a50.7 50.7 0 0 1-4.8 14.4 48.2 48.2 0 0 1-21 21 50.8 50.8 0 0 1-14.4 4.8c-5 .8-10 1.2-15 1.3a320 320 0 0 1-7 0l-8.2.1z"
+          clip-rule="evenodd" vector-effect="non-scaling-stroke" />
+      </svg>
+    </a>
+  </header>
+
+  <main>
+    <section class="features">
+      <div class="feature-grid">
+        <div class="feature-card">
+          <img src="./1.avif" alt="Root word and input field" />
+          <h3>🔤 Rapid Wordplay</h3>
+          <p>From a single root, find as many valid subwords as you can — under pressure. Every letter counts.</p>
+        </div>
+
+        <div class="feature-card">
+          <img src="./2.avif" alt="Leaderboard and rankings" />
+          <h3>🏆 Public Leaderboard</h3>
+          <p>See how your scores stack up. Compare your best runs with others around the world — all via CloudKit.</p>
+        </div>
+
+        <div class="feature-card">
+          <img src="./3.avif" alt="Game summary and replay" />
+          <h3>🗃 Offline & Multilingual</h3>
+          <p>Play in English, German, Spanish, or French. Fully on-device with SwiftData. Nothing leaves your phone.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="download">
+      <h2>Play anywhere. Improve your word fluency.</h2>
+      <p>Minimal. Fast. Honest fun — and completely private.</p>
+      <a href="https://apps.apple.com/us/app/ngrams/id6742056026" class="button">
+        <img
+          src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+          alt="Download on the App Store" class="app-store-button hover-zoom" />
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      <a href="https://leolem.dev" target="_blank" rel="noopener">leolem.dev</a> •
+      <a href="https://leolem.dev/imprint" target="_blank" rel="noopener">Imprint</a> •
+      <a href="https://leolem.dev/privacy">Privacy</a>
+    </p>
+    <p>© 2025 Leopold Lemmermann</p>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.feature-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>

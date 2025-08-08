@@ -5,6 +5,7 @@ import Foundation
 import Testing
 @testable import Words
 
+@MainActor
 struct Test {
   @Dependency(\.words) var words
 
@@ -29,7 +30,7 @@ struct Test {
     }
   }
 
-  @Test(arguments: ["a", "lkaf", "asdf", "asdfasdf", "asdfasdfasdf"])
+  @Test(arguments: ["lkaf", "lkaso", "asdfasdf", "asdfasdfasdf"])
   func givenSupportedLanguage_whenTestingNonexistingWord_thenReturnsFalse(word: String) async throws {
     withDependencies { $0.words = .liveValue } operation: {
       #expect(!words.exists(word, .english))

@@ -8,7 +8,7 @@ extension Game {
     "hello",
     language: .english,
     limit: 120,
-    words: ["hell", "ell"],
+    words: ["hell", "ell", "lo", "he", "ll", "hel"],
     time: .random(in: 0...120),
     completedAt: .now
   )

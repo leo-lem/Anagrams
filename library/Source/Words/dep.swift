@@ -1,6 +1,7 @@
 // Created by Leopold Lemmermann on 15.02.25.
 
 @_exported import Dependencies
+import UIKit
 
 extension Words: DependencyKey {
   public static let liveValue = Words(
@@ -12,13 +13,22 @@ extension Words: DependencyKey {
 
       return word
     },
-    exists: { word, language in
+    exists: { @MainActor word, language in
       guard let words = words[language] else {
         assertionFailure("No words for \(language)")
         return false
       }
 
-      return words.contains(word)
+      if words.contains(word) { return true }
+
+      return UITextChecker()
+        .rangeOfMisspelledWord(
+          in: word,
+          range: NSRange(location: 0, length: word.utf16.count),
+          startingAt: 0,
+          wrap: false,
+          language: language.minimalIdentifier
+        ).lowerBound == NSNotFound
     }
   )
 
