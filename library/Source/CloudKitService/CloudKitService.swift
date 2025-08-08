@@ -17,11 +17,10 @@ public class CloudKitService: ObservableObject {
 
     do {
       _ = try await database.save(record)
-      #if DEBUG
-      print("✅ Entry saved")
-      #endif
     } catch {
-      assertionFailure("❌ Error saving record: \(error.localizedDescription)")
+#if DEBUG
+      print("❌ Error fetching record: \(error.localizedDescription)")
+#endif
     }
   }
 
@@ -36,7 +35,9 @@ public class CloudKitService: ObservableObject {
         entries.append(LeaderboardEntry(record: try result.get()))
       }
     } catch {
-      assertionFailure("❌ Error fetching record: \(error.localizedDescription)")
+#if DEBUG
+      print("❌ Error fetching record: \(error.localizedDescription)")
+#endif
     }
 
     return entries
