@@ -15,7 +15,7 @@ public struct RootSelecter: View {
         startValid(saveRoot: false)
       }
       .labelStyle(.iconOnly)
-      .buttonStyle(.bordered)
+      .buttonStyle(.borderedProminent)
       .disabled(focussingRoot || !previousAvailable)
 
       Spacer()
@@ -47,7 +47,7 @@ public struct RootSelecter: View {
         startValid()
       }
       .labelStyle(.iconOnly)
-      .buttonStyle(.bordered)
+      .buttonStyle(.borderedProminent)
       .disabled(focussingRoot)
     }
     .notification(.rootAlertTitle, item: $rootAlert)

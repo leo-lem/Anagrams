@@ -14,7 +14,7 @@ public struct AnagramsView: View {
         GameView(game: game)
           .disabled(outOfTime)
       }
-      .background { Background() }
+      .background(Background())
       .toolbar {
         ToolbarItem(placement: .topBarLeading) {
           if game.limit != nil, let countdown {

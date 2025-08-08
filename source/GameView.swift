@@ -37,7 +37,15 @@ extension GameView {
   var wordIsLongEnough: Bool { newWord.count > 3 }
   var wordIsNew: Bool { !game.words.contains(newWord) }
   var wordExists: Bool { exists(newWord, game.language.locale) }
-  var wordIsInRoot: Bool { newWord.allSatisfy(game.root.contains) }
+  var wordIsInRoot: Bool {
+    var rootSet: Set<Character> = Set(game.root)
+    for character in newWord {
+      if rootSet.remove(character) == nil {
+        return false
+      }
+    }
+    return true
+  }
 }
 
 extension GameView {

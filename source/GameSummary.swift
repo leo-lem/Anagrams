@@ -6,64 +6,47 @@ public struct GameSummary: View {
   let game: Game
 
   public var body: some View {
-    ZStack {
-      RoundedRectangle(cornerRadius: 24, style: .continuous)
-        .fill(Color.background)
-
-      VStack(alignment: .leading, spacing: 20) {
-        Text("Game Summary")
-          .font(.title.bold())
-          .foregroundStyle(.text)
-          .frame(maxWidth: .infinity, alignment: .leading)
-
-        VStack(alignment: .leading, spacing: 10) {
-          Label("Root Word: \(game.root)", systemImage: "textformat")
-          Label("Language: \(game.language.localized)", systemImage: "globe")
-          Label("Words Found: \(game.count)", systemImage: "list.bullet.rectangle")
-          Label("Score: \(game.score)", systemImage: "star.fill")
-          if let limit = game.limit {
-            Label("Time Limit: \(Int(limit)) sec", systemImage: "timer")
-          }
-          Label("Time Used: \(Int(game.time)) sec", systemImage: "clock")
+    VStack {
+      VStack(spacing: 20) {
+        Label(.rootWord(game.root), systemImage: "textformat")
+        Label("Language: \(game.language.localized)", systemImage: "globe")
+        Label(.wordsFound(game.count), systemImage: "list.bullet.rectangle")
+        Label(.scorePoints(game.score), systemImage: "star.fill")
+        if let limit = game.limit {
+          Label(.timeLimitSec(Int(limit)), systemImage: "timer")
         }
-        .font(.subheadline.weight(.medium))
-        .foregroundStyle(.text)
-        .labelStyle(.titleAndIcon)
-        .padding()
-        .background(.secondaryBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        Label(.timeUsedSec(Int(game.time)), systemImage: "clock")
+      }
+      .padding()
+      .font(.headline.bold())
+      .background(Color.background, in: RoundedRectangle(cornerRadius: 10))
 
-        Divider()
-        VStack(alignment: .leading, spacing: 12) {
-          Text("Words")
-            .font(.headline)
-            .foregroundStyle(.text)
-
+      Section(.words) {
+        LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
           if game.words.isEmpty {
-            Text("None found.")
+            Text(.noneFound)
               .foregroundStyle(.secondary)
           } else {
-            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80), spacing: 12)], spacing: 12) {
-              ForEach(game.words, id: \.self) { word in
-                Text(word).bold()
-                  .foregroundStyle(.text)
-                  .padding()
-                  .background(Color.secondaryBackground)
-                  .clipShape(Capsule())
-              }
+            ForEach(game.words, id: \.self) { word in
+              Text(word)
+                .padding()
+                .background(Color.background, in: .capsule)
             }
           }
         }
-        .padding()
-
-        Spacer()
       }
       .padding()
+
+      Spacer()
     }
+    .foregroundStyle(.text)
     .background(Background())
+    .navigationTitle(.gameSummary)
   }
 }
 
 #Preview {
-  GameSummary(game: .example)
+  NavigationStack {
+    GameSummary(game: .example)
+  }
 }
