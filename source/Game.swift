@@ -46,3 +46,14 @@ enum Language: Codable, Equatable, CaseIterable {
     }
   }
 }
+
+extension Language {
+  public var localized: LocalizedStringResource {
+    switch self {
+    case .english: LocalizedStringResource.english
+    case .german: LocalizedStringResource.german
+    case .spanish: LocalizedStringResource.spanish
+    case .french: LocalizedStringResource.french
+    }
+  }
+}

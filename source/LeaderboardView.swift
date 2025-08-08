@@ -11,11 +11,17 @@ public struct LeaderboardView: View {
       if showingPublicList {
         List(Array(publicEntries.enumerated()), id: \.element.id) { index, entry in
           self.entry(root: entry.root, score: entry.score, date: entry.date, name: entry.name, index: index)
+            .listRowSeparator(.hidden)
+            .listRowBackground(RoundedRectangle(cornerRadius: 12).fill(Color.secondaryBackground).padding())
         }
       } else {
         List(Array(games.sorted(by: \.score, using: >).enumerated()), id: \.element.id) { index, game in
           if let completedAt = game.completedAt {
-            entry(root: game.root, score: game.score, date: completedAt, name: nil, index: index, share: true)
+            NavigationLink { GameSummary(game: game) } label: {
+              entry(root: game.root, score: game.score, date: completedAt, name: nil, index: index, share: true)
+            }
+            .listRowSeparator(.hidden)
+            .listRowBackground(RoundedRectangle(cornerRadius: 12).fill(Color.secondaryBackground).padding())
           }
         }
       }
@@ -85,8 +91,6 @@ extension LeaderboardView {
       }
     }
     .padding()
-    .listRowSeparator(.hidden)
-    .listRowBackground(RoundedRectangle(cornerRadius: 12).fill(Color.secondaryBackground).padding())
   }
 
   func icon(_ index: Int) -> String {
