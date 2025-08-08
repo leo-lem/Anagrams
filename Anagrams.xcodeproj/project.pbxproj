@@ -10,8 +10,9 @@
 		6E4601772E438B4F0083928F /* Extensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4601762E438B4F0083928F /* Extensions */; };
 		6E4601792E438B4F0083928F /* SwiftUIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 6E4601782E438B4F0083928F /* SwiftUIExtensions */; };
 		6E46018E2E438E7F0083928F /* Words in Frameworks */ = {isa = PBXBuildFile; productRef = 6E46018D2E438E7F0083928F /* Words */; };
-		6EBAC83A2E4523B50041966E /* CloudKitService in Frameworks */ = {isa = PBXBuildFile; productRef = 6EBAC8392E4523B50041966E /* CloudKitService */; };
 		6ED7DAC52791BAAD00914046 /* Anagrams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED7DAC42791BAAD00914046 /* Anagrams.swift */; };
+		6EEE1B1E2E46452E000D3296 /* Model in Frameworks */ = {isa = PBXBuildFile; productRef = 6EEE1B1D2E46452E000D3296 /* Model */; };
+		6EEE1B472E4671AE000D3296 /* CKClient in Frameworks */ = {isa = PBXBuildFile; productRef = 6EEE1B462E4671AE000D3296 /* CKClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,8 @@
 				AppIcon.icon,
 				Assets.xcassets,
 				Localizable.xcstrings,
-				"previews/Game+Example.swift",
+				"previews/LocalGame+Example.swift",
+				"previews/SharedGame+example.swift",
 			);
 			target = 6ED7DAC02791BAAD00914046 /* Anagrams */;
 		};
@@ -39,11 +41,10 @@
 				AnagramsView.swift,
 				comps/Background.swift,
 				comps/notification.swift,
-				comps/RootSelecter.swift,
+				comps/RootPicker.swift,
 				comps/SignInButton.swift,
 				comps/SubmittableTextField.swift,
 				comps/WordList.swift,
-				Game.swift,
 				GameSummary.swift,
 				GameView.swift,
 				LeaderboardView.swift,
@@ -81,10 +82,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6EEE1B1E2E46452E000D3296 /* Model in Frameworks */,
 				6E46018E2E438E7F0083928F /* Words in Frameworks */,
 				6E4601792E438B4F0083928F /* SwiftUIExtensions in Frameworks */,
 				6E4601772E438B4F0083928F /* Extensions in Frameworks */,
-				6EBAC83A2E4523B50041966E /* CloudKitService in Frameworks */,
+				6EEE1B472E4671AE000D3296 /* CKClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +104,15 @@
 				6EA306392D61194B007041E5 /* test */,
 				6EA6A1FD2D5F776E00F152D0 /* resource */,
 				6E8895EF2D662BBC0097118D /* Anagrams.app */,
+				6EEE1B1C2E46452E000D3296 /* Frameworks */,
 			);
+			sourceTree = "<group>";
+		};
+		6EEE1B1C2E46452E000D3296 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +136,8 @@
 				6E4601762E438B4F0083928F /* Extensions */,
 				6E4601782E438B4F0083928F /* SwiftUIExtensions */,
 				6E46018D2E438E7F0083928F /* Words */,
-				6EBAC8392E4523B50041966E /* CloudKitService */,
+				6EEE1B1D2E46452E000D3296 /* Model */,
+				6EEE1B462E4671AE000D3296 /* CKClient */,
 			);
 			productName = Anagrams;
 			productReference = 6E8895EF2D662BBC0097118D /* Anagrams.app */;
@@ -457,9 +468,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Words;
 		};
-		6EBAC8392E4523B50041966E /* CloudKitService */ = {
+		6EEE1B1D2E46452E000D3296 /* Model */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = CloudKitService;
+			productName = Model;
+		};
+		6EEE1B462E4671AE000D3296 /* CKClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CKClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

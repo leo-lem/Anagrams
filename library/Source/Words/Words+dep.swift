@@ -27,7 +27,7 @@ extension Words: DependencyKey {
           range: NSRange(location: 0, length: word.utf16.count),
           startingAt: 0,
           wrap: false,
-          language: language.minimalIdentifier
+          language: language.rawValue
         ).lowerBound == NSNotFound
     }
   )

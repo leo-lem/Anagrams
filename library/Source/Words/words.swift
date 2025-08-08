@@ -2,17 +2,17 @@
 
 import Dependencies
 import Foundation
+import Model
 
 public struct Words: Sendable {
-  public var new: @Sendable (Locale.Language) -> String
-  public var exists: @MainActor @Sendable (String, Locale.Language) -> Bool
+  public var new: @Sendable (Language) -> String
+  public var exists: @MainActor @Sendable (String, Language) -> Bool
 }
 
 extension Words {
-  static let words: [Locale.Language: [String]] = {
-    Dictionary(Locale.Language.supported.map { language in
-      if let code = language.languageCode?.identifier,
-         let url = Bundle.module.url(forResource: code, withExtension: "json"),
+  static let words: [Language: [String]] = {
+    Dictionary(Language.allCases.map { language in
+      if let url = Bundle.module.url(forResource: language.rawValue, withExtension: "json"),
          let data = try? Data(contentsOf: url),
          let json = try? JSONSerialization.jsonObject(with: data, options: []),
          let words = json as? [String] {

@@ -6,16 +6,17 @@ let deps = Target.Dependency.product(name: "Dependencies", package: "swift-depen
 let lint = Target.PluginUsage.plugin(name: "SwiftLintBuildToolPlugin", package: "SwiftLintPlugins")
 
 let libs: [Target] = [
-  .target(name: "Words", dependencies: [deps], resources: [
+  .target(name: "Model", plugins: [lint]),
+  .target(name: "Words", dependencies: ["Model", deps], resources: [
     .process("de.json"), .process("en.json"), .process("fr.json"), .process("es.json")
   ], plugins: [lint]),
-  .target(name: "CloudKitService", plugins: [lint])
+  .target(name: "CKClient", dependencies: ["Model", deps], plugins: [lint])
 ]
 
 let package = Package(
   name: "Library",
   defaultLocalization: "en",
-  platforms: [.iOS(.v16), .macOS(.v15)],
+  platforms: [.iOS(.v17), .macOS(.v15)],
   products: libs.map { .library(name: $0.name, targets: [$0.name]) },
   dependencies: [
     .package(url: "https://github.com/pointfreeco/swift-dependencies.git", from: "1.0.0"),

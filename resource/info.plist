@@ -5,9 +5,11 @@
 	<key>DictionaryUrl</key>
 	<string>https://wiktionary.org/wiki</string>
 	<key>MinGuessLength</key>
-	<integer>2</integer>
+	<integer>3</integer>
 	<key>MinRootLength</key>
 	<integer>4</integer>
+	<key>DefaultTimeLimitMins</key>
+	<integer>1</integer>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>

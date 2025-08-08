@@ -1,41 +1,57 @@
 // Created by Leopold Lemmermann on 08.08.25.
 
+import Model
+import CKClient
 import SwiftUI
 
 public struct GameSummary: View {
-  let game: Game
+  public let game: any Game
 
   public var body: some View {
     VStack {
-      VStack(spacing: 20) {
-        Label(.rootWord(game.root), systemImage: "textformat")
-        Label("Language: \(game.language.localized)", systemImage: "globe")
-        Label(.wordsFound(game.count), systemImage: "list.bullet.rectangle")
-        Label(.scorePoints(game.score), systemImage: "star.fill")
-        if let limit = game.limit {
-          Label(.timeLimitSec(Int(limit)), systemImage: "timer")
+      VStack(alignment: .leading, spacing: 20) {
+        if let sharedGame = game as? SharedGame {
+          Label(.player(sharedGame.name), systemImage: "person.circle")
         }
-        Label(.timeUsedSec(Int(game.time)), systemImage: "clock")
-      }
-      .padding()
-      .font(.headline.bold())
-      .background(Color.background, in: RoundedRectangle(cornerRadius: 10))
 
-      Section(.words) {
-        LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
-          if game.words.isEmpty {
-            Text(.noneFound)
-              .foregroundStyle(.secondary)
-          } else {
-            ForEach(game.words, id: \.self) { word in
-              Text(word)
-                .padding()
-                .background(Color.background, in: .capsule)
+        Label(.rootWord(game.root), systemImage: "textformat")
+        Label(.language(game.language.localized), systemImage: "globe")
+        Label(.scorePoints(game.score), systemImage: "star.fill")
+
+        if let localGame = game as? LocalGame {
+          Label(.wordsFound(localGame.count), systemImage: "list.bullet.rectangle")
+
+          if AnagramsApp.enableTimer {
+            if let limit = localGame.limit {
+              Label(.timeLimitSec(limit), systemImage: "timer")
             }
+            Label(.timeUsedSec(localGame.time), systemImage: "clock")
           }
         }
       }
+      .font(.headline.bold())
       .padding()
+      .background(Color.background, in: RoundedRectangle(cornerRadius: 10))
+      .frame(maxWidth: .infinity)
+
+      if let localGame = game as? LocalGame {
+        Section(.words) {
+          if localGame.words.isEmpty {
+            Text(.noneFound)
+              .foregroundStyle(.secondary)
+          } else {
+
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]) {
+              ForEach(localGame.words, id: \.self) { word in
+                Text(word)
+                  .padding()
+                  .background(Color.background, in: .capsule)
+              }
+            }
+          }
+        }
+        .padding()
+      }
 
       Spacer()
     }
@@ -43,10 +59,24 @@ public struct GameSummary: View {
     .background(Background())
     .navigationTitle(.gameSummary)
   }
+
+  public init(_ game: any Game) { self.game = game }
 }
 
 #Preview {
   NavigationStack {
-    GameSummary(game: .example)
+    GameSummary(LocalGame.example)
+  }
+}
+
+#Preview("No words") {
+  NavigationStack {
+    GameSummary(LocalGame("hello", language: .english, limit: nil))
+  }
+}
+
+#Preview("Shared") {
+  NavigationStack {
+    GameSummary(SharedGame.example)
   }
 }

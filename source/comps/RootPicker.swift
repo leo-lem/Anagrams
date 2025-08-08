@@ -1,26 +1,17 @@
 // Created by Leopold Lemmermann on 06.08.25.
 
+import Model
 import SwiftUI
 import Words
 
-public struct RootSelecter: View {
-  let root: String
-  let language: Language
-  let start: (_ root: String) -> Void
+public struct RootPicker: View {
+  @Binding public var root: String
+  public let language: Language
 
   public var body: some View {
     HStack {
-      Button(.previous, systemImage: "chevron.left") {
-        newRoot = roots.removeLast()
-        startValid(saveRoot: false)
-      }
-      .labelStyle(.iconOnly)
-      .buttonStyle(.borderedProminent)
-      .disabled(focussingRoot || !previousAvailable)
-
-      Spacer()
-
       if !editingRoot {
+        Spacer()
         Text(root)
           .lineLimit(1)
           .font(.largeTitle)
@@ -32,28 +23,16 @@ public struct RootSelecter: View {
           .labelStyle(.iconOnly)
           .disabled(editingRoot)
           .padding(.leading, -15)
+        Spacer()
       } else {
-        SubmittableTextField(raw: root, text: $newRoot, submittable: isValidRoot) {
-          startValid()
-        }
+        SubmittableTextField(raw: root, text: $newRoot, submittable: isValidRoot, submit: save)
           .focused($focussingRoot)
           .font(.largeTitle)
       }
-
-      Spacer()
-
-      Button(.next, systemImage: "chevron.right") {
-        newRoot = new(language.locale)
-        startValid()
-      }
-      .labelStyle(.iconOnly)
-      .buttonStyle(.borderedProminent)
-      .disabled(focussingRoot)
     }
+    .frame(height: 100)
     .notification(.rootAlertTitle, item: $rootAlert)
     .onChange(of: root) { newRoot = "" }
-    .onChange(of: language) { roots = [] }
-    .padding(.horizontal)
   }
 
   @State var newRoot = ""
@@ -61,32 +40,26 @@ public struct RootSelecter: View {
   @State var rootAlert: LocalizedStringResource?
   @FocusState var focussingRoot: Bool
 
-  @State var roots = [String]()
-
   @Dependency(\.words.new) var new
   @Dependency(\.words.exists) var exists
 
   init(
-    root: String,
-    language: Language,
-    start: @escaping (_: String) -> Void
+    _ root: Binding<String>,
+    language: Language
   ) {
-    self.root = root
+    _root = root
     self.language = language
-    self.start = start
   }
 }
 
-extension RootSelecter {
-  var isValidRoot: Bool { rootIsLongEnough && rootExists }
+extension RootPicker {
   var rootIsLongEnough: Bool {
     newRoot.count >= Bundle.main.object(forInfoDictionaryKey: "MinRootLength") as? Int ?? 3
   }
-  var rootExists: Bool { exists(newRoot, language.locale) }
+  var rootExists: Bool { exists(newRoot, language) }
+  var isValidRoot: Bool { rootIsLongEnough && rootExists }
 
-  var previousAvailable: Bool { !roots.isEmpty }
-
-  func startValid(saveRoot: Bool = true) {
+  func save() {
     if newRoot.isEmpty { return editingRoot = false }
 
     guard isValidRoot else {
@@ -97,14 +70,13 @@ extension RootSelecter {
       }
     }
 
-    if saveRoot { roots += [root] }
     editingRoot = false
-    start(newRoot)
+    root = newRoot
   }
 }
 
 #Preview {
   @Previewable @State var root = "universal"
 
-  RootSelecter(root: root, language: .english, start: { root = $0 })
+  RootPicker($root, language: .english)
 }
