@@ -79,7 +79,9 @@ public struct RootSelecter: View {
 
 extension RootSelecter {
   var isValidRoot: Bool { rootIsLongEnough && rootExists }
-  var rootIsLongEnough: Bool { newRoot.count > 3 }
+  var rootIsLongEnough: Bool {
+    newRoot.count >= Bundle.main.object(forInfoDictionaryKey: "MinRootLength") as? Int ?? 3
+  }
   var rootExists: Bool { exists(newRoot, language.locale) }
 
   var previousAvailable: Bool { !roots.isEmpty }

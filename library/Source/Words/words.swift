@@ -5,7 +5,7 @@ import Foundation
 
 public struct Words: Sendable {
   public var new: @Sendable (Locale.Language) -> String
-  public var exists: @Sendable (String, Locale.Language) -> Bool
+  public var exists: @MainActor @Sendable (String, Locale.Language) -> Bool
 }
 
 extension Words {

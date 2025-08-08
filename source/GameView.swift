@@ -34,15 +34,15 @@ extension GameView {
     wordIsNotRoot && wordIsLongEnough && wordIsNew && wordExists && wordIsInRoot
   }
   var wordIsNotRoot: Bool { newWord != game.root }
-  var wordIsLongEnough: Bool { newWord.count > 3 }
+  var wordIsLongEnough: Bool {
+    newWord.count >= Bundle.main.object(forInfoDictionaryKey: "MinGuessLength") as? Int ?? 1
+  }
   var wordIsNew: Bool { !game.words.contains(newWord) }
   var wordExists: Bool { exists(newWord, game.language.locale) }
   var wordIsInRoot: Bool {
     var rootSet: Set<Character> = Set(game.root)
-    for character in newWord {
-      if rootSet.remove(character) == nil {
-        return false
-      }
+    for character in newWord where rootSet.remove(character) == nil {
+      return false
     }
     return true
   }

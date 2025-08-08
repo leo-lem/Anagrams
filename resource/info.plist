@@ -4,6 +4,10 @@
 <dict>
 	<key>DictionaryUrl</key>
 	<string>https://wiktionary.org/wiki</string>
+	<key>MinGuessLength</key>
+	<integer>2</integer>
+	<key>MinRootLength</key>
+	<integer>4</integer>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>remote-notification</string>
