@@ -6,11 +6,21 @@
     {
       "layers" : [
         {
+          "blend-mode" : "darken",
           "fill" : {
-            "solid" : "srgb:0.67843,0.75686,0.47059,1.00000"
+            "solid" : "srgb:0.53333,0.58824,0.33333,1.00000"
           },
+          "glass" : true,
           "image-name" : "Letter_A_icon.svg.png",
-          "name" : "A"
+          "name" : "A",
+          "opacity" : 1,
+          "position" : {
+            "scale" : 0.9,
+            "translation-in-points" : [
+              0,
+              0
+            ]
+          }
         }
       ],
       "shadow" : {

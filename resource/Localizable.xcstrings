@@ -12,6 +12,17 @@
         }
       }
     },
+    "Cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
     "editRoot" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -19,6 +30,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Edit the root word"
+          }
+        }
+      }
+    },
+    "Enter your username" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter your username"
           }
         }
       }
@@ -31,6 +53,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "What word can be made from %@?"
+          }
+        }
+      }
+    },
+    "iCloud Unavailable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Unavailable"
           }
         }
       }
@@ -80,6 +113,17 @@
         }
       }
     },
+    "OK" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
     "placeholder" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -87,6 +131,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enter a word below to get started."
+          }
+        }
+      }
+    },
+    "Please sign in to your iCloud account to enable leaderboard features." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please sign in to your iCloud account to enable leaderboard features."
           }
         }
       }
@@ -99,6 +154,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Previous Word"
+          }
+        }
+      }
+    },
+    "Publish" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Publish"
           }
         }
       }
@@ -140,13 +206,13 @@
       }
     },
     "save" : {
-      "comment" : "Label for finishing the game.",
+      "comment" : "Label for saving your game.",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Finish"
+            "value" : "Save your Score"
           }
         }
       }
@@ -164,7 +230,37 @@
       }
     },
     "Settings" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "Sign %@ out?" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign %@ out?"
+          }
+        }
+      }
+    },
+    "Sign Out" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign Out"
+          }
+        }
+      }
     },
     "submit" : {
       "extractionState" : "manual",
@@ -184,7 +280,29 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Timing"
+            "value" : "Toggle Timer"
+          }
+        }
+      }
+    },
+    "Toggle List" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toggle List"
+          }
+        }
+      }
+    },
+    "Username" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Username"
           }
         }
       }

@@ -37,7 +37,7 @@ public struct SubmittableTextField: View {
   }
 
   public init(
-    _ label: String, text: Binding<String>, submittable: Bool, submit: @escaping () -> Void
+    raw label: String, text: Binding<String>, submittable: Bool, submit: @escaping () -> Void
   ) {
     self.init(LocalizedStringResource(stringLiteral: label), text: text, submittable: submittable, submit: submit)
   }
