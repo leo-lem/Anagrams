@@ -60,13 +60,13 @@ extension GameView {
   var wordIsNew: Bool { !game.words.contains(newWord) }
   var wordExists: Bool { exists(newWord, game.language) }
   var wordIsInRoot: Bool {
-    var rootChars: [Character] = game.root.map { $0 }
+    var charCounts = [Character: Int]()
+    for character in game.root {
+      charCounts[character, default: 0] += 1
+    }
     for character in newWord {
-      if let index = rootChars.firstIndex(of: character) {
-        rootChars.remove(at: index)
-      } else {
-        return false
-      }
+      guard let count = charCounts[character], count > 0 else { return false }
+      charCounts[character]! -= 1
     }
     return true
   }
