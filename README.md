@@ -29,3 +29,7 @@
 - CloudKit-based public leaderboard integration
 - Multilingual game logic (EN, DE, ES, FR)
 - Local leaderboard history
+
+---
+
+👤 Built by [@Leo‑Lem](https://github.com/leo-lem) — passionate about clean code, automation, and mobile UX.

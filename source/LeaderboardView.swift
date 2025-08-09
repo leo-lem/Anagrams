@@ -7,7 +7,7 @@ import SwiftUIExtensions
 
 public struct LeaderboardView: View {
   public var body: some View {
-    List(Array(games.sorted(by: \.score, using: >).enumerated()), id: \.offset) { index, game in
+    List(Array(games.enumerated()), id: \.offset) { index, game in
       item(index, game)
         .swipeActions {
           if let local = game as? LocalGame {
@@ -15,30 +15,40 @@ public struct LeaderboardView: View {
           } else if let shared = game as? SharedGame, shared.name == username {
             AsyncButton {
               await cloudkit.delete(shared)
+              sharedGames.removeAll { $0.id == shared.id }
             } label: {
               Label("Delete", systemImage: "trash")
             }
           }
         }
-        .alert(.doYouWantToPublishYourScore, isPresented: $sharing) {
-          AsyncButton {
-            if let username {
-              await cloudkit.share(SharedGame(game, name: username))
-            }
-          } label: {
-            Label(.share, systemImage: "square.and.arrow.up")
-          }
-
-          Button(.cancel) {}
-        }
     }
     .navigationTitle(.leaderboard)
-    .task { sharedGames = await cloudkit.fetchTop(10) }
     .toolbar {
       ToolbarItem { SignInButton($username) }
 
       ToolbarItem(placement: .primaryAction) {
-        Toggle(.toggleList, systemImage: showingShared ? "lock.fill" : "globe", isOn: $showingShared)
+        Toggle(.toggleList, systemImage: "globe", isOn: $showingShared)
+          .task { sharedGames = await cloudkit.fetchTop(10) }
+          .onChange(of: showingShared) {
+            Task { sharedGames = await cloudkit.fetchTop(10) }
+          }
+      }
+    }
+    .alert(
+      .doYouWantToPublishYourScore,
+      isPresented: Binding { sharingGame != nil } set: { _ in sharingGame = nil }
+    ) {
+      Button(.cancel) {}
+
+      AsyncButton {
+        if let sharingGame, let username {
+          let sharedGame = SharedGame(sharingGame, name: username)
+          await cloudkit.share(sharedGame)
+          sharedGames.append(sharedGame)
+          showingShared = true
+        }
+      } label: {
+        Label(.share, systemImage: "square.and.arrow.up")
       }
     }
   }
@@ -47,7 +57,7 @@ public struct LeaderboardView: View {
   @State var sharedGames = [SharedGame]()
 
   @State var showingShared = false
-  @State var sharing = false
+  @State var sharingGame: LocalGame?
   @State var sharingIsAvailable = false
 
   @AppStorage("username") var username: String?
@@ -57,7 +67,10 @@ public struct LeaderboardView: View {
 }
 
 extension LeaderboardView {
-  var games: [any Game] { showingShared ? sharedGames : localGames }
+  var games: [any Game] {
+    (localGames + (showingShared ? sharedGames : []))
+      .sorted(by: \.score, using: >)
+  }
 
   func icon(_ index: Int) -> String {
     switch index {
@@ -76,6 +89,7 @@ extension LeaderboardView {
         VStack(spacing: 8) {
           HStack {
             Text(game.root)
+            if game is SharedGame { Image(systemName: "cloud.fill") }
             Spacer()
             Text(.score(game.score))
           }
@@ -90,9 +104,9 @@ extension LeaderboardView {
           .foregroundStyle(.secondary)
         }
 
-        if !showingShared && username != nil {
+        if let localGame = game as? LocalGame, username != nil {
           Button(.publish, systemImage: "square.and.arrow.up") {
-            sharing = true
+            sharingGame = localGame
           }
           .buttonStyle(.borderedProminent)
           .labelStyle(.iconOnly)
