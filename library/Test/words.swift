@@ -2,6 +2,7 @@
 
 import Dependencies
 import Foundation
+import Model
 import Testing
 @testable import Words
 
@@ -9,15 +10,15 @@ import Testing
 struct Test {
   @Dependency(\.words) var words
 
-  @Test(arguments: Locale.Language.supported)
-  func givenSupportedLanguages_whenGettingNewWord_thenIsReturned(language: Locale.Language) async throws {
+  @Test(arguments: Language.allCases)
+  func givenSupportedLanguages_whenGettingNewWord_thenIsReturned(language: Language) async throws {
     withDependencies { $0.words = .liveValue } operation: {
       #expect(!words.new(language).isEmpty)
     }
   }
 
-  @Test(arguments: Locale.Language.supported)
-  func givenSupportedLanguages_whenGettingNewWord_thenExists(language: Locale.Language) async throws {
+  @Test(arguments: Language.allCases)
+  func givenSupportedLanguages_whenGettingNewWord_thenExists(language: Language) async throws {
     withDependencies { $0.words = .liveValue } operation: {
       #expect(words.exists(words.new(language), language))
     }

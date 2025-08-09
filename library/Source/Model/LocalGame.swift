@@ -44,4 +44,12 @@ public extension LocalGame {
     context.insert(self)
     try? context.save()
   }
+
+  static func == (lhs: LocalGame, rhs: LocalGame) -> Bool {
+    lhs.root == rhs.root
+    && lhs.language == rhs.language
+    && lhs.limit == rhs.limit
+    && lhs.words == rhs.words
+    && lhs.time == rhs.time
+  }
 }

@@ -31,9 +31,10 @@ public struct GameView: View {
         }
       }
     }
-    .onChange(of: game) {
-      if !$1.words.isEmpty { $1.save(to: context) }
+    .onChange(of: game.words) {
+      if !$1.isEmpty { game.save(to: context) }
     }
+
   }
 
   @State var newWord = ""
@@ -59,9 +60,13 @@ extension GameView {
   var wordIsNew: Bool { !game.words.contains(newWord) }
   var wordExists: Bool { exists(newWord, game.language) }
   var wordIsInRoot: Bool {
-    var rootSet: Set<Character> = Set(game.root)
-    for character in newWord where rootSet.remove(character) == nil {
-      return false
+    var rootChars: [Character] = game.root.map { $0 }
+    for character in newWord {
+      if let index = rootChars.firstIndex(of: character) {
+        rootChars.remove(at: index)
+      } else {
+        return false
+      }
     }
     return true
   }
