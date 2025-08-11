@@ -22,12 +22,12 @@ public struct LeaderboardView: View {
           }
         }
     }
-    .navigationTitle(.leaderboard)
+    .navigationTitle("leaderboard")
     .toolbar {
       ToolbarItem { SignInButton($username) }
 
       ToolbarItem(placement: .primaryAction) {
-        Toggle(.toggleList, systemImage: "globe", isOn: $showingShared)
+        Toggle("toggleList", systemImage: "globe", isOn: $showingShared)
           .task { sharedGames = await cloudkit.fetchTop(10) }
           .onChange(of: showingShared) {
             Task { sharedGames = await cloudkit.fetchTop(10) }
@@ -35,10 +35,10 @@ public struct LeaderboardView: View {
       }
     }
     .alert(
-      .doYouWantToPublishYourScore,
+      "doYouWantToPublishYourScore",
       isPresented: Binding { sharingGame != nil } set: { _ in sharingGame = nil }
     ) {
-      Button(.cancel) {}
+      Button("cancel") {}
 
       AsyncButton {
         if let sharingGame, let username {
@@ -48,7 +48,7 @@ public struct LeaderboardView: View {
           showingShared = true
         }
       } label: {
-        Label(.share, systemImage: "square.and.arrow.up")
+        Label("share", systemImage: "square.and.arrow.up")
       }
     }
   }
@@ -91,7 +91,7 @@ extension LeaderboardView {
             Text(game.root)
             if game is SharedGame { Image(systemName: "cloud.fill") }
             Spacer()
-            Text(.score(game.score))
+            Text("score \(game.score)")
           }
           .bold()
 
@@ -105,7 +105,7 @@ extension LeaderboardView {
         }
 
         if let localGame = game as? LocalGame, username != nil {
-          Button(.publish, systemImage: "square.and.arrow.up") {
+          Button("publish", systemImage: "square.and.arrow.up") {
             sharingGame = localGame
           }
           .buttonStyle(.borderedProminent)

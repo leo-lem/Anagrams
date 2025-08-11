@@ -23,7 +23,7 @@ public struct WordList: View {
     }
 
     if words.isEmpty {
-      Text(.placeholder)
+      Text("placeholder")
         .foregroundStyle(.secondary)
     }
   }

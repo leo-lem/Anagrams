@@ -5,21 +5,44 @@
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld Worte"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Ein Wort"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Worte"
+                }
+              }
+            }
           }
         },
         "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld words"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld word"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld words"
+                }
+              }
+            }
           }
         }
       }
     },
-    "Cancel" : {
-      "extractionState" : "manual",
+    "cancel" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -36,10 +59,22 @@
       }
     },
     "Delete" : {
-
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
+          }
+        }
+      }
     },
-    "Do you want to publish your score?" : {
-      "extractionState" : "manual",
+    "doYouWantToPublishYourScore" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -72,13 +107,12 @@
         }
       }
     },
-    "Enter your username" : {
-      "extractionState" : "manual",
+    "enterYourUsername" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gib deinen Benutzernamen ein"
+            "value" : "Gib deinen Namen ein"
           }
         },
         "en" : {
@@ -89,8 +123,7 @@
         }
       }
     },
-    "Game Summary" : {
-      "extractionState" : "manual",
+    "gameSummary" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -106,13 +139,12 @@
         }
       }
     },
-    "iCloud Unavailable" : {
-      "extractionState" : "manual",
+    "iCloudUnavailable" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "iCloud nicht verfügbar"
+            "value" : "iCloud ist nicht verfügbar"
           }
         },
         "en" : {
@@ -141,8 +173,7 @@
         }
       }
     },
-    "Language: %@" : {
-      "extractionState" : "manual",
+    "language %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -158,13 +189,12 @@
         }
       }
     },
-    "Leaderboard" : {
-      "extractionState" : "manual",
+    "leaderboard" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bestenliste"
+            "value" : "Rangliste"
           }
         },
         "en" : {
@@ -209,13 +239,12 @@
         }
       }
     },
-    "None found." : {
-      "extractionState" : "manual",
+    "noneFound" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine gefunden :("
+            "value" : "Keine gefunden."
           }
         },
         "en" : {
@@ -226,8 +255,7 @@
         }
       }
     },
-    "OK" : {
-      "extractionState" : "manual",
+    "ok" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -260,8 +288,7 @@
         }
       }
     },
-    "Player: %@" : {
-      "extractionState" : "manual",
+    "player %@" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -277,13 +304,12 @@
         }
       }
     },
-    "Please sign in to your iCloud account to enable leaderboard features." : {
-      "extractionState" : "manual",
+    "pleaseSignInToYourICloudAccountToEnableLeaderboardFeatures" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bitte melde dich in iCloud an, wenn du die öffentliche Bestenliste benutzen willst."
+            "value" : "Bitte melde dich bei iCloud an, die Rangliste zu aktivieren."
           }
         },
         "en" : {
@@ -312,36 +338,18 @@
         }
       }
     },
-    "Publish" : {
-      "extractionState" : "manual",
+    "publish" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Freigeben"
+            "value" : "Veröffentlichen"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Publish"
-          }
-        }
-      }
-    },
-    "Root Word: %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Startwort: %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Root Word: %@"
           }
         }
       }
@@ -400,6 +408,22 @@
         }
       }
     },
+    "rootWord %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Startwort: %@"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Root Word: %@"
+          }
+        }
+      }
+    },
     "save" : {
       "comment" : "Label for saving your game.",
       "extractionState" : "manual",
@@ -423,38 +447,84 @@
       "extractionState" : "manual",
       "localizations" : {
         "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld Punkte"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Punkt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Punkte"
+                }
+              }
+            }
           }
         },
         "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld points"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld point"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld points"
+                }
+              }
+            }
           }
         }
       }
     },
-    "Score: %lld points" : {
-      "extractionState" : "manual",
+    "scorePoints %lld" : {
       "localizations" : {
         "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Score: %lld Punkte"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Score: %lld Punkt"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Score: %lld Punkte"
+                }
+              }
+            }
           }
         },
         "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Score: %lld points"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Score: %lld point"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Score: %lld points"
+                }
+              }
+            }
           }
         }
       }
     },
-    "Settings" : {
-      "extractionState" : "manual",
+    "settings" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -470,13 +540,12 @@
         }
       }
     },
-    "Share" : {
-      "extractionState" : "manual",
+    "share" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Veröffentlichen"
+            "value" : "Teilen"
           }
         },
         "en" : {
@@ -487,25 +556,7 @@
         }
       }
     },
-    "Sign %@ out?" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ abmelden?"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign %@ out?"
-          }
-        }
-      }
-    },
-    "Sign Out" : {
-      "extractionState" : "manual",
+    "signOut" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -517,6 +568,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sign Out"
+          }
+        }
+      }
+    },
+    "signOut %@" : {
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ abmelden?"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign %@ out?"
           }
         }
       }
@@ -538,53 +605,82 @@
         }
       }
     },
-    "Time Limit (%lld minutes)" : {
-      "extractionState" : "manual",
+    "timeLimitMinutes %lld" : {
       "localizations" : {
         "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeitlimit (%lld minutes)"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zeitlimit (Eine Minute)"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zeitlimit (%lld Minuten)"
+                }
+              }
+            }
           }
         },
         "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Time Limit (%lld minutes)"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Time Limit (%lld minute)"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Time Limit (%lld minutes)"
+                }
+              }
+            }
           }
         }
       }
     },
-    "Time Limit: %lld sec" : {
-      "extractionState" : "manual",
+    "timeLimitSec %lld" : {
       "localizations" : {
         "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeitlimit: %lld Sekunden"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zeitlimit: eine Sekunde"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zeitlimit: %lld Sekunden"
+                }
+              }
+            }
           }
         },
         "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Time Limit: %lld sec"
-          }
-        }
-      }
-    },
-    "Time Used: %lld sec" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zeit: %lld Sekunden"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Time Used: %lld sec"
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Time Limit: %lld second"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Time Limit: %lld seconds"
+                }
+              }
+            }
           }
         }
       }
@@ -624,13 +720,52 @@
         }
       }
     },
-    "Toggle List" : {
-      "extractionState" : "manual",
+    "timeUsedSec %lld" : {
+      "localizations" : {
+        "de" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zeit: %lld Sekunde"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Zeit: %lld Sekunden"
+                }
+              }
+            }
+          }
+        },
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Time Used: %lld second"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "Time Used: %lld seconds"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "toggleList" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffentliche Bestenliste aktivieren"
+            "value" : "Zeige öffentliche Rangliste"
           }
         },
         "en" : {
@@ -641,8 +776,7 @@
         }
       }
     },
-    "Username" : {
-      "extractionState" : "manual",
+    "username" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -658,14 +792,12 @@
         }
       }
     },
-    "What word can be made?" : {
-      "comment" : "Placeholder for word entering TextField.",
-      "extractionState" : "manual",
+    "whatWordCanBeMade" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Welche Worte kann man aus den Buchstaben machen?"
+            "value" : "Welches Wort kann man daraus machen?"
           }
         },
         "en" : {
@@ -784,8 +916,7 @@
         }
       }
     },
-    "Words" : {
-      "extractionState" : "manual",
+    "words" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {
@@ -801,8 +932,7 @@
         }
       }
     },
-    "Words Found: %lld" : {
-      "extractionState" : "manual",
+    "wordsFound %lld" : {
       "localizations" : {
         "de" : {
           "stringUnit" : {

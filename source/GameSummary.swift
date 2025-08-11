@@ -11,21 +11,21 @@ public struct GameSummary: View {
     VStack {
       VStack(alignment: .leading, spacing: 20) {
         if let sharedGame = game as? SharedGame {
-          Label(.player(sharedGame.name), systemImage: "person.circle")
+          Label("player \(sharedGame.name)", systemImage: "person.circle")
         }
 
-        Label(.rootWord(game.root), systemImage: "textformat")
-        Label(.language(game.language.localized), systemImage: "globe")
-        Label(.scorePoints(game.score), systemImage: "star.fill")
+        Label("rootWord \(game.root)", systemImage: "textformat")
+        Label("language \(game.language.localized)", systemImage: "globe")
+        Label("scorePoints \(game.score)", systemImage: "star.fill")
 
         if let localGame = game as? LocalGame {
-          Label(.wordsFound(localGame.count), systemImage: "list.bullet.rectangle")
+          Label("wordsFound \(localGame.count)", systemImage: "list.bullet.rectangle")
 
           if AnagramsApp.enableTimer {
             if let limit = localGame.limit {
-              Label(.timeLimitSec(limit), systemImage: "timer")
+              Label("timeLimitSec \(limit)", systemImage: "timer")
             }
-            Label(.timeUsedSec(localGame.time), systemImage: "clock")
+            Label("timeUsedSec \(localGame.time)", systemImage: "clock")
           }
         }
       }
@@ -35,9 +35,9 @@ public struct GameSummary: View {
       .frame(maxWidth: .infinity)
 
       if let localGame = game as? LocalGame {
-        Section(.words) {
+        Section("words") {
           if localGame.words.isEmpty {
-            Text(.noneFound)
+            Text("noneFound")
               .foregroundStyle(.secondary)
           } else {
 
@@ -57,7 +57,7 @@ public struct GameSummary: View {
     }
     .foregroundStyle(.text)
     .background(Background())
-    .navigationTitle(.gameSummary)
+    .navigationTitle("gameSummary")
   }
 
   public init(_ game: any Game) { self.game = game }

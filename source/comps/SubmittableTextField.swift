@@ -14,7 +14,7 @@ public struct SubmittableTextField: View {
     HStack {
       Group {
         if #available(iOS 26.0, *) {
-          TextField(label, text: $text)
+          TextField(LocalizedStringKey(label.key), text: $text)
         } else {
           TextField(LocalizedStringKey(stringLiteral: label.key), text: $text)
         }
@@ -23,7 +23,7 @@ public struct SubmittableTextField: View {
       .textInputAutocapitalization(.never)
       .onSubmit(submit)
 
-      Button(.submit, systemImage: submittable ? "checkmark" : "xmark", action: submit)
+      Button("submit", systemImage: submittable ? "checkmark" : "xmark", action: submit)
         .font(nil)
         .labelStyle(.iconOnly)
         .buttonStyle(.bordered)
@@ -32,8 +32,8 @@ public struct SubmittableTextField: View {
     }
     .accessibilityElement()
     .accessibilityAddTraits(.isButton)
-    .accessibilityLabel(label)
-    .accessibilityAction(named: .submit, submit)
+    .accessibilityLabel(LocalizedStringKey(label.key))
+    .accessibilityAction(named: "submit", submit)
   }
 
   public init(
