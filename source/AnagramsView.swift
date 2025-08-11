@@ -10,7 +10,7 @@ public struct AnagramsView: View {
     NavigationStack {
       VStack {
         HStack {
-          Button(.previous, systemImage: "chevron.left", action: previous)
+          Button("previous", systemImage: "chevron.left", action: previous)
             .labelStyle(.iconOnly)
             .buttonStyle(.borderedProminent)
             .disabled(gameIndex <= 0)
@@ -18,7 +18,7 @@ public struct AnagramsView: View {
           RootPicker(Binding { root ?? game.root } set: { root = $0 }, language: language)
             .onChange(of: game) { root = nil }
 
-          Button(.next, systemImage: "chevron.right", action: next)
+          Button("next", systemImage: "chevron.right", action: next)
             .labelStyle(.iconOnly)
             .buttonStyle(.borderedProminent)
         }
@@ -30,9 +30,9 @@ public struct AnagramsView: View {
       .background(Background())
       .toolbar {
         ToolbarItem(placement: .primaryAction) {
-          Menu(.settings, systemImage: "gear") {
+          Menu("settings", systemImage: "gear") {
             if AnagramsApp.enableTimer {
-              Button(minuteLimit == nil ? .timerOn : .timerOff, systemImage: "timer") {
+              Button(minuteLimit == nil ? "timerOn" : "timerOff", systemImage: "timer") {
                 minuteLimit = minuteLimit != nil ? nil
                 : Bundle.main.object(forInfoDictionaryKey: "DefaultTimeLimitMins") as? Double
               }
@@ -50,12 +50,12 @@ public struct AnagramsView: View {
                   in: 1...60,
                   step: 1
                 ) {
-                  Label(.timeLimitMinutes(Int(minuteLimit)), systemImage: "clock")
+                  Label("timeLimitMinutes \(Int(minuteLimit))", systemImage: "clock")
                 }
               }
             }
 
-            Picker(.language, selection: $language) {
+            Picker("language", selection: $language) {
               ForEach(Language.allCases, id: \.self) { language in
                 Text(language.localized)
                   .tag(language)
@@ -70,11 +70,11 @@ public struct AnagramsView: View {
             LeaderboardView()
               .background { Background() }
           } label: {
-            Label(.leaderboard, systemImage: "trophy")
+            Label("leaderboard", systemImage: "trophy")
           }
         }
       }
-      .navigationTitle(.score(game.score))
+      .navigationTitle("score \(game.score)")
       .navigationBarTitleDisplayMode(.inline)
     }
     .scrollContentBackground(.hidden)

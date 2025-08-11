@@ -18,7 +18,7 @@ public struct RootPicker: View {
           .onLongPressGesture { editingRoot = true }
           .opacity(editingRoot ? 0 : 1)
 
-        Toggle(.editRoot, systemImage: "pencil", isOn: $editingRoot)
+        Toggle("editRoot", systemImage: "pencil", isOn: $editingRoot)
           .toggleStyle(.button)
           .labelStyle(.iconOnly)
           .disabled(editingRoot)
@@ -31,7 +31,7 @@ public struct RootPicker: View {
       }
     }
     .frame(height: 100)
-    .notification(.rootAlertTitle, item: $rootAlert)
+    .notification("rootAlertTitle", item: $rootAlert)
     .onChange(of: root) { newRoot = "" }
   }
 
@@ -64,8 +64,8 @@ extension RootPicker {
 
     guard isValidRoot else {
       return rootAlert = switch false {
-      case rootIsLongEnough: .rootAlertLength
-      case rootExists: .rootAlertExists
+      case rootIsLongEnough: "rootAlertLength"
+      case rootExists: "rootAlertExists"
       default: nil
       }
     }

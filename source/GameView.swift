@@ -11,9 +11,9 @@ public struct GameView: View {
   public var body: some View {
     VStack {
       WordList(game.words)
-        .notification(.wordAlertTitle, item: $wordAlert)
+        .notification("wordAlertTitle", item: $wordAlert)
 
-      SubmittableTextField(.whatWordCanBeMade, text: $newWord, submittable: isValidWord) {
+      SubmittableTextField("whatWordCanBeMade", text: $newWord, submittable: isValidWord) {
         addWord()
         focussingWord = true
       }
@@ -74,11 +74,11 @@ extension GameView {
   func addWord() {
     guard isValidWord else {
       return wordAlert = switch false {
-      case wordIsNotRoot: .wordAlertIsRoot
-      case wordIsLongEnough: .wordAlertLength
-      case wordIsNew: .wordAlertNotNew
-      case wordIsInRoot: .wordAlertNotInRoot(game.root)
-      case wordExists: .wordAlertExists(newWord)
+      case wordIsNotRoot: "wordAlertIsRoot"
+      case wordIsLongEnough: "wordAlertLength"
+      case wordIsNew: "wordAlertNotNew"
+      case wordIsInRoot: "wordAlertNotInRoot \(game.root)"
+      case wordExists: "wordAlertExists \(newWord)"
       default: nil
       }
     }

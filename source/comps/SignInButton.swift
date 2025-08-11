@@ -24,24 +24,24 @@ public struct SignInButton: View {
         systemImage: "person.crop.circle.\(username == nil ? "badge.plus" : "fill.badge.checkmark")"
       )
     }
-    .alert(.enterYourUsername, isPresented: $signingIn) {
-      TextField(LocalizedStringKey(LocalizedStringResource.username.key), text: $newUsername)
+    .alert("enterYourUsername", isPresented: $signingIn) {
+      TextField(LocalizedStringKey("username"), text: $newUsername)
         .textInputAutocapitalization(.never)
         .autocorrectionDisabled()
 
-      Button(.ok) { username = newUsername }
-      Button(.cancel, role: .cancel) {}
+      Button("ok") { username = newUsername }
+      Button("cancel", role: .cancel) {}
     }
-    .alert(.signOut(username ?? ""), isPresented: $signingOut) {
-      Button(.signOut, role: .destructive) { username = nil }
+    .alert("signOut \(username ?? "")", isPresented: $signingOut) {
+      Button("signOut", role: .destructive) { username = nil }
     }
-    .alert(.iCloudUnavailable, isPresented: $showSettingsPrompt) {
-      Button(.settings) {
+    .alert("iCloudUnavailable", isPresented: $showSettingsPrompt) {
+      Button("settings") {
         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
       }
-      Button(.cancel, role: .cancel) {}
+      Button("cancel", role: .cancel) {}
     } message: {
-      Text(.pleaseSignInToYourICloudAccountToEnableLeaderboardFeatures)
+      Text("pleaseSignInToYourICloudAccountToEnableLeaderboardFeatures")
     }
   }
 
