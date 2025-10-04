@@ -1,7 +1,5 @@
 {
-  "fill" : {
-    "automatic-gradient" : "srgb:0.92143,0.92145,0.92144,1.00000"
-  },
+  "fill" : "automatic",
   "groups" : [
     {
       "layers" : [
@@ -10,7 +8,20 @@
           "fill" : {
             "solid" : "srgb:0.53333,0.58824,0.33333,1.00000"
           },
-          "glass" : true,
+          "glass-specializations" : [
+            {
+              "value" : false
+            },
+            {
+              "appearance" : "dark",
+              "value" : true
+            },
+            {
+              "appearance" : "tinted",
+              "value" : true
+            }
+          ],
+          "hidden" : false,
           "image-name" : "a.png",
           "name" : "A",
           "opacity" : 1,
@@ -23,6 +34,7 @@
           }
         }
       ],
+      "lighting" : "individual",
       "shadow" : {
         "kind" : "neutral",
         "opacity" : 0.5
